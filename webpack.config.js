@@ -1,0 +1,95 @@
+/* eslint-disable no-undef */
+const webpack = require('webpack');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
+const productionEnv = 'production';
+const env = process.env.NODE_ENV;
+
+const babelLoader = {
+    loader: 'babel-loader',
+    options: {
+        presets: [['env', {
+            targets: {
+                browsers: ['last 2 versions', 'not ie <= 11']
+            }
+        }], ['stage-2']]
+    }
+};
+
+const eslintLoader = {
+    loader: 'eslint-loader',
+    options: {}
+};
+
+const javascriptLoaders = [babelLoader, eslintLoader];
+
+const plugins = [];
+
+if (env === productionEnv) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
+
+    plugins.push(
+        new BrowserSyncPlugin({
+            // browse to http://localhost:3000/ during development,
+            // ./public directory is being served
+            host: 'localhost',
+            port: 3000,
+            server: {
+                baseDir: "build",
+                index: "app.html"
+            }
+        })
+    );
+
+
+module.exports = {
+    entry: './src/app.jsx',
+    output: {
+        path: __dirname + '/build',
+        filename: 'app.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: javascriptLoaders
+            },
+            {
+                test: /\.jsx$/,
+                exclude: /(node_modules|bower_components)/,
+                use: javascriptLoaders
+            },
+            {
+                test: /\.(html|jpg|png|ico)/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]',
+                        context: 'static',
+                    }
+                },
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader", // translates CSS into CommonJS
+                    options: {
+                        sourceMap: true
+                    }
+                }, {
+                    loader: "less-loader", // compiles Less to CSS
+                    options: {
+                        sourceMap: true
+                    }
+                }]
+            }
+        ]
+    },
+
+    devtool: env === productionEnv ? '' : 'source-map',
+    plugins: plugins
+};

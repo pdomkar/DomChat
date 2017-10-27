@@ -1,0 +1,43 @@
+{
+  "name": "dom-chat",
+  "version": "1.0.0",
+  "description": "App to PV247 - DomChat - chatting app base on channels",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.9.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-react": "^7.4.0",
+    "file-loader": "^0.11.2",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.3.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "build-production": "set NODE_ENV=production&& webpack",
+    "start": "webpack -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdomkar/DomChat.git"
+  },
+  "author": "Petr Domkař",
+  "license": "ISC",
+  "homepage": "https://github.com/pdomkar/DomChat#readme"
+}
