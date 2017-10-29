@@ -86,6 +86,34 @@ module.exports = {
                         sourceMap: true
                     }
                 }]
+            },
+            {
+                test: /\.css$/,
+                loader: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'styles/[name].[ext]'
+                        }
+                    },
+                    {
+                        loader: 'extract-loader',
+                        options: {
+                            publicPath: '../'
+                        }
+                    },
+                    { loader: 'css-loader' }
+                ]
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        name: 'assets/[name].[ext]',
+                        limit: 10000
+                    }
+                }
             }
         ]
     },

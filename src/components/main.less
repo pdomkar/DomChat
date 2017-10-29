@@ -1,7 +1,33 @@
-h1 {
-  color: #000000 + #666666;
+@primary: #FAF8F6;
+@sec1: #473229;
+@sec2: #6A5750;
+@sec3: #8E776B;
+@sec4: #B5A397;
+@text-primary: #171616;
+@text-sec1: #CBC1BB;
+@text-sec2: #E4DDD9;
+@text-sec3: #342C27;
+@text-sec4: #423C37;
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
+html {
+  height: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  body {
+    height: inherit;
+    div#app {
+      height: inherit;
+      div {
+        height: inherit;
 
-@import "./login/loginLayout";
-@import "./app/appLaoyut";
+        @import "./login/loginLayout";
+        @import "channels/channelsLayout";
+        @import "profile/profileLayout";
+      }
+    }
+  }
+}

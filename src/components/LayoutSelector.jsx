@@ -1,13 +1,17 @@
 import * as React from 'react';
-import './main.less';
-// import { AppLayout } from './app/AppLayout.jsx';
+import { Route } from 'react-router-dom';
 import { LoginLayout } from './login/LoginLaoyut.jsx';
+import { ChannelsLayout } from './channels/ChannelsLayout.jsx';
+import { ProfileLayout } from './profile/ProfileLayout.jsx';
 
-//Zkusit webstorm, udelat router, a browsersync
+import './main.less';
+
+
 const LayoutSelector = () => (
     <div>
-        <h1>DomChat</h1>
-        <LoginLayout/>
+        <Route exact path="/" component={LoginLayout}/>
+        <Route exact path="/channels" component={ChannelsLayout}/>
+        <Route exact path="/profile" component={ProfileLayout}/>
     </div>
 );
 
