@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "es6": true,
@@ -28,6 +29,7 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": 0
     }
 }
