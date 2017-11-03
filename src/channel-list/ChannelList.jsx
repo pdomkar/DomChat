@@ -1,6 +1,8 @@
 import React from 'react';
 import { uuid } from '../utils/uuidGenerator';
 import Immutable from 'immutable';
+// import { CSSTransition } from 'react-transition-group';
+
 import { ChannelListItem } from './ChannelListItem';
 import { ChannelListEditedItem } from './ChannelListEditedItem';
 
@@ -101,7 +103,13 @@ export class ChannelList extends React.Component {
                 <ul>
                     {itemElements}
                 </ul>
-                {channelEditedModal}
+                {/*<CSSTransition*/}
+                    {/*in={this.state.editedChannelId !== null}*/}
+                    {/*timeout={1000}*/}
+                    {/*classNames="fade"*/}
+                {/*>*/}
+                    {channelEditedModal}
+                {/*</CSSTransition>*/}
             </div>
         );
     }
