@@ -117,7 +117,9 @@ module.exports = {
             }
         ]
     },
-
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
     devtool: env === productionEnv ? '' : 'source-map',
     plugins: plugins
 };

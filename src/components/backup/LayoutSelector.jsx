@@ -1,8 +1,8 @@
 import * as React from 'react';
 // import { Route } from 'react-router-dom';
-// import { LoginLayout } from './login/LoginLaoyut.jsx';
-import { ChannelsLayout } from './channels/ChannelsLayout.jsx';
-// import { ProfileLayout } from './profile/ProfileLayout.jsx';
+// import { LoginLayout } from './login/LoginLaoyut';
+import { ChannelsLayout } from './channels/ChannelsLayout';
+// import { ProfileLayout } from './profile/ProfileLayout';
 
 import './main.less';
 
