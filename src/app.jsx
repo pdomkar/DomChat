@@ -4,7 +4,7 @@ import '../node_modules/font-awesome/css/font-awesome.css';
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { ChannelList } from './channel-list/ChannelList.jsx';
+import { ChannelList } from './containers/channel-list/ChannelList';
 
 import './main.less';
 
