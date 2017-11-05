@@ -15,7 +15,6 @@ export class ChannelListEditedItem extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             editedChannel: props.channel
         };

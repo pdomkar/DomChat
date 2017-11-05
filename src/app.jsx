@@ -3,10 +3,25 @@ import '../node_modules/font-awesome/css/font-awesome.css';
 
 import React from 'react';
 import ReactDom from 'react-dom';
+import { applyMiddleware, compose, createStore } from 'redux';
+import logger from 'redux-logger';
+import { Provider } from 'react-redux';
 
-import { ChannelList } from './containers/channel-list/ChannelList';
+import { app } from './reducers/app';
+import { getInitialState } from './utils/getInitialState';
+import { ChannelListRedux } from './containers-redux/channel-list/ChannelList';
 
 import './main.less';
+
+const thunk = require('redux-thunk').default;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware = [thunk, logger];
+const store = createStore(app, getInitialState(), composeEnhancers(
+    applyMiddleware(...middleware)
+));
+import { SavingStatus } from './containers-redux/channel-list/SavingStatus';
+
+console.log('Initial state: ', store.getState());
 
 class MyComponent extends React.Component {
     render() {
@@ -18,9 +33,10 @@ class MyComponent extends React.Component {
                         <span>petrdomkar</span>
                         {/*<Link to="/profile"><i className="fa fa-user" aria-hidden="true"/></Link>*/}
                         {/*<Link to="/"><i className="fa fa-sign-out" aria-hidden="true"/></Link>*/}
+                        <SavingStatus />
                     </div>
                     <div className="body">
-                        <ChannelList/>
+                        <ChannelListRedux />
                     </div>
                 </div>
                 <div className="channel">
@@ -45,4 +61,8 @@ class MyComponent extends React.Component {
     }
 }
 
-ReactDom.render(<MyComponent/>, document.getElementById('app'));
+ReactDom.render(
+    <Provider store={store}>
+        <MyComponent />
+    </Provider>,
+    document.getElementById('app'));

@@ -4,8 +4,8 @@ import Immutable from 'immutable';
 // import { CSSTransition } from 'react-transition-group';
 
 import { ChannelListItem } from './ChannelListItem';
-import { ChannelListEditedItem } from '../../containers/channel-list/ChannelListEditedItem';
-import { ChannelListNewItem } from './ChannelListNewItem';
+import { ChannelListEditedItemRedux } from '../../containers-redux/channel-list/ChannelListEditedItem';
+import { ChannelListNewItemRedux } from '../../containers-redux/channel-list/ChannelListNewItem';
 
 function ChannelList(props) {
 
@@ -16,12 +16,12 @@ function ChannelList(props) {
     let channelEditedModal = null;
     if(props.editedChannelId !== null) {
         const editedChannel = props.list.find(channel => channel.id === props.editedChannelId);
-        channelEditedModal = (<ChannelListEditedItem channel={editedChannel} submitButtonText="Save" onCancel={props.onCancelEditing} onSubmit={props.onSave}/>);
+        channelEditedModal = (<ChannelListEditedItemRedux channel={editedChannel} submitButtonText="Save"/>);
     }
 
     let channelCreatedModal = null;
     if(props.createChannelVisible === true) {
-        channelCreatedModal = (<ChannelListNewItem onCreate={props.onCreate} onCancel={props.onCancelCreating}/>);
+        channelCreatedModal = (<ChannelListNewItemRedux />);
     }
 
     return(
@@ -57,12 +57,8 @@ ChannelList.propTypes = {
     list: PropTypes.instanceOf(Immutable.List).isRequired,
     createChannelVisible: PropTypes.bool.isRequired,
     editedChannelId: PropTypes.string,
-    onCreate: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
     onStartCreating: PropTypes.func.isRequired,
-    onCancelCreating: PropTypes.func.isRequired,
     onStartEditing: PropTypes.func.isRequired,
-    onCancelEditing: PropTypes.func.isRequired
 };
 
 export { ChannelList };
