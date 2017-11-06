@@ -2,6 +2,7 @@ import {uuid} from '../../utils/uuidGenerator';
 import {
     CHANNEL_LIST_ITEM_CREATE,
     CHANNEL_LIST_ITEM_UPDATE,
+    CHANNEL_LIST_ITEM_DELETE,
     CHANNEL_LIST_ITEM_START_EDITING,
     CHANNEL_LIST_ITEM_CANCEL_EDITING,
     CHANNEL_LIST_ITEM_START_CREATING,
@@ -24,6 +25,13 @@ export const updateChannel = (channel) => ({
     type: CHANNEL_LIST_ITEM_UPDATE,
     payload: {
         channel
+    }
+});
+
+export const deleteChannel = (id) => ({
+    type: CHANNEL_LIST_ITEM_DELETE,
+    payload: {
+        id
     }
 });
 

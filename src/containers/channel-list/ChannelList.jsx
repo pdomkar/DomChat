@@ -10,6 +10,7 @@ class ChannelList extends React.Component {
         createChannelVisible: PropTypes.bool.isRequired,
         onStartEditing: PropTypes.func.isRequired,
         onStartCreating: PropTypes.func.isRequired,
+        onDelete: PropTypes.func.isRequired,
         save: PropTypes.func.isRequired,
     };
 
@@ -34,6 +35,7 @@ class ChannelList extends React.Component {
                 editedChannelId={this.props.editedChannelId}
                 onStartCreating={this.props.onStartCreating}
                 onStartEditing={this.props.onStartEditing}
+                onDelete={this.props.onDelete}
             />
         );
     }

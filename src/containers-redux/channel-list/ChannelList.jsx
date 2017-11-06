@@ -4,6 +4,7 @@ import { ChannelList } from '../../containers/channel-list/ChannelList';
 import {
     startEditingChannel,
     startCreatingChannel,
+    deleteChannel
 } from '../../actions/channel-list/actionCreators';
 import { saveItems } from '../../actions/channel-list/saveItems';
 
@@ -20,6 +21,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     onStartEditing: (id) => dispatch(startEditingChannel(id)),
     onStartCreating: () => dispatch(startCreatingChannel()),
+    onDelete: (id) => dispatch(deleteChannel(id)),
     save: () => dispatch(saveItems()),
 });
 

@@ -10,7 +10,7 @@ import { ChannelListNewItemRedux } from '../../containers-redux/channel-list/Cha
 function ChannelList(props) {
 
     const itemElements = props.list.map( channel => {
-        return (<ChannelListItem key={channel.id} channel={channel} onStartEditing={props.onStartEditing}/>);
+        return (<ChannelListItem key={channel.id} channel={channel} onStartEditing={props.onStartEditing} onDelete={props.onDelete}/>);
     });
 
     let channelEditedModal = null;
@@ -59,6 +59,7 @@ ChannelList.propTypes = {
     editedChannelId: PropTypes.string,
     onStartCreating: PropTypes.func.isRequired,
     onStartEditing: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
 };
 
 export { ChannelList };
