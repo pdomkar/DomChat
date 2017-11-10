@@ -42,7 +42,9 @@ html {
         width: 40px;
         height: 40px;
 
-        position: relative;
+        position: absolute;
+        top: 0;
+        left:0;
         margin: auto;
         z-index: 99999;
 
@@ -118,8 +120,11 @@ html {
         transition: opacity 800ms ease-in;
       }
 
-
-      @import "./channelsLayout";
+      div {
+        height: inherit;
+        @import "./channelsLayout";
+        @import "./loginLayout";
+      }
     }
   }
 }

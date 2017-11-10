@@ -1,6 +1,7 @@
 import * as Immutable from 'immutable';
 import {uuid} from './uuidGenerator';
-import {items} from '../constants/localStorageKeys';
+import {} from '../constants/localStorageKeys';
+import { ITEMS_ALL_ID, ITEMS_BY_ID } from '../constants/localStorageKeys';
 
 const firstId = uuid();
 const secondId = uuid();
@@ -19,8 +20,8 @@ const allIds = Immutable.List([firstId, secondId]);
 const byId = Immutable.Map([[firstId, firstChannel], [secondId, secondChannel]]);
 
 export const getInitialChannels = () => {
-    const storedMapJSON = localStorage.getItem(items.byId);
-    const storedListJSON = localStorage.getItem(items.allIds);
+    const storedMapJSON = localStorage.getItem(ITEMS_BY_ID);
+    const storedListJSON = localStorage.getItem(ITEMS_ALL_ID);
 
     return {
         allIds: storedListJSON ? Immutable.List(JSON.parse(storedListJSON)) : allIds,
