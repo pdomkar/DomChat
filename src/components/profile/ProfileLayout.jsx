@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 
 import { Avatar } from './Avatar';
-import { Detail } from './Detail';
+import { Details } from '../../containers-redux/profile/Details';
 import { CHANNELS } from '../../constants/routes';
 import { HeadInHelmet } from '../../containers-redux/shared/HeadInHelment.jsx';
 
@@ -12,7 +12,7 @@ const ProfileLayout = () => (
         <HeadInHelmet />
         <Avatar/>
         <Link to={CHANNELS}>Zpět</Link>
-        <Detail/>
+        <Details/>
     </div>
 );
 export { ProfileLayout };

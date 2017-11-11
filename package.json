@@ -15,12 +15,14 @@
     "react-router-dom": "^4.2.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "redux-form": "^7.1.1",
     "prop-types": "^15.5.10",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "connected-react-router": "^4.2.3",
     "history": "^4.7.2",
     "memoizee": "^0.4.11",
+    "classnames": "^2.2.5",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
