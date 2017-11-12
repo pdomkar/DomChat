@@ -17,6 +17,7 @@ class LoginForm extends React.PureComponent {
                         type="email"
                         required
                         placeholder="name@domain.cz"
+                        defaultValue="petr@test.cz"
                     />
                 </div>
 

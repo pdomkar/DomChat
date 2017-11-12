@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { SavingSpinner } from '../shared/SavingSpinner.jsx';
 
 export class SavingStatus extends React.PureComponent {
 
@@ -19,10 +20,7 @@ export class SavingStatus extends React.PureComponent {
         return (
             <span>
                 {
-                    this.props.isSaving && <div className="savingSpinner" alt="saving">
-                                                <div className="circle1"/>
-                                                <div className="circle2"/>
-                                            </div>
+                    this.props.isSaving && <SavingSpinner />
                 }
             </span>
         );

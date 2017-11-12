@@ -8,6 +8,7 @@ import { HeadInHelmet } from '../../containers-redux/shared/HeadInHelment.jsx';
 import {Link} from 'react-router-dom';
 
 import { ChannelListRedux } from '../../containers-redux/channels/channel-list/ChannelList';
+import { Errors } from '../../containers-redux/shared/Errors';
 
 
 const ChannelsLayout = () => (
@@ -28,6 +29,7 @@ const ChannelsLayout = () => (
             <Header/>
             <Body/>
         </div>
+        <Errors />
     </div>
 );
 export { ChannelsLayout };
