@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {INVALID,NOT_CHANGED, SAVEABLE} from '../../constants/formStates';
+import {
+    INVALID,
+    NOT_CHANGED,
+    SAVEABLE,
+    SAVING_NOW
+} from '../../constants/formStates';
+import { SavingSpinner } from '../shared/SavingSpinner';
 
 const NoChangedDetails = () => (
     <div
@@ -26,6 +32,16 @@ const SubmitDetails = () => (
         Save
     </button>
 );
+const UploadingDetails = () => (
+    <div
+        className="well-sm alert-warning text-center"
+        role="alert"
+    >
+        <SavingSpinner />
+        &nbsp;
+        Saving…
+    </div>
+);
 
 const UpdatePane = ({formState}) => {
     switch(formState) {
@@ -35,6 +51,8 @@ const UpdatePane = ({formState}) => {
             return <InvalidDetails/>;
         case SAVEABLE:
             return <SubmitDetails/>;
+        case SAVING_NOW:
+            return <UploadingDetails />;
         default:
             throw new Error(`Unknown form state ${formState}`);
     }

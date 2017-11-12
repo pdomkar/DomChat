@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import { LoginLayout } from './login/LoginLaoyut';
 import { ChannelsLayout } from './channels/ChannelsLayout';
-import { ProfileLayout } from './profile/ProfileLayout';
-import { AuthenticatedRoute } from './app/AuthenticatedRoute.jsx';
+import { ProfileLayout } from '../containers-redux/profile/Profile';
+import { AuthenticatedRoute } from './app/AuthenticatedRoute';
 import { ROOT, PROFILE, CHANNELS, LOGIN } from '../constants/routes';
 import { SavingStatus } from '../containers-redux/app/SavingStatus';
 

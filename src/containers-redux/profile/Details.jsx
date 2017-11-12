@@ -1,19 +1,21 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { Details } from '../../components/profile/Details';
-import { updateProfileDetails } from '../../actions/profile/actionCreators';
+import { uploadUserDetails } from '../../actions/profile/uploadUserDetails';
+import { DETAILS_FORM_NAME } from '../../constants/formNames';
 
 const mapStateToProps = (state) => ({
     initialValues: state.profile.details
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onSubmit: (details) => dispatch(updateProfileDetails(details)),
+    onSubmit: (details) => dispatch(uploadUserDetails(details)),
 });
 
 const formConfig = {
-    form: 'DetailsForm',
-    touchOnChange: true
+    form: DETAILS_FORM_NAME,
+    touchOnChange: true,
+    enableReinitialize: true,
 };
 
 const stateEnhancer = connect(mapStateToProps, mapDispatchToProps);

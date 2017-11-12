@@ -6,11 +6,16 @@ import { UpdatePane } from './UpdatePane';
 import {
     validateNonEmptyness,
 } from '../../utils/validation';
-import {SAVEABLE,INVALID,NOT_CHANGED} from '../../constants/formStates';
+import {
+    SAVEABLE,
+    INVALID,
+    NOT_CHANGED,
+    SAVING_NOW
+} from '../../constants/formStates';
 
 const validateName = validateNonEmptyness('name');
 
-const getFormState = (dirty, valid) => {
+const getFormState = (dirty, valid, submitting) => {
     if(!dirty) {
         return NOT_CHANGED;
     }
@@ -19,10 +24,14 @@ const getFormState = (dirty, valid) => {
         return INVALID;
     }
 
+    if(submitting) {
+        return SAVING_NOW;
+    }
+
     return SAVEABLE;
 };
 
-const Details = ({ handleSubmit, valid, dirty }) => (
+const Details = ({ handleSubmit, valid, dirty, submitting }) => (
     <div>
         <form onSubmit={handleSubmit}>
             <Field
@@ -45,7 +54,7 @@ const Details = ({ handleSubmit, valid, dirty }) => (
                 required
                 validate={validateName}
             />
-            <UpdatePane formState={getFormState(dirty, valid)}/>
+            <UpdatePane formState={getFormState(dirty, valid, submitting)}/>
         </form>
     </div>
 );
@@ -54,6 +63,7 @@ Details.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     valid: PropTypes.bool.isRequired,
     dirty: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
 };
 
 export { Details };
