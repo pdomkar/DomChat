@@ -1,7 +1,8 @@
 import {
     updateProfileDetails,
     failFetchingProfileDetails,
-    startFetchingProfileDetails
+    startFetchingProfileDetails,
+    startFetchingProfileAvatar
 } from './actionCreators';
 
 import {
@@ -16,16 +17,18 @@ import {
     EXPIRED_AUTHENTICATION_MESSAGE,
     FAILED_FETCH_DETAILS_MESSAGE
 } from '../../constants/uiConstants';
+import { fetchUserAvatar } from './fetchUserAvatar';
 
 export const fetchUserDetails = () =>
     (dispatch, getState) => {
         dispatch(startFetchingProfileDetails);
-
+        dispatch(startFetchingProfileAvatar());
         const authToken = getState().shared.token;
         const requestUri = createApiUserUri(USER_EMAIL);
 
         return fetchReceive(requestUri, authToken)
             .then((serverDetails) => dispatch(updateProfileDetails((convertFromServerDetails(serverDetails)))))
+            .then(({ payload: { details: {avatarId} = {} } = {} }) => avatarId && dispatch(fetchUserAvatar(avatarId)))
             .catch((error) => {
                 if(error.statusCode === 401) {
                     dispatch(invalidateToken());

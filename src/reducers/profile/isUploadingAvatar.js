@@ -1,7 +1,7 @@
 import {
     PROFILE_AVATAR_UPLOADING_STARTED,
     PROFILE_AVATAR_UPLOADING_FAILED,
-    PROFILE_UPDATE_DETAILS,
+    PROFILE_UPDATE_AVATAR,
 } from '../../constants/actionTypes';
 
 export const isUploadingAvatar = (prevState = false, action) => {
@@ -9,7 +9,7 @@ export const isUploadingAvatar = (prevState = false, action) => {
         case PROFILE_AVATAR_UPLOADING_STARTED:
             return true;
 
-        case PROFILE_UPDATE_DETAILS:
+        case PROFILE_UPDATE_AVATAR:
         case PROFILE_AVATAR_UPLOADING_FAILED:
             return false;
 

@@ -22,7 +22,9 @@ class ProfileLayout extends React.PureComponent {
         return (
             <div className="profile-layout">
                 <HeadInHelmet />
-                <Avatar />
+                <Loader stateLoadingSelector={state => state.profile.isFetchingAvatar}>
+                    <Avatar />
+                </Loader>
                 <Link to={CHANNELS}>Zpět</Link>
                 <Loader stateLoadingSelector={state => state.profile.isFetchingDetails}>
                     <Details />

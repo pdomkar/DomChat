@@ -12,6 +12,7 @@ import {
     FAILED_UPDATE_AVATAR_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_ERROR
 } from '../../constants/uiConstants';
+import { fetchUserAvatar } from './fetchUserAvatar';
 
 export const uploadUserAvatar = (file) =>
     async (dispatch, getState) => {
@@ -34,7 +35,9 @@ export const uploadUserAvatar = (file) =>
                     ...getState().profile.details,
                     avatarId: uploadResult[0].id,
                 };
-                return await dispatch(uploadUserDetails(updatedDetails));
+
+                await dispatch(uploadUserDetails(updatedDetails));
+                await dispatch(fetchUserAvatar(updatedDetails.avatarId));
             });
         }
         catch (error) {
