@@ -12,8 +12,6 @@ import {
 } from '../../constants/api';
 import {
     dismissError,
-    invalidateToken,
-    failAuthentication,
 } from '../shared/actionCreators';
 import { fetchRequest } from '../../utils/api/fetchRequest';
 import {
@@ -21,26 +19,11 @@ import {
     convertToServerDetails
 } from '../../utils/api/conversions/profileDetails';
 import { DETAILS_FORM_NAME } from '../../constants/formNames';
+import { performAuthorizedRequest } from './performAuthorizedRequest';
 import {
-    EXPIRED_AUTHENTICATION_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_ERROR,
     FAILED_UPDATE_DETAILS_MESSAGE
 } from '../../constants/uiConstants';
-
-
-const performAuthorizedRequest = async (dispatch, requestAction) => {
-    try {
-        return await requestAction();
-    }
-    catch (error) {
-        if (error.statusCode === 401) {
-            dispatch(invalidateToken());
-            return dispatch(failAuthentication(EXPIRED_AUTHENTICATION_MESSAGE));
-        }
-
-        throw error;
-    }
-};
 
 export const uploadUserDetails = (details) =>
     async (dispatch, getState) => {
@@ -57,7 +40,7 @@ export const uploadUserDetails = (details) =>
                 return dispatch(updateProfileDetails(updatedDetails));
             });
         } catch (error) {
-            const dispatchedAction = dispatch(failUploadingProfileDetails(FAILED_UPDATE_DETAILS_MESSAGE));
+            const dispatchedAction = dispatch(failUploadingProfileDetails(FAILED_UPDATE_DETAILS_MESSAGE, error));
             setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
         }
 

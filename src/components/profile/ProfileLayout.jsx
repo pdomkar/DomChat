@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import { Avatar } from './Avatar';
+import { Avatar } from '../../containers-redux/profile/Avatar';
 import { Details } from '../../containers-redux/profile/Details';
 import { CHANNELS } from '../../constants/routes';
-import { HeadInHelmet } from '../../containers-redux/shared/HeadInHelment.jsx';
+import { HeadInHelmet } from '../../containers-redux/shared/HeadInHelment';
 import { Errors } from '../../containers-redux/shared/Errors';
-import { Loader } from '../../containers-redux/shared/Loader.jsx';
+import { Loader } from '../../containers-redux/shared/Loader';
 
 class ProfileLayout extends React.PureComponent {
     static propTypes = {

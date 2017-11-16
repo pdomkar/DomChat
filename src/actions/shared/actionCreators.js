@@ -7,10 +7,10 @@ import {
 } from '../../constants/actionTypes';
 import { errorActionFactory } from '../../utils/errorActionFactory';
 
-export const receiveValidToken = () => ({
+export const receiveValidToken = (token) => ({
     type: SHARED_RECEIVE_TOKEN,
     payload: {
-        token: 'forged-token-much-guid-such-wow',
+        token
     }
 });
 

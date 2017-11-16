@@ -15,8 +15,8 @@ import { fetchAuthToken } from '../../utils/api/fetchAuthToken';
 import { USER_EMAIL } from '../../constants/api';
 import { MILISECONDS_TO_AUTO_DISMISS_ERROR, FAILED_AUTHENTICATION_MESSAGE } from '../../constants/uiConstants';
 
-export const authenticateUser  = (destinationLocation) => {
-    return (dispatch) => {
+export const authenticateUser  = (destinationLocation) =>
+    (dispatch) => {
         dispatch(startAuthentication());
 
         return fetchAuthToken(USER_EMAIL)
@@ -30,5 +30,5 @@ export const authenticateUser  = (destinationLocation) => {
                 const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
                 setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
             });
+
     };
-};
