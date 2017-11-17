@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
+
 import { channelApp } from './channels/channel-list/channelApp';
 import { shared } from './shared/shared';
 import { profile } from './profile/profile';
-
-import { reducer as form } from 'redux-form';
+import { login } from './login/login';
 
 export const app = combineReducers({
     channelApp,
     shared,
     profile,
+    login,
     form
 });

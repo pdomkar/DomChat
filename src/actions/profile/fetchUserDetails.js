@@ -6,7 +6,6 @@ import {
 } from './actionCreators';
 
 import {
-    USER_EMAIL,
     createApiUserUri
 } from '../../constants/api';
 import { invalidateToken, failAuthentication } from '../shared/actionCreators';

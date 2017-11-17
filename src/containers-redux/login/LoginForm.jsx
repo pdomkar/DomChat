@@ -1,14 +1,30 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { LoginForm } from '../../containers/login/LoginForm';
+import { LoginForm } from '../../components/login/LoginForm';
 import { authenticateUser } from '../../actions/shared/authenticateUser';
+import { LOGIN_FORM_NAME } from '../../constants/formNames';
+import { reduxForm } from 'redux-form';
+
+
+const mapStateToProps = (state) => ({
+    initialValues: state.login.email
+});
+
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onSubmit: (email) => dispatch(authenticateUser(ownProps.from, email)),
 });
 
-const enhancer = connect(undefined, mapDispatchToProps);
-const connectedComponent = enhancer(LoginForm);
+
+const formConfig = {
+    form: LOGIN_FORM_NAME,
+    touchOnChange: true,
+    enableReinitialize: true,
+};
+
+const stateEnhancer = connect(mapStateToProps, mapDispatchToProps);
+const formEnhancer = reduxForm(formConfig);
+const connectedComponent = stateEnhancer(formEnhancer(LoginForm));
 
 connectedComponent.propTypes = {
     from: PropTypes.object.isRequired,
