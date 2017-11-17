@@ -5,7 +5,7 @@ import {
     Switch
 } from 'react-router-dom';
 import { LoginLayout } from './login/LoginLaoyut';
-import { ChannelsLayout } from './channels/ChannelsLayout';
+import { ChannelsLayout } from '../containers-redux/channels/ChannelsLayout';
 import { ProfileLayout } from '../containers-redux/profile/Profile';
 import { AuthenticatedRoute } from './app/AuthenticatedRoute';
 import { ROOT, PROFILE, CHANNELS, LOGIN } from '../constants/routes';

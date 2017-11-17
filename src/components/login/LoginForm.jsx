@@ -4,6 +4,7 @@ import * as PropTypes from 'prop-types';
 class LoginForm extends React.PureComponent {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired,
+        onEmailChange: PropTypes.func.isRequired
     };
 
     render() {
@@ -18,6 +19,7 @@ class LoginForm extends React.PureComponent {
                         required
                         placeholder="name@domain.cz"
                         defaultValue="petr@test.cz"
+                        onChange={this.props.onEmailChange}
                     />
                 </div>
 

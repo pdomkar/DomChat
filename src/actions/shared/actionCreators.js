@@ -3,9 +3,17 @@ import {
     SHARED_INVALIDATE_TOKEN,
     SHARED_AUTHENTICATION_STARTED,
     SHARED_AUTHENTICATION_FAILED,
-    SHARED_DISMISS_ERROR
+    SHARED_DISMISS_ERROR,
+    SHARED_RECEIVE_EMAIL
 } from '../../constants/actionTypes';
 import { errorActionFactory } from '../../utils/errorActionFactory';
+
+export const receiveValidEmail = (email) => ({
+    type: SHARED_RECEIVE_EMAIL,
+    payload: {
+        email
+    }
+});
 
 export const receiveValidToken = (token) => ({
     type: SHARED_RECEIVE_TOKEN,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import PropTypes from 'prop-types';
 import {Header } from './channel/header/Header.jsx';
 import {Body } from './channel/body/Body.jsx';
 import { LogoutButton } from '../../containers-redux/app/LogoutButton.jsx';
@@ -11,13 +11,13 @@ import { ChannelListRedux } from '../../containers-redux/channels/channel-list/C
 import { Errors } from '../../containers-redux/shared/Errors';
 
 
-const ChannelsLayout = () => (
+const ChannelsLayout = (props) => (
     <div className="channels-layout">
         <HeadInHelmet />
         <div className="sidebar-container">
             <div className="header">
                 <h2>DomChat</h2>
-                <span>petrdomkar</span>
+                <span>{props.details.name}</span>
                 <Link to="/profile"><i className="fa fa-user" aria-hidden="true"/></Link>
                 <LogoutButton />
             </div>
@@ -32,4 +32,12 @@ const ChannelsLayout = () => (
         <Errors />
     </div>
 );
+
+ChannelsLayout.propTypes = {
+    details: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+    }).isRequired,
+};
+
 export { ChannelsLayout };
