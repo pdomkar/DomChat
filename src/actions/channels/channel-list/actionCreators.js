@@ -1,5 +1,5 @@
-import {uuid} from '../../../utils/uuidGenerator';
 import {
+    CHANNELS_LOAD_ALL,
     CHANNEL_LIST_ITEM_CREATE,
     CHANNEL_LIST_ITEM_UPDATE,
     CHANNEL_LIST_ITEM_DELETE,
@@ -11,11 +11,17 @@ import {
     CHANNEL_LIST_SAVING_FINISHED,
 } from '../../../constants/actionTypes';
 
+export const updateChannels = (channels) => ({
+    type: CHANNELS_LOAD_ALL,
+    payload: {
+        channels
+    }
+});
+
 export const createChannel = (newChannel) => ({
     type: CHANNEL_LIST_ITEM_CREATE,
     payload: {
         channel: {
-            id: uuid(),
             ...newChannel
         }
     }

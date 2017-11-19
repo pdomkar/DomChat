@@ -6,60 +6,70 @@ import Immutable from 'immutable';
 import { ChannelListItem } from './ChannelListItem';
 import { ChannelListEditedItemRedux } from '../../../containers-redux/channels/channel-list/ChannelListEditedItem';
 import { ChannelListNewItemRedux } from '../../../containers-redux/channels/channel-list/ChannelListNewItem';
+import { fetchChannels } from '../../../actions/channels/channel-list/fetchChannels';
 
-function ChannelList(props) {
+export class ChannelList extends React.PureComponent {
+    static propTypes = {
+        list: PropTypes.instanceOf(Immutable.List).isRequired,
+        createChannelVisible: PropTypes.bool.isRequired,
+        editedChannelId: PropTypes.string,
+        onStartCreating: PropTypes.func.isRequired,
+        onShowChannel: PropTypes.func.isRequired,
+        onStartEditing: PropTypes.func.isRequired,
+        onDelete: PropTypes.func.isRequired,
+    };
 
-    const itemElements = props.list.map( channel => {
-        return (<ChannelListItem key={channel.id} channel={channel} onStartEditing={props.onStartEditing} onDelete={props.onDelete}/>);
-    });
-
-    let channelEditedModal = null;
-    if(props.editedChannelId !== null) {
-        const editedChannel = props.list.find(channel => channel.id === props.editedChannelId);
-        channelEditedModal = (<ChannelListEditedItemRedux channel={editedChannel} submitButtonText="Save"/>);
+    constructor(props) {
+        super(props);
     }
 
-    let channelCreatedModal = null;
-    if(props.createChannelVisible === true) {
-        channelCreatedModal = (<ChannelListNewItemRedux />);
+    componentWillMount() {
+        this.props.loadChannels();
     }
 
-    return(
-        <div>
-            <h3>
-                Channels
-                {!props.createChannelVisible &&
+    render() {
+
+        const itemElements = this.props.list.map( channel => {
+            return (<ChannelListItem key={channel.id} channel={channel} onShowChannel={this.props.onShowChannel} onStartEditing={this.props.onStartEditing} onDelete={this.props.onDelete}/>);
+        });
+
+        let channelEditedModal = null;
+        if(this.props.editedChannelId !== null) {
+            const editedChannel = this.props.list.find(channel => channel.id === this.props.editedChannelId);
+            channelEditedModal = (<ChannelListEditedItemRedux channel={editedChannel} submitButtonText="Save"/>);
+        }
+
+        let channelCreatedModal = null;
+        if(this.props.createChannelVisible === true) {
+            channelCreatedModal = (<ChannelListNewItemRedux />);
+        }
+
+        return (
+            <div>
+                <h3>
+                    Channels
+                    {!this.props.createChannelVisible &&
                     <a
                         type="button"
                         className="btn"
-                        onClick={() => props.onStartCreating()}
+                        onClick={() => this.props.onStartCreating()}
                     >
-                        <i className="fa fa-plus" aria-hidden="true"/>
+                        <i className="fa fa-plus" aria-hidden="true" />
                     </a>
-                }
-            </h3>
-            <ul>
-                {itemElements}
-            </ul>
-            {/*<CSSTransition*/}
-                {/*in={props.editedChannelId !== null}*/}
+                    }
+                </h3>
+                <ul>
+                    {itemElements}
+                </ul>
+                {/*<CSSTransition*/}
+                {/*in={this.props.editedChannelId !== null}*/}
                 {/*timeout={1000}*/}
                 {/*classNames="fade"*/}
-            {/*>*/}
+                {/*>*/}
                 {channelEditedModal}
-            {/*</CSSTransition>*/}
-            {channelCreatedModal}
-        </div>
-    );
+                {/*</CSSTransition>*/}
+                {channelCreatedModal}
+            </div>
+        );
+    }
 }
-
-ChannelList.propTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
-    createChannelVisible: PropTypes.bool.isRequired,
-    editedChannelId: PropTypes.string,
-    onStartCreating: PropTypes.func.isRequired,
-    onStartEditing: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-};
-
-export { ChannelList };

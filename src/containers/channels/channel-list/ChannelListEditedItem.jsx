@@ -10,7 +10,11 @@ export class ChannelListEditedItem extends React.Component {
         }).isRequired,
         submitButtonText: PropTypes.string.isRequired,
         onCancel: PropTypes.func.isRequired,
-        onSubmit: PropTypes.func.isRequired
+        onSubmit: PropTypes.func.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        valid: PropTypes.bool.isRequired,
+        dirty: PropTypes.bool.isRequired,
+        submitting: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -20,16 +24,6 @@ export class ChannelListEditedItem extends React.Component {
         };
     }
 
-    _onNameChange = (event) => {
-        const value = event.target.value;
-
-        this.setState(prevState => ({
-            editedChannel: {
-                ...prevState.editedChannel,
-                name: value
-            }
-        }));
-    };
 
     render() {
         return (
@@ -37,9 +31,12 @@ export class ChannelListEditedItem extends React.Component {
                 editedChannel={this.state.editedChannel}
                 submitDisabled={this.state.editedChannel === this.props.channel}
                 submitButtonText={this.props.submitButtonText}
-                onNameChange={this._onNameChange}
                 onCancel={this.props.onCancel}
                 onSubmit={() => this.props.onSubmit(this.state.editedChannel)}
+                handleSubmit={this.props.handleSubmit}
+                valid={this.props.valid}
+                dirty={this.props.dirty}
+                submitting={this.props.submitting}
             />
         );
     }

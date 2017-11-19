@@ -8,6 +8,7 @@ class ChannelList extends React.Component {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
         editedChannelId: PropTypes.string,
         createChannelVisible: PropTypes.bool.isRequired,
+        loadChannels: PropTypes.func.isRequired,
         onStartEditing: PropTypes.func.isRequired,
         onStartCreating: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
@@ -33,7 +34,9 @@ class ChannelList extends React.Component {
                 list={this.props.list}
                 createChannelVisible={this.props.createChannelVisible}
                 editedChannelId={this.props.editedChannelId}
+                loadChannels={this.props.loadChannels}
                 onStartCreating={this.props.onStartCreating}
+                onShowChannel={(id) => console.log("click"+id)}
                 onStartEditing={this.props.onStartEditing}
                 onDelete={this.props.onDelete}
             />

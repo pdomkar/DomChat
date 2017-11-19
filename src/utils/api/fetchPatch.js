@@ -1,14 +1,14 @@
 import { validateResponse } from './validateResponse';
 
-export const fetchReceive = async (uri, token) =>
+export const fetchPatch = (uri, token, bodyJson) =>
     fetch(
         uri,
         {
-            method: 'GET',
+            method: 'PATCH',
             headers: {
                 'Authorization': `bearer ${token}`,
-                'Content-Type': 'aplication/json',
+                'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-        })
-        .then(validateResponse);
+            body: JSON.stringify(bodyJson),
+        }).then(validateResponse);

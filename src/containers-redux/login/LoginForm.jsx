@@ -6,11 +6,6 @@ import { LOGIN_FORM_NAME } from '../../constants/formNames';
 import { reduxForm } from 'redux-form';
 
 
-const mapStateToProps = (state) => ({
-    initialValues: state.login.email
-});
-
-
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onSubmit: (email) => dispatch(authenticateUser(ownProps.from, email)),
 });
@@ -22,7 +17,7 @@ const formConfig = {
     enableReinitialize: true,
 };
 
-const stateEnhancer = connect(mapStateToProps, mapDispatchToProps);
+const stateEnhancer = connect(undefined, mapDispatchToProps);
 const formEnhancer = reduxForm(formConfig);
 const connectedComponent = stateEnhancer(formEnhancer(LoginForm));
 

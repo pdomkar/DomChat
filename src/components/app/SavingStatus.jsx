@@ -12,7 +12,7 @@ export class SavingStatus extends React.PureComponent {
 
     componentWillUpdate(nextProps) {
         if (this.props.watchedEntity !== nextProps.watchedEntity) {
-            this.props.save();
+            // this.props.save();
         }
     }
 

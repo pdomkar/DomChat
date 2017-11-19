@@ -10,6 +10,6 @@ export const editedChannelId = (prevState = null, action) => {
             return null;
 
         default:
-            return null;
+            return prevState;
     }
 };
