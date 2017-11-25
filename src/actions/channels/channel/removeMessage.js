@@ -23,7 +23,7 @@ export const removeMessage  = (channelId, messageId) =>
                 const result = await fetchDelete(requestUri, authToken);
                 console.log("res", result);
                 dispatch(deleteMessage(id));
-                dispatch(fetchMessages());
+                dispatch(fetchMessages(channelId));
             });
         } catch (error) {
             const dispatchedAction = dispatch(failRemovingMessage(FAILED_REMOVE_MESSAGE_MESSAGE, error));

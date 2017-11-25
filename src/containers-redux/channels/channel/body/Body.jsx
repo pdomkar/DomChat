@@ -12,10 +12,10 @@ const mapStateToProps = (state, ownProps) => ({
     messages: state.channelApp.channel.messages,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     loadMessages: (channelId) => dispatch(fetchMessages(channelId)),
     onRemove: (channelId, messageId) => dispatch(removeMessage(channelId, messageId)),
-    onSubmit: (message) => {console.log("sdfsdffsfsf");return dispatch(uploadMessage(message, 'c44d285f-8426-42f7-bc22-db8228e75872'))},
+    onSubmit: (message) => {console.log("sdfsdffsfsf", ownProps.channel.id);return dispatch(uploadMessage(message, ownProps.channel.id))},
 });
 
 const formConfig = {

@@ -10,6 +10,7 @@ export const messages = (previousState = List(), action) => {
         case MESSAGE_LOAD_ALL:
             return List(action.payload.messages);
         case MESSAGE_LIST_ITEM_CREATE:
+            console.log("aaaaaaaaaaaaaaabb", action.payload.message);
             return previousState.set(action.payload.message.id, { ...action.payload.message });
         case MESSAGE_UPDATE_AVATAR:
             return previousState;

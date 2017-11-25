@@ -33,8 +33,8 @@ export const uploadMessage = (message, channelId) =>
                 const insertedMessage = convertFromServerMessageCreate(receivedServerMessage);
                 console.log("in", insertedMessage);
                 dispatch(reset(CHANNEL_SEND_MESSAGE_NAME));
-                // dispatch(createMessage(insertedMessage));
-                dispatch(fetchMessages());
+                dispatch(createMessage(insertedMessage));
+                // dispatch(fetchMessages(channelId));
             });
         } catch (error) {
             console.log(error);

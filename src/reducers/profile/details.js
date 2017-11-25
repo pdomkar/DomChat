@@ -1,7 +1,7 @@
 import { PROFILE_UPDATE_DETAILS } from '../../constants/actionTypes';
 
 const defaultDetails = {
-    email: 'petr@test.cz',
+    email: '',
     name: '',
 };
 

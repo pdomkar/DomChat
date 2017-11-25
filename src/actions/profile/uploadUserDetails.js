@@ -30,7 +30,7 @@ export const uploadUserDetails = (details) =>
         dispatch(startSubmit(DETAILS_FORM_NAME));
 
         const authToken = getState().shared.token;
-        const requestUri = createApiUserUri(USER_EMAIL);
+        const requestUri = createApiUserUri(getState().shared.email);
         const serverDetails = convertToServerDetails(details);
 
         try {

@@ -21,7 +21,6 @@ import { fetchUserAvatar } from './fetchUserAvatar';
 export const fetchUserDetails = () =>
     (dispatch, getState) => {
         dispatch(startFetchingProfileDetails);
-        dispatch(startFetchingProfileAvatar());
         const authToken = getState().shared.token;
         const requestUri = createApiUserUri(getState().shared.email);
 
