@@ -41,11 +41,8 @@ export const startFetchingProfileDetails = () => ({
 });
 
 export const failFetchingProfileDetails = errorActionFactory(PROFILE_FETCHING_FAILED);
-
 export const failUploadingProfileDetails = errorActionFactory(PROFILE_UPLOADING_FAILED);
-
 export const failUploadingProfileAvatar = errorActionFactory(PROFILE_AVATAR_UPLOADING_FAILED);
-
 export const failFetchingProfileAvatar = errorActionFactory(PROFILE_AVATAR_FETCHING_FAILED);
 
 export const failUploadingChannel = errorActionFactory(CHANNEL_UPLOADING_FAILED);

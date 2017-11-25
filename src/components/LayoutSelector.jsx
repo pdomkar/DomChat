@@ -8,7 +8,13 @@ import { LoginLayout } from './login/LoginLaoyut';
 import { ChannelsLayout } from '../containers-redux/channels/ChannelsLayout';
 import { ProfileLayout } from '../containers-redux/profile/Profile';
 import { AuthenticatedRoute } from './app/AuthenticatedRoute';
-import { ROOT, PROFILE, CHANNELS, LOGIN } from '../constants/routes';
+import {
+    ROOT,
+    PROFILE,
+    CHANNELS,
+    LOGIN,
+    CHANNELS_DETAIL
+} from '../constants/routes';
 import { SavingStatus } from '../containers-redux/app/SavingStatus';
 
 
@@ -19,7 +25,7 @@ const LayoutSelector = ({ isAuthenticated }) => (
             <Route exact path={LOGIN} component={LoginLayout} />
             <AuthenticatedRoute exact path={ROOT} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
             <AuthenticatedRoute exact path={CHANNELS} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
-            <AuthenticatedRoute exact path={CHANNELS} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
+            <AuthenticatedRoute exact path={CHANNELS_DETAIL} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
             <AuthenticatedRoute exact path={PROFILE} component={ProfileLayout} isAuthenticated={isAuthenticated} />
         </Switch>
     </div>

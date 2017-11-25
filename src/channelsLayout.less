@@ -63,7 +63,18 @@ div.channels-layout {
       flex-direction: column;
 
       .messages {
+        overflow-y: scroll;
+        .message {
+          display: block;
+          height: 50px;
+          .author{
+            height: 20px;
+            font-weight: bold;
+          }
+          .text {
 
+          }
+        }
       }
       .footer {
         background: @sec4;

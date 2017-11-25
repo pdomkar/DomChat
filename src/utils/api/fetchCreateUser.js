@@ -1,5 +1,5 @@
 import { validateResponse} from './validateResponse';
-import {API_CREATE_USER_URI} from '../../constants/api';
+import {API_USER_URI} from '../../constants/api';
 
 export const fetchCreateUser = (email) => {
     let data = {
@@ -9,7 +9,7 @@ export const fetchCreateUser = (email) => {
         }),
     };
     return fetch(
-        API_CREATE_USER_URI,
+        API_USER_URI,
         {
             method: 'POST',
             headers: {

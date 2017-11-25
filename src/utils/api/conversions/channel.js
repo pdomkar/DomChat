@@ -1,14 +1,17 @@
 import { uuid } from '../../uuidGenerator';
-import { List } from '../../../../node_modules/immutable/dist/immutable';
 
-export const convertToServerChannelCreate = (channel) => [
+export const convertToServerChannelCreate = (channel, userEmail) => [
     {
         path: '/channels/-',
         op: 'add',
         value: {
             id: uuid(),
-            ...channel,
-            customData: ''
+            name: channel.name,
+            customData: JSON.stringify({
+                description: channel.description || '',
+                createdBy: userEmail,
+                users: channel.users.map(o => o.value) || [],
+            })
         }
     }
 ];
@@ -21,7 +24,13 @@ export const convertToServerChannelUpdate = (channel) => [
         path: `/channels/${channel.id}`,
         op: 'replace',
         value: {
-            ...channel,
+            id: channel.id,
+            name: channel.name,
+            customData: JSON.stringify({
+                description: channel.description || '',
+                createdBy: channel.createdBy,
+                users: channel.users.map(o => o.value) || [],
+            })
         }
     }
 ];
@@ -34,5 +43,9 @@ export const convertToServerChannelRemove = (id) => [
     }
 ];
 
-export const convertFromServerChannels = (serverResponse) => serverResponse.channels;
+export const convertFromServerChannels = (serverResponse) => serverResponse.channels.map(convertFromServerChannel);
+
+
+
+export const convertFromServerChannel = (serverChannel) => ({id: serverChannel.id, name: serverChannel.name, ...JSON.parse(serverChannel.customData === '' ? '{}' : serverChannel.customData)});
 

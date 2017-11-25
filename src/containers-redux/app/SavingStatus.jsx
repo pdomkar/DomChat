@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { SavingStatus } from '../../components/app/SavingStatus.jsx';
-import { saveItems } from '../../actions/channels/channel-list/saveItems';
+import { saveItems } from '../../actions/channels/saveItems';
 
 const mapStateToProps = (state) => ({
     watchedEntity: state.channelApp.channels,

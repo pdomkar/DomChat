@@ -8,6 +8,7 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import { LayoutSelector } from './containers-redux/LayoutSelector';
 import './main.less';
+import 'react-select/dist/react-select.css';
 import { createHistory } from './utils/createHistory';
 import { createStore } from './utils/createStore';
 
