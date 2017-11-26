@@ -7,6 +7,7 @@ import {
     MESSAGE_REMOVING_FAILED,
     MESSGE_FETCHING_AVATAR_FAILED,
     MESSAGE_UPDATE_AVATAR,
+    MESSAGE_LIST_ITEM_UPDATE,
 
 } from '../../../constants/actionTypes';
 import { errorActionFactory } from '../../../utils/errorActionFactory';
@@ -21,12 +22,21 @@ export const createMessage = (newMessage) => {console.log("sf", newMessage); ret
     }
 })};
 
-export const deleteMessage = (id) => ({
+export const deleteMessage = (id) => {console.log("ssff", id); return ({
     type: MESSAGE_LIST_ITEM_DELETE,
     payload: {
-       id
+        id
     }
-});
+})};
+
+export const updateMessage = (message) => { return ({
+    type: MESSAGE_LIST_ITEM_UPDATE,
+    payload: {
+        message: {
+            ...message
+        }
+    }
+})};
 
 export const loadMessages = (messages) => ({
     type: MESSAGE_LOAD_ALL,

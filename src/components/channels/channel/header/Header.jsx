@@ -5,7 +5,7 @@ const Header = (props) => (
     <div className="header">
         <h3>{props.channel.name}</h3>
         <p>{props.channel.description}</p>
-        <span><i className="fa fa-users" aria-hidden="true"/>{props.channel.users.length}</span>
+        <span><i className="fa fa-users" aria-hidden="true"/>{props.channel.users.length+1}</span>
         <a><i className="fa fa-edit" aria-hidden="true"/></a>
         <a onClick={() => props.onDelete(props.channel.id)}><i className="fa fa-trash" aria-hidden="true"/></a>
     </div>

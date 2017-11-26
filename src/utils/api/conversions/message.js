@@ -1,12 +1,50 @@
 
-export const convertToServerMessageCreate = (message, userEmail) => ({
+export const convertToServerMessageCreate = (message) => {console.log(message); return ({
     value: message.message,
-    customData: JSON.stringify({})
-});
+    customData: JSON.stringify({vote: 0})
+})};
 
-export const convertFromServerMessageCreate = (serverResponse) => ({
-    ...serverResponse
-});
+export const convertFromServerMessageCreate = (serverResponse) => {
+    let data = {};
+    try {
+        data =  JSON.parse(serverResponse.customData);
+    } catch (err) {
+        data = {};
+    }
+    return {
+        id: serverResponse.id,
+        value: serverResponse.value,
+        createdAt: serverResponse.createdAt,
+        createdBy: serverResponse.createdBy,
+        updatedAt: serverResponse.updatedAt,
+        updatedBy: serverResponse.updatedBy,
+        ...data
+    };
+};
+
+
+export const convertToServerMessageUpdate = (message) => {console.log(message); return ({
+    value: message.value,
+    customData: JSON.stringify({vote: message.vote})
+})};
+
+export const convertFromServerMessageUpdate = (serverResponse) => {
+    let data = {};
+    try {
+        data =  JSON.parse(serverResponse.customData);
+    } catch (err) {
+        data = {};
+    }
+    return {
+        id: serverResponse.id,
+        value: serverResponse.value,
+        createdAt: serverResponse.createdAt,
+        createdBy: serverResponse.createdBy,
+        updatedAt: serverResponse.updatedAt,
+        updatedBy: serverResponse.updatedBy,
+        ...data
+    };
+};
 
 export const convertFromServerMessages =  (serverResponse) => serverResponse.map(convertFromServerMessage);
 

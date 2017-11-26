@@ -14,6 +14,7 @@ export class ChannelListEditedItem extends React.PureComponent {
         submitDisabled: PropTypes.bool,
         submitButtonText: PropTypes.string.isRequired,
         users:  PropTypes.instanceOf(List).isRequired,
+        email: PropTypes.string.isRequired,
         onFetchUsers: PropTypes.func.isRequired,
         onCancel: PropTypes.func.isRequired,
         onSubmit: PropTypes.func.isRequired,
@@ -47,7 +48,7 @@ export class ChannelListEditedItem extends React.PureComponent {
 
     render() {
         const users = this.props.users.map(x => ({value: x.email, label: `<${x.email}> ${x.name || ''}`}));
-        const options = users.toArray();
+        const options = users.filterNot(op => op.value === this.props.email).toArray();
 
 
         return (

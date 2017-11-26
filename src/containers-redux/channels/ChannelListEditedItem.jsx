@@ -11,10 +11,11 @@ import { convertFromServerChannel } from '../../utils/api/conversions/channel';
 import { fetchUsers } from '../../actions/shared/fetchUsers';
 
 
-const mapStateToProps = (state, ownProps) => {console.log(ownProps.channel); return ({
+const mapStateToProps = (state, ownProps) => {console.log("channel", ownProps.channel); return ({
     submitButtonText: ownProps.submitButtonText,
     channel: ownProps.channel,
     users: state.shared.users,
+    email: state.shared.email,
     initialValues: ownProps.channel
 })};
 

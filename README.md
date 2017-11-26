@@ -5,6 +5,7 @@ App to PV247 - DomChat - chatting app base on channels
 -created date kanal
 detail kanalu
 upravit redux state, napr jmeno ulozit do reduxu, a nacitat ho bud v getInitialState nebo v component wiilMount ?
+-upravit hlasovani u zprav upravu message
 
 -vypsat vsechny uzivatele?
 -mit ulozen i email v localstorage, potreba preposilat globalne do všech komponent?

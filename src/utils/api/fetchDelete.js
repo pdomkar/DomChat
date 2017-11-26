@@ -10,5 +10,4 @@ export const fetchDelete = async (uri, token) =>
                 'Content-Type': 'aplication/json',
                 'Accept': 'application/json',
             },
-        })
-        .then(validateResponse);
+        });

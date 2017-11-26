@@ -6,15 +6,21 @@ import { reduxForm } from 'redux-form';
 import { uploadMessage } from '../../../../actions/channels/channel/uploadMessage';
 import { fetchMessages } from '../../../../actions/channels/channel/fetchMessages';
 import { removeMessage } from '../../../../actions/channels/channel/removeMessage';
+import {
+    updateMessage,
+    updateVote
+} from '../../../../actions/channels/channel/updateMessage';
 
 const mapStateToProps = (state, ownProps) => ({
     channel: ownProps.channel,
     messages: state.channelApp.channel.messages,
+    email: state.shared.email,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     loadMessages: (channelId) => dispatch(fetchMessages(channelId)),
     onRemove: (channelId, messageId) => dispatch(removeMessage(channelId, messageId)),
+    onVote: (message) => dispatch(updateMessage(ownProps.channel.id, message)),
     onSubmit: (message) => {console.log("sdfsdffsfsf", ownProps.channel.id);return dispatch(uploadMessage(message, ownProps.channel.id))},
 });
 

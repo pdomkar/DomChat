@@ -9,4 +9,4 @@ export const API_APP_URI = `${API_URI}/app/${API_APP_ID}`;
 export const createApiUserUri =  (userEmail) => `${API_URI}/${API_APP_ID}/user/${userEmail}`;
 export const createApiFilerUri = (fileId) => `${API_URI}/file/${fileId}/download-link`;
 export const createApiMessageUri =  (channelId) => `${API_URI}/app/${API_APP_ID}/channel/${channelId}/message`;
-export const createApiMessageRemoveUri =  (channelId, messageId) => `${API_URI}/app/${API_APP_ID}/channel/${channelId}/message/${messageId}`;
+export const createApiMessageDetailUri =  (channelId, messageId) => `${API_URI}/app/${API_APP_ID}/channel/${channelId}/message/${messageId}`;

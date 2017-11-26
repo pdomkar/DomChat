@@ -1,36 +1,36 @@
 import { performAuthorizedRequest } from '../../profile/performAuthorizedRequest';
 import {
-    convertFromServerMessageCreate,
-    convertToServerMessageCreate,
+    convertFromServerMessageUpdate,
+    convertToServerMessageUpdate,
 } from '../../../utils/api/conversions/message';
 import {
     FAILED_CREATE_MESSAGE_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_ERROR
 } from '../../../constants/uiConstants';
 import { failUploadingMessage } from '../../channels/channel/actionCreators';
-import { createApiMessageUri } from '../../../constants/api';
+import {
+    createApiMessageDetailUri,
+} from '../../../constants/api';
 import { dismissError } from '../../shared/actionCreators';
-import { fetchCreateMessage } from '../../../utils/api/fetchCreateMessage';
-import { CHANNEL_SEND_MESSAGE_NAME } from '../../../constants/formNames';
-import {reset} from 'redux-form';
-import { fetchMessages } from './fetchMessages';
-import { createMessage } from './actionCreators';
+import { updateMessage as updateMessageAC} from './actionCreators';
+import { fetchUpdateMessage } from '../../../utils/api/fetchUpdateMessage';
 
 
-export const uploadMessage = (message, channelId) =>
+export const updateMessage = (channelId, message) =>
     async (dispatch, getState) => {
         // dispatch(startSubmit(CHANNEL_NEW_FORM_NAME));
         // dispatch(savingStarted());
-        console.log('email',message);
+        console.log('message',message);
         const authToken = getState().shared.token;
-        const requestUri = createApiMessageUri(channelId);
-        const serverMessage = convertToServerMessageCreate(message);
+        const requestUri = createApiMessageDetailUri(channelId, message.id);
+        const serverMessage = convertToServerMessageUpdate(message);
+        console.log("server", serverMessage);
         try {
             await performAuthorizedRequest(dispatch, async () => {
-                const receivedServerMessage = await fetchCreateMessage(requestUri, authToken, serverMessage);
-                const insertedMessage = convertFromServerMessageCreate(receivedServerMessage);
-                dispatch(reset(CHANNEL_SEND_MESSAGE_NAME));
-                dispatch(createMessage(insertedMessage));
+                const receivedServerMessage = await fetchUpdateMessage(requestUri, authToken, serverMessage);
+                const updatedMessage = convertFromServerMessageUpdate(receivedServerMessage);
+                console.log("upd", updatedMessage);
+                dispatch(updateMessageAC(message));
             });
         } catch (error) {
             console.log(error);

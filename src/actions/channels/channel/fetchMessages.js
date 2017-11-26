@@ -24,7 +24,8 @@ export const fetchMessages = (channelId) =>
         try {
             const serverMessages = await fetchReceive(requestUri, authToken);
             const clientMessages = convertFromServerMessages(serverMessages);
-console.log("client", clientMessages);
+            console.log("client", clientMessages);
+            clientMessages.sort((a,b) => a.createdAt > b.createdAt ? 1 : b.createdAt > a.createdAt ? -1 : 0);
             const clientMessagesWithAvatars = await Promise.all(clientMessages.map(async function(mess) {
                 const response = await fetchReceive(createApiUserUri(mess.createdBy), authToken);
                 const avatarId = JSON.parse(response.customData).avatarId;

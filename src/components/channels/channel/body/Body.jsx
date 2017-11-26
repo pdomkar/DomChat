@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { List } from 'immutable';
+import { Message } from './Message';
 
 
 export class Body extends React.PureComponent {
@@ -13,7 +14,9 @@ export class Body extends React.PureComponent {
             createdBy: PropTypes.string.isRequired,
         }).isRequired,
         messages: PropTypes.instanceOf(List).isRequired,
+        email: PropTypes.string.isRequired,
         onRemove: PropTypes.func.isRequired,
+        onVote: PropTypes.func.isRequired,
         handleSubmit: PropTypes.func.isRequired,
         valid: PropTypes.bool.isRequired,
         dirty: PropTypes.bool.isRequired,
@@ -34,10 +37,7 @@ export class Body extends React.PureComponent {
         const itemElements = this.props.messages
             .map( message => {
                 return (
-                    <div className="message" key={message.id}>
-                        <div className="author"><img src={message.avatarUri||''} width="30"/>{message.createdBy} {message.createdAt}<button onClick={() => this.props.onRemove(this.props.channel.id, message.id)}><i className="fa fa-trash" aria-hidden="true"/></button></div>
-                        <div className="text">{message.value}</div>
-                    </div>
+                    <Message key={message.id} message={message} channelId={this.props.channel.id} email={this.props.email} onRemove={this.props.onRemove} onVote={this.props.onVote}/>
                 );
             });
         return (

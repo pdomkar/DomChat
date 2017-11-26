@@ -15,8 +15,10 @@ const mapStateToProps = (state) => ({
     channel: {
         id: uuid(),
         name: '',
-        description: ''
+        description: '',
+        users: []
     },
+    email: state.shared.email,
     users: state.shared.users,
 });
 

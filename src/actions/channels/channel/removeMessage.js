@@ -1,4 +1,4 @@
-import { createApiMessageRemoveUri } from '../../../constants/api';
+import { createApiMessageDetailUri } from '../../../constants/api';
 import { performAuthorizedRequest } from '../../profile/performAuthorizedRequest';
 import { fetchDelete } from '../../../utils/api/fetchDelete';
 import { fetchMessages } from './fetchMessages';
@@ -17,13 +17,11 @@ export const removeMessage  = (channelId, messageId) =>
         // dispatch(startSubmit(CHANNEL_NEW_FORM_NAME));
         // dispatch(savingStarted());
         const authToken = getState().shared.token;
-        const requestUri = createApiMessageRemoveUri(channelId, messageId);
+        const requestUri = createApiMessageDetailUri(channelId, messageId);
         try {
             await performAuthorizedRequest(dispatch, async () => {
                 const result = await fetchDelete(requestUri, authToken);
-                console.log("res", result);
-                dispatch(deleteMessage(id));
-                dispatch(fetchMessages(channelId));
+                dispatch(deleteMessage(messageId));
             });
         } catch (error) {
             const dispatchedAction = dispatch(failRemovingMessage(FAILED_REMOVE_MESSAGE_MESSAGE, error));

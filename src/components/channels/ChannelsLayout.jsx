@@ -14,36 +14,41 @@ import List from 'immutable';
 import { PROFILE } from '../../constants/routes';
 
 
-const ChannelsLayout = (props) => {
-    const selectChannel =  props.list.find(channel => channel.id === props.channelId);
+export class ChannelsLayout extends React.PureComponent {
+    static propTypes = {
+        details: PropTypes.shape({
+            email: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired
+        }).isRequired,
+        channelId: PropTypes.string.isRequired,
+        list: PropTypes.instanceOf(List).isRequired,
+        fetchDetails: PropTypes.func.isRequired,
+    };
 
-    return (
-        <div className="channels-layout">
-            <HeadInHelmet />
-            <div className="sidebar-container">
-                <div className="header">
-                    <h2>DomChat</h2>
-                    <span>{props.details.name}</span>
-                    <Link to={PROFILE}><i className="fa fa-user" aria-hidden="true" /></Link>
-                    <LogoutButton />
+    componentWillMount() {
+        this.props.fetchDetails();
+    }
+
+    render() {
+        const selectChannel = this.props.list.find(channel => channel.id === this.props.channelId);
+
+        return (
+            <div className="channels-layout">
+                <HeadInHelmet />
+                <div className="sidebar-container">
+                    <div className="header">
+                        <h2>DomChat</h2>
+                        <span>{this.props.details.name}</span>
+                        <Link to={PROFILE}><i className="fa fa-user" aria-hidden="true" /></Link>
+                        <LogoutButton />
+                    </div>
+                    <div className="body">
+                        <ChannelListRedux list={this.props.list} />
+                    </div>
                 </div>
-                <div className="body">
-                    <ChannelListRedux list={props.list} />
-                </div>
+                <ChannelLayout channel={selectChannel} />
+                <Errors channelId={this.props.channelId} />
             </div>
-            <ChannelLayout channel={selectChannel} />
-            <Errors channelId={props.channelId} />
-        </div>
-    );
-};
-
-ChannelsLayout.propTypes = {
-    details: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-    }).isRequired,
-    channelId: PropTypes.string.isRequired,
-    list: PropTypes.instanceOf(List).isRequired,
-};
-
-export { ChannelsLayout };
+        );
+    }
+}

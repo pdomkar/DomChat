@@ -12,6 +12,7 @@ export class ChannelListEditedItem extends React.Component {
         }).isRequired,
         submitButtonText: PropTypes.string.isRequired,
         users:  PropTypes.instanceOf(List).isRequired,
+        email: PropTypes.string.isRequired,
         onFetchUsers: PropTypes.func.isRequired,
         onCancel: PropTypes.func.isRequired,
         onSubmit: PropTypes.func.isRequired,
@@ -36,6 +37,7 @@ export class ChannelListEditedItem extends React.Component {
                 submitDisabled={this.state.editedChannel === this.props.channel}
                 submitButtonText={this.props.submitButtonText}
                 users={this.props.users}
+                email={this.props.email}
                 onFetchUsers={this.props.onFetchUsers}
                 onCancel={this.props.onCancel}
                 onSubmit={() => {console.log("qqqq"); return this.props.onSubmit(this.state.editedChannel)}}
