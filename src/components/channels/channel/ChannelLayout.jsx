@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 // import { CSSTransition } from 'react-transition-group';
 
-import { Header } from './header/Header';
+import { Header } from '../../../containers-redux/channels/channel/header/Header';
 import { Body } from '../../../containers-redux/channels/channel/body/Body';
 import { List } from 'immutable';
 
@@ -30,7 +30,7 @@ export class ChannelLayout extends React.PureComponent {
     render() {
         return (
             <div className="channel">
-                {this.props.channel && <Header channel={this.props.channel} onDelete={this.props.onDelete}/>}
+                {this.props.channel && <Header channel={this.props.channel}/>}
                 {this.props.channel && <Body channel={this.props.channel}/>}
             </div>
         );

@@ -8,13 +8,19 @@ import {
     MILISECONDS_TO_AUTO_DISMISS_ERROR
 } from '../../../constants/uiConstants';
 import { failUploadingMessage } from '../../channels/channel/actionCreators';
-import { createApiMessageUri } from '../../../constants/api';
+import {
+    createApiFilerUri,
+    createApiMessageUri,
+    createApiUserUri
+} from '../../../constants/api';
 import { dismissError } from '../../shared/actionCreators';
 import { fetchCreateMessage } from '../../../utils/api/fetchCreateMessage';
 import { CHANNEL_SEND_MESSAGE_NAME } from '../../../constants/formNames';
 import {reset} from 'redux-form';
 import { fetchMessages } from './fetchMessages';
 import { createMessage } from './actionCreators';
+import {  } from '../../../utils/addAvatarUriToMessage';
+import { addAvatarUriToMessage } from '../../../utils/addAvatarUriToMessage';
 
 
 export const uploadMessage = (message, channelId) =>
@@ -30,7 +36,10 @@ export const uploadMessage = (message, channelId) =>
                 const receivedServerMessage = await fetchCreateMessage(requestUri, authToken, serverMessage);
                 const insertedMessage = convertFromServerMessageCreate(receivedServerMessage);
                 dispatch(reset(CHANNEL_SEND_MESSAGE_NAME));
-                dispatch(createMessage(insertedMessage));
+
+                const messWithAvatarUri = await addAvatarUriToMessage(insertedMessage, authToken);
+
+                dispatch(createMessage(messWithAvatarUri));
             });
         } catch (error) {
             console.log(error);

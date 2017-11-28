@@ -13,14 +13,15 @@ export const messages = (previousState = List(), action) => {
             return List(action.payload.messages);
 
         case MESSAGE_LIST_ITEM_CREATE:
-            return previousState.set(action.payload.channel.id, { ...action.payload.channel });
             return previousState.push({ ...action.payload.message });
 
         case MESSAGE_LIST_ITEM_UPDATE:
-            console.log(previousState);
-            console.log(action.payload.message);
-            //todo nejak predelat
-            return previousState.update(previousState.indexOf(action.payload.message), { ...action.payload.message });
+            let index = previousState.findIndex(mess => mess.id === action.payload.message.id);
+            if(index >= 0) {
+                return previousState.updateIn([index], () => ({ ...action.payload.message }));
+            } else {
+                return previousState;
+            }
 
         case MESSAGE_LIST_ITEM_DELETE:
             return previousState.filterNot(mess => mess.id === action.payload.id);

@@ -14,6 +14,7 @@ import {
 import { dismissError } from '../../shared/actionCreators';
 import { updateMessage as updateMessageAC} from './actionCreators';
 import { fetchUpdateMessage } from '../../../utils/api/fetchUpdateMessage';
+import { addAvatarUriToMessage } from '../../../utils/addAvatarUriToMessage';
 
 
 export const updateMessage = (channelId, message) =>
@@ -29,8 +30,8 @@ export const updateMessage = (channelId, message) =>
             await performAuthorizedRequest(dispatch, async () => {
                 const receivedServerMessage = await fetchUpdateMessage(requestUri, authToken, serverMessage);
                 const updatedMessage = convertFromServerMessageUpdate(receivedServerMessage);
-                console.log("upd", updatedMessage);
-                dispatch(updateMessageAC(message));
+                const messWithAvatarUri = await addAvatarUriToMessage(updatedMessage, authToken);
+                dispatch(updateMessageAC(messWithAvatarUri));
             });
         } catch (error) {
             console.log(error);

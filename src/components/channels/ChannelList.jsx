@@ -13,10 +13,7 @@ export class ChannelList extends React.PureComponent {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
         email: PropTypes.string.isRequired,
         createChannelVisible: PropTypes.bool.isRequired,
-        editedChannelId: PropTypes.string,
         onStartCreating: PropTypes.func.isRequired,
-        onStartEditing: PropTypes.func.isRequired,
-        onDelete: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -32,14 +29,14 @@ export class ChannelList extends React.PureComponent {
         const itemElements = this.props.list
             .filter(channel => this.props.email === channel.createdBy || channel.users.indexOf(this.props.email) !== -1)
             .map( channel => {
-                return (<ChannelListItem key={channel.id} channel={channel} email={this.props.email} onStartEditing={this.props.onStartEditing} onDelete={this.props.onDelete}/>);
+                return (<ChannelListItem key={channel.id} channel={channel} email={this.props.email}/>);
             });
 
-        let channelEditedModal = null;
-        if(this.props.editedChannelId !== null) {
-            const editedChannel = this.props.list.find(channel => channel.id === this.props.editedChannelId);
-            channelEditedModal = (<ChannelListEditedItemRedux channel={editedChannel} submitButtonText="Save"/>);
-        }
+        // let channelEditedModal = null;
+        // if(this.props.editedChannelId !== null) {
+        //     const editedChannel = this.props.list.find(channel => channel.id === this.props.editedChannelId);
+        //     channelEditedModal = (<ChannelListEditedItemRedux channel={editedChannel} submitButtonText="Save"/>);
+        // }
 
         let channelCreatedModal = null;
         if(this.props.createChannelVisible === true) {
@@ -68,7 +65,6 @@ export class ChannelList extends React.PureComponent {
                 {/*timeout={1000}*/}
                 {/*classNames="fade"*/}
                 {/*>*/}
-                {channelEditedModal}
                 {/*</CSSTransition>*/}
                 {channelCreatedModal}
             </div>

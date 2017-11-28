@@ -20,8 +20,8 @@ export class ChannelsLayout extends React.PureComponent {
             email: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired
         }).isRequired,
-        channelId: PropTypes.string.isRequired,
-        list: PropTypes.instanceOf(List).isRequired,
+        channelId: PropTypes.string,
+        list: PropTypes.instanceOf(List),
         fetchDetails: PropTypes.func.isRequired,
     };
 
@@ -46,7 +46,7 @@ export class ChannelsLayout extends React.PureComponent {
                         <ChannelListRedux list={this.props.list} />
                     </div>
                 </div>
-                <ChannelLayout channel={selectChannel} />
+                {selectChannel && <ChannelLayout channel={selectChannel} />}
                 <Errors channelId={this.props.channelId} />
             </div>
         );
