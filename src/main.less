@@ -1,4 +1,13 @@
-@primary: #FAF8F6;
+@primary: #373A44;
+@prim: #373A44;
+@sec: #e4e0dd;
+@thrd: #96B8A2;
+@four: #95817D;
+@fift: #A0676D;
+@sixt: #FBFAF9;
+@white: #fff;
+@black: #000;
+
 @sec1: #473229;
 @sec2: #6A5750;
 @sec3: #8E776B;
@@ -8,6 +17,10 @@
 @text-sec2: #E4DDD9;
 @text-sec3: #342C27;
 @text-sec4: #423C37;
+
+
+@error: #E10006;
+@success: #09B800;
 
 * {
   margin: 0;
@@ -22,123 +35,11 @@ html {
     div#app {
       height: inherit;
 
-      .btn {
-        background: @sec4;
-        color: @text-sec4;
-        padding: 5px 6px;
-        border-radius: 4px;
-        border: none;
-        font-size: 14px;
-        margin: 5px;
-        float: right;
-        cursor: pointer;
-        &:hover{
-          color: @text-sec2;
-          background: @sec2;
-        }
-        &:disabled {
-          color: @text-sec2;
-          background: @sec2;
-          cursor: not-allowed;
-        }
-      }
+      @import "./shared";
 
-      a {
-        color: @text-sec1;
-        &:hover {
-          color: @text-sec2;
-          text-decoration: none;
-        }
-      }
-
-      .savingSpinner {
-        width: 40px;
-        height: 40px;
-
-        position: absolute;
-        top: 0;
-        left:0;
-        margin: auto;
-        z-index: 99999;
-
-        .circle1, .circle2 {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background-color: @sec4;
-          opacity: 0.6;
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-          animation: sk-bounce 2.0s infinite ease-in-out;
-        }
-
-        .circle2 {
-          -webkit-animation-delay: -1.0s;
-          animation-delay: -1.0s;
-        }
-
-        @-webkit-keyframes sk-bounce {
-          0%, 100% { -webkit-transform: scale(0.0) }
-          50% { -webkit-transform: scale(1.0) }
-        }
-
-        @keyframes sk-bounce {
-          0%, 100% {
-            transform: scale(0.0);
-            -webkit-transform: scale(0.0);
-          } 50% {
-              transform: scale(1.0);
-              -webkit-transform: scale(1.0);
-            }
-        }
-      }
-
-      .modalWrapper{
-        position: fixed;
-        top:0;
-        left:0;
-        z-index: 1000;
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        //padding: 20px;
-        //background-color: #ccc;
-        //width: 400px;
-        //margin: auto;
-        //text-align: center;
-        //border-radius: 4px;
-        //height: 200px;
-        //color: black;
-      }
-
-      /* Animation */
-      .fade-enter {
-        opacity: 0.01;
-      }
-
-      .fade-enter.fade-enter-active {
-        opacity: 1;
-        transition: opacity 1000ms ease-in;
-      }
-
-      .fade-exit {
-        opacity: 1;
-      }
-
-      .fade-exit.fade-exit-active {
-        opacity: 0.01;
-        transition: opacity 800ms ease-in;
-      }
-
-      div {
-        height: inherit;
-        @import "./channelsLayout";
-        @import "./loginLayout";
-        @import "./profileLayout";
-      }
+      @import "components/app/channels/channelsLayout";
+      @import "components/app/profile/profileLayout";
+      @import "components/login/loginLayout";
     }
   }
 }

@@ -9,6 +9,6 @@ export const convertFromServerUser = (serverUser) => {
     } catch (err) {
         data = {};
     }
-   return  ({email: serverUser.email, ...data});
+    return  ({email: serverUser.email, ...data});
 };
 

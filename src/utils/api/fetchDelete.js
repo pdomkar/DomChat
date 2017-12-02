@@ -1,5 +1,3 @@
-import { validateResponse } from './validateResponse';
-
 export const fetchDelete = async (uri, token) =>
     fetch(
         uri,

@@ -1,8 +1,7 @@
-
 export const convertToServerMessageCreate = (message) => {console.log(message); return ({
     value: message.message,
     customData: JSON.stringify({vote: 0})
-})};
+});};
 
 export const convertFromServerMessageCreate = (serverResponse) => {
     let data = {};
@@ -26,7 +25,7 @@ export const convertFromServerMessageCreate = (serverResponse) => {
 export const convertToServerMessageUpdate = (message) => {console.log(message); return ({
     value: message.value,
     customData: JSON.stringify({vote: message.vote})
-})};
+});};
 
 export const convertFromServerMessageUpdate = (serverResponse) => {
     let data = {};
@@ -57,10 +56,10 @@ export const convertFromServerMessage = (serverMessage) => {
         data = {};
     }
     return {
-            id: serverMessage.id,
-            value: serverMessage.value,
-            createdAt: serverMessage.createdAt,
-            createdBy: serverMessage.createdBy,
-            ...data
+        id: serverMessage.id,
+        value: serverMessage.value,
+        createdAt: serverMessage.createdAt,
+        createdBy: serverMessage.createdBy,
+        ...data
     };
 };

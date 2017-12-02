@@ -1,0 +1,162 @@
+div.channels-layout {
+  height: inherit;
+  background: @sec;
+  display: flex;
+
+  .sidebar-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 300px;
+    background: @prim;
+    color: @white;
+
+    .header {
+      border-bottom: 1px  solid @sec;
+      margin: 0 20px;
+      text-align: center;
+
+      h1 {
+        font-weight: normal;
+        font-size: 25px;
+        letter-spacing: 5px;
+        padding: 20px 0 18px 0;
+      }
+      div.user {
+        text-align: left;
+        padding-bottom: 8px;
+
+        a {
+          float: right;
+          color: @sec;
+          text-decoration: none;
+          cursor: pointer;
+          margin-left: 10px;
+          transition: color 0.2s;
+
+          &:hover {
+            color: @white;
+          }
+        }
+      }
+    }
+    .body {
+      margin: 20px;
+      .top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        h3 {
+          float: left;
+        }
+        a {
+          float: right;
+          color: @sec;
+          text-decoration: none;
+          cursor: pointer;
+          margin-left: 10px;
+          transition: color 0.2s;
+
+          &:hover {
+            color: @white;
+          }
+        }
+      }
+      ul.channels-list {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        list-style: none;
+
+        li {
+          margin: 0 -20px;
+          &.selected:after {
+            content: '\25C0';
+            float: right;
+            margin-right: -5px;
+            margin-top: -31px;
+            font-size: 21px;
+            display: inline;
+            color: #e4e0dd;
+            transform: scale(0.7, 1.7);
+          }
+          &.selected a, &.selected a:hover{
+            color: @thrd;
+          }
+          a {
+            display: block;
+            font-size: 16px;
+            color: @sec;
+            text-decoration: none;
+            padding: 5px 20px;
+            transition: color 0.2s;
+            &:before {
+              font-size: 20px;
+              content: '\0023';
+              margin-right: 10px;
+            }
+            &:hover {
+              color: @white
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .channel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .header {
+      background: @sec2;
+      color: @text-sec2;
+      flex-basis: 60px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+
+    }
+
+    .body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      .messages {
+        overflow-y: scroll;
+        .message {
+          border: 1px solid @sec2;
+          display: block;
+          height: 50px;
+          .author{
+            height: 20px;
+            font-weight: bold;
+          }
+          .text {
+
+          }
+          .vote {
+            float: right;
+            margin-top: -50px;
+          }
+        }
+      }
+      .footer {
+        background: @sec4;
+        color: @text-sec4;
+        flex-basis: 50px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+    }
+  }
+
+}

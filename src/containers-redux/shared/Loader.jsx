@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { Loader } from '../../components/shared/Loader.jsx';
 
 const mapStateToProps = (state, ownProps) => ({

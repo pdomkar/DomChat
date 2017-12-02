@@ -1,18 +1,17 @@
 import {
-    PROFILE_FETCHING_FAILED,
-    PROFILE_FETCHING_STARTED,
+    PROFILE_DETAILS_FETCHING_FAILED,
+    PROFILE_DETAILS_FETCHING_STARTED,
     PROFILE_UPDATE_DETAILS,
-    PROFILE_UPLOADING_FAILED,
+    PROFILE_DETAILS_UPLOADING_FAILED,
     PROFILE_AVATAR_UPLOADING_STARTED,
     PROFILE_AVATAR_UPLOADING_FAILED,
     PROFILE_AVATAR_FETCHING_FAILED,
     PROFILE_AVATAR_FETCHING_STARTED,
     PROFILE_UPDATE_AVATAR,
-    CHANNEL_UPLOADING_FAILED,
-    CHANNEL_REMOVING_FAILED,
-    CHANNELS_FETCHING_FAILED,
+    PROFILE_DETAILS_UPLOADING_SUCCESS,
+    PROFILE_AVATAR_UPLOADING_SUCCESS,
 } from '../../constants/actionTypes';
-import { errorActionFactory } from '../../utils/errorActionFactory';
+import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
 
 export const updateProfileDetails = (details) => ({
     type: PROFILE_UPDATE_DETAILS,
@@ -20,6 +19,10 @@ export const updateProfileDetails = (details) => ({
         details,
     }
 });
+export const startFetchingProfileDetails = () => ({
+    type: PROFILE_DETAILS_FETCHING_STARTED,
+});
+
 
 export const updateProfileAvatar = (avatarUri) => ({
     type: PROFILE_UPDATE_AVATAR,
@@ -27,24 +30,20 @@ export const updateProfileAvatar = (avatarUri) => ({
         avatarUri,
     }
 });
+export const startFetchingProfileAvatar = () => ({
+    type: PROFILE_AVATAR_FETCHING_STARTED,
+});
 
 export const startUploadingProfileAvatar = () => ({
     type: PROFILE_AVATAR_UPLOADING_STARTED,
 });
 
-export const startFetchingProfileAvatar = () => ({
-    type: PROFILE_AVATAR_FETCHING_STARTED,
-});
 
-export const startFetchingProfileDetails = () => ({
-    type: PROFILE_FETCHING_STARTED,
-});
+export const failFetchingProfileDetails = statusMessageActionFactory(PROFILE_DETAILS_FETCHING_FAILED);
+export const failUploadingProfileDetails = statusMessageActionFactory(PROFILE_DETAILS_UPLOADING_FAILED);
+export const successUploadingProfileDetails = statusMessageActionFactory(PROFILE_DETAILS_UPLOADING_SUCCESS);
 
-export const failFetchingProfileDetails = errorActionFactory(PROFILE_FETCHING_FAILED);
-export const failUploadingProfileDetails = errorActionFactory(PROFILE_UPLOADING_FAILED);
-export const failUploadingProfileAvatar = errorActionFactory(PROFILE_AVATAR_UPLOADING_FAILED);
-export const failFetchingProfileAvatar = errorActionFactory(PROFILE_AVATAR_FETCHING_FAILED);
+export const failUploadingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_UPLOADING_FAILED);
+export const failFetchingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_FETCHING_FAILED);
+export const successUploadingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_UPLOADING_SUCCESS);
 
-export const failUploadingChannel = errorActionFactory(CHANNEL_UPLOADING_FAILED);
-export const failRemovingChannel = errorActionFactory(CHANNEL_REMOVING_FAILED);
-export const failFetchingChannels = errorActionFactory(CHANNELS_FETCHING_FAILED);

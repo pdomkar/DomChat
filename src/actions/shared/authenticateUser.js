@@ -1,5 +1,5 @@
 import {
-    dismissError,
+    dismissStatusMessage,
     receiveValidEmail,
     receiveValidToken
 } from './actionCreators';
@@ -14,7 +14,7 @@ import {
     SHARED_TOKEN_TIMESTAMP
 } from '../../constants/localStorageKeys';
 import { fetchAuthToken } from '../../utils/api/fetchAuthToken';
-import { MILISECONDS_TO_AUTO_DISMISS_ERROR, FAILED_AUTHENTICATION_MESSAGE } from '../../constants/uiConstants';
+import { MILISECONDS_TO_AUTO_DISMISS_MESSAGE, FAILED_AUTHENTICATION_MESSAGE } from '../../constants/uiConstants';
 import { fetchCreateUser } from '../../utils/api/fetchCreateUser';
 
 export const authenticateUser  = (destinationLocation, login) =>
@@ -36,7 +36,7 @@ export const authenticateUser  = (destinationLocation, login) =>
                     })
                     .catch((error) => {
                         const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
-                        setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
+                        setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
                     });
             })
             .catch((error) => {
@@ -52,7 +52,7 @@ export const authenticateUser  = (destinationLocation, login) =>
                     })
                     .catch((error) => {
                         const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
-                        setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
+                        setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
                     });
             });
 

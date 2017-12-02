@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { SavingStatus } from '../../components/app/SavingStatus.jsx';
-import { saveItems } from '../../actions/channels/saveItems';
 
 const mapStateToProps = (state) => ({
     watchedEntity: state.channelApp.channels,
@@ -8,7 +7,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    save: () => dispatch(saveItems())
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);

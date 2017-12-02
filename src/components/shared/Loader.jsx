@@ -1,27 +1,16 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import AdvancedLoader from 'react-loader-advanced';
+
 import { SavingSpinner } from './SavingSpinner.jsx';
 
-const LoadingMessage = ({ message }) => (
-    <div>
-        <div>
-            <SavingSpinner />
-        </div>
-        { message || 'Loading…' }
-    </div>
-);
-
-LoadingMessage.propTypes = {
-    message: PropTypes.string,
-};
-
-const Loader = ({ children, isLoading, message }) => (
+const Loader = ({ children, isLoading }) => (
     <AdvancedLoader
+        contentBlur={2}
         show={isLoading}
-        message={<LoadingMessage message={message} />}
-        backgroundStyle={{ borderRadius: '6px' }}
-        hideContentOnLoad
+        message={<SavingSpinner loader={true} />}
+        backgroundStyle={{ borderRadius: '10px', heihgt: 'auto', background: 'transparent'}}
+        hideContentOnLoad={false}
     >
         {children}
     </AdvancedLoader>
@@ -30,7 +19,6 @@ const Loader = ({ children, isLoading, message }) => (
 Loader.propTypes = {
     children: PropTypes.node.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    message: PropTypes.string,
 };
 
 export { Loader };

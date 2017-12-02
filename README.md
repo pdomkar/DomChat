@@ -10,3 +10,5 @@ upravit redux state, napr jmeno ulozit do reduxu, a nacitat ho bud v getInitialS
 -mit ulozen i email v localstorage, potreba preposilat globalne do všech komponent?
 
 https://github.com/erikras/redux-form/issues/82
+
+pripadne zkusit https://github.com/maslianok/react-select-me/

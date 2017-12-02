@@ -5,29 +5,27 @@ import {
     MESSAGE_FETCHING_FAILED,
     MESSAGE_LIST_ITEM_DELETE,
     MESSAGE_REMOVING_FAILED,
-    MESSGE_FETCHING_AVATAR_FAILED,
-    MESSAGE_UPDATE_AVATAR,
     MESSAGE_LIST_ITEM_UPDATE,
 
 } from '../../../constants/actionTypes';
-import { errorActionFactory } from '../../../utils/errorActionFactory';
+import { statusMessageActionFactory } from '../../../utils/statusMessageActionFactory';
 
 
-export const createMessage = (newMessage) => {console.log("sf", newMessage); return ({
+export const createMessage = (newMessage) => {console.log('sj', newMessage); return ({
     type: MESSAGE_LIST_ITEM_CREATE,
     payload: {
         message: {
             ...newMessage
         }
     }
-})};
+});};
 
-export const deleteMessage = (id) => {console.log("ssff", id); return ({
+export const deleteMessage = (id) => {console.log('sfdfdsf', id); return ({
     type: MESSAGE_LIST_ITEM_DELETE,
     payload: {
         id
     }
-})};
+});};
 
 export const updateMessage = (message) => { return ({
     type: MESSAGE_LIST_ITEM_UPDATE,
@@ -36,7 +34,7 @@ export const updateMessage = (message) => { return ({
             ...message
         }
     }
-})};
+});};
 
 export const loadMessages = (messages) => ({
     type: MESSAGE_LOAD_ALL,
@@ -46,6 +44,6 @@ export const loadMessages = (messages) => ({
 });
 
 
-export const failUploadingMessage = errorActionFactory(MESSAGE_UPLOADING_FAILED);
-export const failFetchingMessages = errorActionFactory(MESSAGE_FETCHING_FAILED);
-export const failRemovingMessage = errorActionFactory(MESSAGE_REMOVING_FAILED);
+export const failUploadingMessage = statusMessageActionFactory(MESSAGE_UPLOADING_FAILED);
+export const failFetchingMessages = statusMessageActionFactory(MESSAGE_FETCHING_FAILED);
+export const failRemovingMessage = statusMessageActionFactory(MESSAGE_REMOVING_FAILED);

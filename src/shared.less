@@ -1,0 +1,101 @@
+a {
+	color: @text-sec1;
+	&:hover {
+		color: @text-sec2;
+		text-decoration: none;
+	}
+}
+
+.savingSpinner {
+	width: 40px;
+	height: 40px;
+
+	position: fixed;
+	bottom: 10px;
+	left: 100px;
+	margin: auto;
+	z-index: 99999;
+
+	&.loader {
+		position: relative;
+		bottom: auto;
+		left: auto;
+	}
+
+	.circle1, .circle2 {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: @thrd;
+		opacity: 0.6;
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		-webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+		animation: sk-bounce 2.0s infinite ease-in-out;
+	}
+
+	.circle2 {
+		-webkit-animation-delay: -1.0s;
+		animation-delay: -1.0s;
+	}
+
+	@-webkit-keyframes sk-bounce {
+		0%, 100% { -webkit-transform: scale(0.0) }
+		50% { -webkit-transform: scale(1.0) }
+	}
+
+	@keyframes sk-bounce {
+		0%, 100% {
+			transform: scale(0.0);
+			-webkit-transform: scale(0.0);
+		} 50% {
+			  transform: scale(1.0);
+			  -webkit-transform: scale(1.0);
+		  }
+	}
+}
+
+.modalWrapper{
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+
+
+
+.alert {
+	display: block;
+	position: fixed;
+	bottom: 10px;
+	background: @prim;
+	padding: 12px 30px;
+	border-radius: 6px;
+
+	&.success {
+		color: @success;
+	}
+
+	&.error {
+		color: @error;
+	}
+
+	button {
+		background: transparent;
+		border: 0;
+		margin-left: 20px;
+		font-size: 16px;
+		transition: font-size 0.5s;
+		cursor: pointer;
+		color: @sec;
+	}
+}
+
+.clear {
+	clear: both;
+}

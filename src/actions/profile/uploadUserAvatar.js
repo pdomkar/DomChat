@@ -1,16 +1,16 @@
 import {
     failUploadingProfileAvatar,
     startUploadingProfileAvatar,
+    successUploadingProfileAvatar,
 } from './actionCreators';
-import {
-    dismissError,
-} from '../shared/actionCreators';
-import { performAuthorizedRequest } from './performAuthorizedRequest';
+import { dismissStatusMessage } from '../shared/actionCreators';
+import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 import { fetchFileUpload } from '../../utils/api/fetchFileUpload';
 import { uploadUserDetails } from './uploadUserDetails';
 import {
     FAILED_UPDATE_AVATAR_MESSAGE,
-    MILISECONDS_TO_AUTO_DISMISS_ERROR
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
+    SUCCESS_UPLOAD_AVATAR_MESSAGE
 } from '../../constants/uiConstants';
 import { fetchUserAvatar } from './fetchUserAvatar';
 
@@ -38,11 +38,15 @@ export const uploadUserAvatar = (file) =>
 
                 await dispatch(uploadUserDetails(updatedDetails));
                 await dispatch(fetchUserAvatar(updatedDetails.avatarId));
+
+                const dispatchedAction = dispatch(successUploadingProfileAvatar(SUCCESS_UPLOAD_AVATAR_MESSAGE));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             });
         }
         catch (error) {
-            const dispatchedAction = dispatch(failUploadingProfileAvatar(FAILED_UPDATE_AVATAR_MESSAGE, error));
-            setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
-            return dispatchedAction;
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failUploadingProfileAvatar(FAILED_UPDATE_AVATAR_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            }
         }
     };

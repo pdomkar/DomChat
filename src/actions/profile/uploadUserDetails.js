@@ -5,24 +5,21 @@ import {
 import {
     updateProfileDetails,
     failUploadingProfileDetails,
+    successUploadingProfileDetails,
 } from './actionCreators';
-import {
-    USER_EMAIL,
-    createApiUserUri
-} from '../../constants/api';
-import {
-    dismissError,
-} from '../shared/actionCreators';
+import { createApiUserUri } from '../../constants/api';
+import { dismissStatusMessage } from '../shared/actionCreators';
 import { fetchRequest } from '../../utils/api/fetchRequest';
 import {
     convertFromServerDetails,
     convertToServerDetails
 } from '../../utils/api/conversions/profileDetails';
 import { DETAILS_FORM_NAME } from '../../constants/formNames';
-import { performAuthorizedRequest } from './performAuthorizedRequest';
+import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 import {
-    MILISECONDS_TO_AUTO_DISMISS_ERROR,
-    FAILED_UPDATE_DETAILS_MESSAGE
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
+    FAILED_UPDATE_PROFILE_DETAILS_MESSAGE,
+    SUCCESS_UPDATE_DETAILS_MESSAGE
 } from '../../constants/uiConstants';
 
 export const uploadUserDetails = (details) =>
@@ -37,12 +34,16 @@ export const uploadUserDetails = (details) =>
             await performAuthorizedRequest(dispatch, async () => {
                 const receivedServerDetails = await fetchRequest(requestUri, authToken, serverDetails);
                 const updatedDetails = convertFromServerDetails(receivedServerDetails);
-                return dispatch(updateProfileDetails(updatedDetails));
+                dispatch(updateProfileDetails(updatedDetails));
+                const dispatchedAction = dispatch(successUploadingProfileDetails(SUCCESS_UPDATE_DETAILS_MESSAGE));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             });
         } catch (error) {
-            const dispatchedAction = dispatch(failUploadingProfileDetails(FAILED_UPDATE_DETAILS_MESSAGE, error));
-            setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failUploadingProfileDetails(FAILED_UPDATE_PROFILE_DETAILS_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            }
+        } finally {
+            dispatch(stopSubmit(DETAILS_FORM_NAME));
         }
-
-        return dispatch(stopSubmit(DETAILS_FORM_NAME));
     };

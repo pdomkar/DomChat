@@ -3,12 +3,12 @@ import {
     SHARED_INVALIDATE_TOKEN,
     SHARED_AUTHENTICATION_STARTED,
     SHARED_AUTHENTICATION_FAILED,
-    SHARED_DISMISS_ERROR,
+    SHARED_DISMISS_STATUS_MESSAGE,
     SHARED_RECEIVE_EMAIL,
     SHARED_LOAD_USERS,
     SHARED_USERS_FETCHING_FAILED,
 } from '../../constants/actionTypes';
-import { errorActionFactory } from '../../utils/errorActionFactory';
+import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
 
 export const receiveValidEmail = (email) => ({
     type: SHARED_RECEIVE_EMAIL,
@@ -39,12 +39,13 @@ export const updateUsers = (users) => ({
     }
 });
 
-export const failAuthentication = errorActionFactory(SHARED_AUTHENTICATION_FAILED);
-export const failFetchingUsers = errorActionFactory(SHARED_USERS_FETCHING_FAILED);
-
-export const dismissError = (errorId) => ({
-    type: SHARED_DISMISS_ERROR,
+export const dismissStatusMessage = (statusMessageId) => ({
+    type: SHARED_DISMISS_STATUS_MESSAGE,
     payload: {
-        errorId,
+        statusMessageId,
     }
 });
+
+export const failAuthentication = statusMessageActionFactory(SHARED_AUTHENTICATION_FAILED);
+export const failFetchingUsers = statusMessageActionFactory(SHARED_USERS_FETCHING_FAILED);
+

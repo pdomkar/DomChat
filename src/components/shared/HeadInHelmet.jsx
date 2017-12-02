@@ -1,14 +1,17 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+
 import { Helmet } from 'react-helmet';
-import {} from '../../constants/routes';
 import { PROFILE, LOGIN, ROOT, CHANNELS } from '../../constants/routes';
+import { CHANNELS_DETAIL } from '../../constants/routes';
 
 const convertRouteToTitle = (route) => {
     switch(route) {
         case ROOT:
         case CHANNELS:
             return 'Channels';
+        case CHANNELS_DETAIL:
+            return 'Channel';
         case PROFILE:
             return 'Profile';
         case LOGIN:

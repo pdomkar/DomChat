@@ -1,6 +1,7 @@
 import { API_APP_URI } from '../../constants/api';
-import { performAuthorizedRequest } from '../profile/performAuthorizedRequest';
+import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 import {
+    failUploadingChannel,
     savingFinished,
     savingStarted,
     updateChannel
@@ -10,12 +11,11 @@ import {
     convertToServerChannelUpdate
 } from '../../utils/api/conversions/channel';
 import { fetchPatch } from '../../utils/api/fetchPatch';
-import { dismissError } from '../shared/actionCreators';
+import { dismissStatusMessage } from '../shared/actionCreators';
 import {
     FAILED_UPDATE_CHANNEL_MESSAGE,
-    MILISECONDS_TO_AUTO_DISMISS_ERROR
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../constants/uiConstants';
-import { failUploadingChannel } from '../profile/actionCreators';
 import { fetchChannels } from './fetchChannels';
 
 
@@ -38,7 +38,7 @@ export const uploadUpdatedChannel  = (channel) =>
         } catch (error) {
             console.log(error);
             const dispatchedAction = dispatch(failUploadingChannel(FAILED_UPDATE_CHANNEL_MESSAGE, error));
-            setTimeout(() => dispatch(dismissError(dispatchedAction.payload.error.id)), MILISECONDS_TO_AUTO_DISMISS_ERROR);
+            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }
         dispatch(savingFinished());
         // return dispatch(stopSubmit(CHANNEL_NEW_FORM_NAME));

@@ -1,9 +1,5 @@
 import { PROFILE_UPDATE_DETAILS } from '../../constants/actionTypes';
-
-const defaultDetails = {
-    email: '',
-    name: '',
-};
+import { defaultDetails } from '../../utils/getDetailsData';
 
 export const details = (prevState = defaultDetails, action) => {
     switch (action.type) {

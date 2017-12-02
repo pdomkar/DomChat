@@ -25,7 +25,7 @@ export const fetchUsers = () =>
         return fetchReceive(API_USER_URI, authToken)
             .then((serverUsers) => dispatch(updateUsers((convertFromServerUsers(serverUsers)))))
             .catch((error) => {
-                console.log("err", error);
+                console.log('err', error);
                 if(error.statusCode === 401) {
                     dispatch(invalidateToken());
                     return dispatch(failAuthentication(EXPIRED_AUTHENTICATION_MESSAGE));
