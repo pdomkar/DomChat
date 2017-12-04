@@ -29,7 +29,7 @@ const Details = ({ handleSubmit, valid, submitting }) => {return(
                 screenReaderName="Full name"
                 name="fullname"
                 component={Input}
-                maxlength="20"
+                maxLength={''.lengthMax}
                 validate={maxLength20}
             />
             <Field
@@ -39,7 +39,7 @@ const Details = ({ handleSubmit, valid, submitting }) => {return(
                 name="name"
                 component={Input}
                 required
-                maxLength={lengthMax}
+                maxLength={''.lengthMax}
                 validate={[validateName, maxLength20]}
             />
             <Field

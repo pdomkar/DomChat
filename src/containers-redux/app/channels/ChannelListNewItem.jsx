@@ -26,7 +26,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     onFetchUsers: () => dispatch(fetchUsers()),
-    onSubmit: (channel) => dispatch(uploadChannel(channel)),
+    onSubmit: (channel) => {console.log('wwwwwwwwwww', channel);return dispatch(uploadChannel(channel));},
     onCancel: () => dispatch(cancelCreatingChannel()),
 });
 

@@ -34,7 +34,7 @@ class ReactSelect extends React.Component {
                 <label className={labelGroupClass(this.props.meta.touched, this.props.meta.error)} htmlFor={this.props.name}>
                     {this.props.screenReaderName}
                 </label>
-                <select multiple>
+                <select {...this.props.input} multiple id={this.props.name}>
                     {opts}
                 </select>
                 {/*<Select*/}

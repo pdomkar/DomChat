@@ -100,7 +100,7 @@ export class ChannelListEditedItem extends React.PureComponent {
                                 screenReaderName="Users"
                                 name="users"
                                 id="users"
-                                multiple
+                                multi={true}
                                 options={options}
                                 component={ReactSelect}
                             />

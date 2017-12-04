@@ -22,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {console.log('channel', MODAL_COMPO
 
 const mapDispatchToProps = dispatch => ({
     onFetchUsers: () => dispatch(fetchUsers()),
-    onSubmit: (channel) => {console.log('aaaaaaasdfd');return dispatch(uploadUpdatedChannel(channel));},
+    onSubmit: (channel) => {console.log('wwwwwwwwwww');return dispatch(uploadUpdatedChannel(channel));},
     onCancel: () => dispatch(cancelEditingChannel()),
 });
 
