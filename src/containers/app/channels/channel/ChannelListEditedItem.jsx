@@ -38,7 +38,11 @@ export class ChannelListEditedItem extends React.Component {
                 email={this.props.email}
                 onFetchUsers={this.props.onFetchUsers}
                 onCancel={this.props.onCancel}
-                onSubmit={() => {return this.props.onSubmit(this.state.editedChannel);}}
+                onSubmit={() => {console.log("qqqq"); return this.props.onSubmit(this.state.editedChannel)}}
+                handleSubmit={this.props.handleSubmit}
+                valid={this.props.valid}
+                dirty={this.props.dirty}
+                submitting={this.props.submitting}
             />
         );
     }
