@@ -1,6 +1,7 @@
 import {
     failFetchingMessages,
     loadMessages,
+    startFetchingMessages,
 } from './actionCreators';
 import {
     createApiFilerUri,
@@ -15,7 +16,7 @@ import { convertFromServerMessages } from '../../../utils/api/conversions/messag
 
 export const fetchMessages = (channelId) =>
     async (dispatch, getState) => {
-        // dispatch(savingStarted());
+        dispatch(startFetchingMessages());
         console.log('fetching....');
         const authToken = getState().shared.token;
         const requestUri = createApiMessageUri(channelId);

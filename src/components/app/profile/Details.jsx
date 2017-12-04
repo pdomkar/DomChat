@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-import { Input } from './Input.jsx';
+import { Input } from '../../shared/Input';
 import {
     validateMaxLength,
     validateNonEmptyness
 } from '../../../utils/validation';
 
 const validateName = validateNonEmptyness('name');
-const maxLength20 = validateMaxLength(20);
+const lengthMax = 20;
+const maxLength20 = validateMaxLength(lengthMax);
 
 const Details = ({ handleSubmit, valid, submitting }) => {return(
     <div className="details">
@@ -28,6 +29,7 @@ const Details = ({ handleSubmit, valid, submitting }) => {return(
                 screenReaderName="Full name"
                 name="fullname"
                 component={Input}
+                maxlength="20"
                 validate={maxLength20}
             />
             <Field
@@ -37,6 +39,7 @@ const Details = ({ handleSubmit, valid, submitting }) => {return(
                 name="name"
                 component={Input}
                 required
+                maxLength={lengthMax}
                 validate={[validateName, maxLength20]}
             />
             <Field

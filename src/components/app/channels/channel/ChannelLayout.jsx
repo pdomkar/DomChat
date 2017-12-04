@@ -15,15 +15,6 @@ export class ChannelLayout extends React.PureComponent {
         }).isRequired,
     };
 
-    constructor(props) {
-        super(props);
-        console.log('con',props.channel);
-    }
-
-    componentWillMount() {
-
-    }
-
     render() {
         return (
             <div className="channel">

@@ -5,6 +5,7 @@ import { Loader } from '../../components/shared/Loader.jsx';
 
 const mapStateToProps = (state, ownProps) => ({
     isLoading: ownProps.stateLoadingSelector(state),
+    contentStyle: ownProps.contentStyle
 });
 
 const enhancer = connect(mapStateToProps);

@@ -11,6 +11,7 @@ class Input extends React.Component {
         readOnly: PropTypes.bool,
         required: PropTypes.bool,
         name: PropTypes.string,
+        maxLength: PropTypes.string,
         input: PropTypes.shape({
             value: PropTypes.string.isRequired,
         }).isRequired,
@@ -35,21 +36,33 @@ class Input extends React.Component {
             });
         };
 
-        console.log(this.props.input);
+        console.log(this.props.meta);
 
         return (
             <div className="form-group">
                 <label className={labelGroupClass(this.props.meta.touched, this.props.meta.error)} htmlFor={this.props.name}>
                     {this.props.screenReaderName}
                 </label>
-                <input
+                {this.props.type !== 'textarea' && <input
                     {...this.props.input}
                     placeholder={this.props.placeholder}
                     type={this.props.type}
                     id={this.props.name}
                     readOnly={this.props.readOnly}
+                    required={this.props.required}
+                    maxLength={this.props.maxLength}
                     className={inputGroupClass(this.props.meta.touched, this.props.meta.error)}
-                />
+                />}
+                {this.props.type === 'textarea' && <textarea
+                    {...this.props.input}
+                    placeholder={this.props.placeholder}
+                    id={this.props.name}
+                    rows={this.props.rows}
+                    cols={this.props.cols}
+                    readOnly={this.props.readOnly}
+                    required={this.props.required}
+                    className={inputGroupClass(this.props.meta.touched, this.props.meta.error)}
+                />}
                 <div className="error-box">
                     {this.props.meta.touched && this.props.meta.error && <div className="error-message">{this.props.meta.error}</div>}
                 </div>

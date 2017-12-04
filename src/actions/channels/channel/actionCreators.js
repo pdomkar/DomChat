@@ -2,10 +2,13 @@ import {
     MESSAGE_UPLOADING_FAILED,
     MESSAGE_LOAD_ALL,
     MESSAGE_LIST_ITEM_CREATE,
-    MESSAGE_FETCHING_FAILED,
+    MESSAGES_FETCHING_FAILED,
     MESSAGE_LIST_ITEM_DELETE,
     MESSAGE_REMOVING_FAILED,
     MESSAGE_LIST_ITEM_UPDATE,
+    MESSAGES_FETCHING_STARTED,
+    MESSAGE_UPDATING_STARTED,
+    MESSAGE_UPDATING_SUCCESS,
 
 } from '../../../constants/actionTypes';
 import { statusMessageActionFactory } from '../../../utils/statusMessageActionFactory';
@@ -43,7 +46,20 @@ export const loadMessages = (messages) => ({
     }
 });
 
+export const startFetchingMessages = () => ({
+    type: MESSAGES_FETCHING_STARTED,
+});
+
+export const startUpdatingMessage = (messageId) => ({
+    type: MESSAGE_UPDATING_STARTED,
+    payload: {
+        messageId
+    }
+});
+
 
 export const failUploadingMessage = statusMessageActionFactory(MESSAGE_UPLOADING_FAILED);
-export const failFetchingMessages = statusMessageActionFactory(MESSAGE_FETCHING_FAILED);
+export const failFetchingMessages = statusMessageActionFactory(MESSAGES_FETCHING_FAILED);
 export const failRemovingMessage = statusMessageActionFactory(MESSAGE_REMOVING_FAILED);
+
+export const successUpdatingMessage = statusMessageActionFactory(MESSAGE_UPDATING_SUCCESS);

@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { List } from 'immutable';
 import { Message } from './Message';
+import { Input } from '../../../../shared/Input';
+import { MessageInput } from './MessageInput';
+import { validateNonEmptyness } from '../../../../../utils/validation';
+import { Loader } from '../../../../../containers-redux/shared/Loader';
 
 
 export class Body extends React.PureComponent {
@@ -29,10 +33,18 @@ export class Body extends React.PureComponent {
         console.log('con', props.channel);
     }
 
-    componentWillMount() {
-        console.log('willMount');
+    componentDidMount() {
         this.props.loadMessages(this.props.channel.id);
     }
+    componentDidUpdate(prevProps) {
+        //nebude to posouvat casto?
+        if (prevProps.messages.size !== this.props.messages.size) {
+            this.messagesBlock.scrollTop = this.messagesBlock.scrollHeight;
+        }
+
+    }
+
+    validateMessage = validateNonEmptyness('Message');
 
     render() {
         const itemElements = this.props.messages
@@ -43,25 +55,30 @@ export class Body extends React.PureComponent {
             });
         return (
             <div className="body">
-                <div className="messages">
-                    {itemElements}
+                <div className="messages" ref={(messagesBlock) => { this.messagesBlock = messagesBlock; }} >
+                    <Loader stateLoadingSelector={state => state.channelApp.channel.isFetchingMessages}>
+                        {itemElements}
+                    </Loader>
                 </div>
+
                 <div className="footer">
                     <form onSubmit={this.props.handleSubmit}>
-                        <div>
-                            <Field
-                                type="message"
-                                name="message"
-                                component="input"
-                            />
-                            <button
-                                type="submit"
-                                className="btn"
-                                // disabled={!this.props.dirty && !this.props.valid}
-                            >
-                                Send
-                            </button>
-                        </div>
+                        <Field
+                            type="textarea"
+                            placeholder="Your message text"
+                            name="message"
+                            id="message"
+                            component={MessageInput}
+                            rows="1"
+                            required
+                            validate={this.validateMessage}
+                        />
+                        <button
+                            type="submit"
+                            // disabled={!this.props.dirty && !this.props.valid}
+                        >
+                            Send
+                        </button>
                     </form>
                 </div>
             </div>

@@ -45,10 +45,10 @@ export class ChannelsLayout extends React.PureComponent {
                         <h1>DomChat</h1>
                         <div className="user">
                             <span>{this.props.details.name}</span>
-                            <a onClick={this.props.onLogOut}>
+                            <a onClick={this.props.onLogOut} title="Log out">
                                 <i className="fa fa-sign-out" aria-hidden="true"/>
                             </a>
-                            <Link to={PROFILE}>
+                            <Link to={PROFILE} title="Edit profile">
                                 <i className="fa fa-user" aria-hidden="true" />
                             </Link>
                         </div>
@@ -59,7 +59,7 @@ export class ChannelsLayout extends React.PureComponent {
                             Channels
                         </h3>
                         {!this.props.createChannelVisible &&
-                        <a onClick={() => this.props.onStartCreating()}>
+                        <a onClick={() => this.props.onStartCreating()} title="Create channel">
                             <i className="fa fa-plus" aria-hidden="true" />
                         </a>
                         }
@@ -67,7 +67,7 @@ export class ChannelsLayout extends React.PureComponent {
                         <ChannelListRedux channels={this.props.channels} selectedChannel={selectChannel} />
                     </div>
                 </div>
-                {selectChannel && <ChannelLayout channel={selectChannel} />}
+                {selectChannel && <ChannelLayout channel={selectChannel} /> || <div>Select channel</div>}
                 {channelCreatedModal}
                 <StatusMessages />
             </div>

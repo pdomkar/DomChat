@@ -1,44 +1,42 @@
 import { API_APP_URI } from '../../constants/api';
 import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 import {
-    deleteChannel,
-    failRemovingChannel,
+    deleteChannel as deleteChannelAction,
+    failDeletingChannel,
     savingFinished,
     savingStarted,
+    successDeletingChannel,
 } from './actionCreators';
-import {
-    convertToServerChannelRemove
-} from '../../utils/api/conversions/channel';
+import { convertToServerChannelRemove} from '../../utils/api/conversions/channel';
 import { fetchPatch } from '../../utils/api/fetchPatch';
 import { dismissStatusMessage } from '../shared/actionCreators';
 import {
-    FAILED_REMOVE_CHANNEL_MESSAGE,
-    MILISECONDS_TO_AUTO_DISMISS_MESSAGE
+    FAILED_DELETE_CHANNEL_MESSAGE,
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
+    SUCCESS_DELETE_CHANNEL_MESSAGE
 } from '../../constants/uiConstants';
 import { fetchChannels } from './fetchChannels';
 
 
-export const removeChannel  = (id) =>
+export const deleteChannel  = (id) =>
     async (dispatch, getState) => {
-        // dispatch(startSubmit(CHANNEL_NEW_FORM_NAME));
         dispatch(savingStarted());
-        console.log('id',id);
         const authToken = getState().shared.token;
         const serverChannel = convertToServerChannelRemove(id);
-        console.log(serverChannel);
+
         try {
             await performAuthorizedRequest(dispatch, async () => {
-                const receivedServerChannel = await fetchPatch(API_APP_URI, authToken, serverChannel);
-                console.log(receivedServerChannel);
-                dispatch(deleteChannel(id));
+                await fetchPatch(API_APP_URI, authToken, serverChannel);
+                dispatch(deleteChannelAction(id));
                 dispatch(fetchChannels());
+                const dispatchedAction = dispatch(successDeletingChannel(SUCCESS_DELETE_CHANNEL_MESSAGE));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             });
         } catch (error) {
             console.log(error);
-            const dispatchedAction = dispatch(failRemovingChannel(FAILED_REMOVE_CHANNEL_MESSAGE, error));
+            const dispatchedAction = dispatch(failDeletingChannel(FAILED_DELETE_CHANNEL_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+        } finally {
+            dispatch(savingFinished());
         }
-        dispatch(savingFinished());
-        // return dispatch(stopSubmit(CHANNEL_NEW_FORM_NAME));
-
     };
