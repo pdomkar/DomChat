@@ -10,7 +10,7 @@ export const convertToServerChannelCreate = (channel, userEmail) => [
             customData: JSON.stringify({
                 description: channel.description || '',
                 createdBy: userEmail,
-                users: channel.users.map(o => o.value) || [],
+                users: channel.users.map(o => o.value),
             })
         }
     }

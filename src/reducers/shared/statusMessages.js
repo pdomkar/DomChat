@@ -11,6 +11,9 @@ import {
     PROFILE_AVATAR_UPLOADING_FAILED,
     PROFILE_AVATAR_FETCHING_FAILED,
     PROFILE_AVATAR_UPLOADING_SUCCESS,
+    MESSAGE_UPDATING_SUCCESS,
+    CHANNEL_DELETING_SUCCESS,
+    CHANNEL_DELETING_FAILED,
 } from '../../constants/actionTypes';
 
 export const statusMessages = (previousState = Immutable.OrderedMap(), action) => {
@@ -23,8 +26,10 @@ export const statusMessages = (previousState = Immutable.OrderedMap(), action) =
         case PROFILE_AVATAR_UPLOADING_FAILED:
         case PROFILE_AVATAR_FETCHING_FAILED:
         case PROFILE_AVATAR_UPLOADING_SUCCESS:
+        case MESSAGE_UPDATING_SUCCESS:
+        case CHANNEL_DELETING_SUCCESS:
+        case CHANNEL_DELETING_FAILED:
         // case CHANNEL_UPLOADING_FAILED:
-        // case CHANNEL_REMOVING_FAILED:
             return previousState.set(action.payload.statusMessage.id, {...action.payload.statusMessage});
         case SHARED_DISMISS_STATUS_MESSAGE:
             return previousState.delete(action.payload.statusMessageId);

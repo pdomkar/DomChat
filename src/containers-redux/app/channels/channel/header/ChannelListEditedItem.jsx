@@ -7,9 +7,11 @@ import { cancelEditingChannel } from '../../../../../actions/channels/actionCrea
 import { CHANNEL_EDIT_FORM_NAME } from '../../../../../constants/formNames';
 import { uploadUpdatedChannel } from '../../../../../actions/channels/uploadUpdatedChannel';
 import { fetchUsers } from '../../../../../actions/shared/fetchUsers';
+import { MODAL_COMPONENT_EDIT } from '../../../../../constants/common';
 
 
-const mapStateToProps = (state, ownProps) => {console.log('channel', ownProps.channel); return ({
+const mapStateToProps = (state, ownProps) => {console.log('channel', MODAL_COMPONENT_EDIT); return ({
+    typeComponent: MODAL_COMPONENT_EDIT,
     submitButtonText: ownProps.submitButtonText,
     channel: ownProps.channel,
     users: state.shared.users,
@@ -20,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {console.log('channel', ownProps.ch
 
 const mapDispatchToProps = dispatch => ({
     onFetchUsers: () => dispatch(fetchUsers()),
-    onSubmit: (channel) => {console.log('sdfd');return dispatch(uploadUpdatedChannel(channel));},
+    onSubmit: (channel) => {console.log('wwwwwwwwwww');return dispatch(uploadUpdatedChannel(channel));},
     onCancel: () => dispatch(cancelEditingChannel()),
 });
 
@@ -40,6 +42,8 @@ connectedComponent.propTypes = {
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         description: PropTypes.string,
+        createdBy: PropTypes.string.isRequired,
+        users: PropTypes.array.isRequired,
     }).isRequired,
     submitButtonText: PropTypes.string.isRequired,
 };

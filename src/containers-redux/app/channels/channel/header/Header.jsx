@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { Header } from '../../../../../components/app/channels/channel/header/Header';
-import { removeChannel } from '../../../../../actions/channels/removeChannel';
-import { startEditingChannel } from '../../../../../actions/channels/actionCreators';
+import { startEditingChannel} from '../../../../../actions/channels/actionCreators';
+import { deleteChannel } from '../../../../../actions/channels/deleteChannel';
 
 const mapStateToProps = (state, ownProps) => {console.log(state.channelApp); return ({
     channel: ownProps.channel,
@@ -12,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {console.log(state.channelApp); ret
 
 const mapDispatchToProps = (dispatch) => ({
     onStartEditing: (id) => dispatch(startEditingChannel(id)),
-    onDelete: (id) => dispatch(removeChannel(id)),
+    onDelete: (id) => dispatch(deleteChannel(id)),
 });
 
 

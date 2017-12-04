@@ -57,14 +57,56 @@ a {
 	}
 }
 
-.modalWrapper{
-	position: fixed;
-	top:0;
-	left:0;
-	z-index: 1000;
-	width: 100%;
-	height: 100%;
-	background: #fff;
+
+form {
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		label {
+			font-size: 15px;
+			margin-bottom: 5px;
+			padding-left: 12px;
+			color: @four;
+			&.error {
+				color: @error;
+			}
+			&.success {
+				color: @success;
+			}
+		}
+		input, textarea {
+			padding: 6px 12px;
+			border: 1px solid @four;
+			background: @sixt;
+			border-radius: 6px;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, .2);
+			&:read-only {
+				background: @sec;
+				cursor: not-allowed;
+			}
+			&:focus {
+				background: @white;
+			}
+			&.error {
+				border-color: @error;
+			}
+			&.success {
+				border-color: @success;
+			}
+		}
+		input {
+			height: 26px;
+		}
+
+		.error-box {
+			height: 15px;
+			.error-message {
+				color: @error;
+				text-align: right;
+				font-size: 14px;
+			}
+		}
+	}
 }
 
 

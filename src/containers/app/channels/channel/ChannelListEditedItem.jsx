@@ -5,6 +5,7 @@ import { List } from 'immutable';
 
 export class ChannelListEditedItem extends React.Component {
     static propTypes = {
+        typeCompopnent: PropTypes.string.isRequired,
         channel: PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
@@ -16,10 +17,6 @@ export class ChannelListEditedItem extends React.Component {
         onFetchUsers: PropTypes.func.isRequired,
         onCancel: PropTypes.func.isRequired,
         onSubmit: PropTypes.func.isRequired,
-        handleSubmit: PropTypes.func.isRequired,
-        valid: PropTypes.bool.isRequired,
-        dirty: PropTypes.bool.isRequired,
-        submitting: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -33,6 +30,7 @@ export class ChannelListEditedItem extends React.Component {
     render() {
         return (
             <ChannelListEditedItemComonent
+                typeCompopnent={this.props.typeCompopnent}
                 editedChannel={this.state.editedChannel}
                 submitDisabled={this.state.editedChannel === this.props.channel}
                 submitButtonText={this.props.submitButtonText}

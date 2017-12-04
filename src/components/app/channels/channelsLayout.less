@@ -111,15 +111,47 @@ div.channels-layout {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
 
     .header {
-      background: @sec2;
-      color: @text-sec2;
-      flex-basis: 60px;
       display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
+      flex-basis: 93px;
+      flex-shrink: 0;
+      color: @prim;
+      border-bottom: 1px  solid @four;
+
+      section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        margin: 20px 20px 8px;
+
+        header {
+          display: flex;
+          justify-content: space-between;
+          h3 {
+          }
+
+          div.controls {
+
+            a {
+              color: @prim;
+              cursor: pointer;
+              transition: color 0.2s;
+              margin: 0 5px;
+              &:hover {
+                color: @black;
+
+              }
+            }
+          }
+        }
+        p {
+          overflow: auto;
+        }
+      }
+
 
     }
 
@@ -127,36 +159,161 @@ div.channels-layout {
       position: relative;
       display: flex;
       flex-direction: column;
+      height: inherit;
+      justify-content: space-between;
 
       .messages {
         overflow-y: scroll;
         .message {
-          border: 1px solid @sec2;
-          display: block;
-          height: 50px;
-          .author{
-            height: 20px;
-            font-weight: bold;
-          }
-          .text {
+          display: inline-flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          background: @sixt;
+          margin: 10px 20px;
+          padding: 5px;
+          border-radius: 6px;
 
+          .avatar {
+            img {
+              height: 50px;
+              border-radius: 10px;
+            }
+          }
+
+          .mess-box {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            .title{
+              .time {
+                font-size: 12px;
+                margin-left: 10px;
+              }
+              a {
+                cursor: pointer;
+                color: @prim;
+                transition: color 0.2s;
+                margin-left: 10px;
+                &:hover {
+                  color: @black;
+                }
+              }
+            }
+            .text {
+              margin: 5px 0;
+            }
           }
           .vote {
-            float: right;
-            margin-top: -50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 20px;
+            .action {
+              display: flex;
+            }
+            .state {
+
+            }
+            a {
+              cursor: pointer;
+              color: @sec;
+              transition: color 0.2s;
+              margin: 0 1px;
+              &:hover {
+                color: @prim;
+              }
+            }
           }
         }
       }
       .footer {
-        background: @sec4;
-        color: @text-sec4;
-        flex-basis: 50px;
+        background: @sec;
+        border-top: 1px solid @four;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: center;
+        flex-shrink: 0;
+        padding: 10px 15px;
+        form {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%;
+          div {
+            width: inherit;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            span {
+              align-self: stretch;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              border: 1px solid @four;
+              border-top-left-radius: 6px;
+              border-bottom-left-radius: 6px;
+              border-right: none;
+              padding: 9px;
+              color: @four;
+              background: @sixt;
+              &.error {
+                border-color: @error;
+              }
+            }
+            textarea {
+              width: 100%;
+              min-height: 24px;
+              padding: 6px 12px;
+              border: 1px solid @four;
+              background: @sixt;
+              border-top-right-radius: 6px;
+              border-bottom-right-radius: 6px;
+              box-shadow: inset 0 1px 1px rgba(0, 0, 0, .2);
+              overflow-x: hidden;
+              overflow-y: auto;
+              &:read-only {
+                background: @sec;
+                cursor: not-allowed;
+              }
+              &:focus {
+                background: @white;
+              }
+              &.error {
+                border-color: @error;
+              }
+            }
+          }
+          button {
+            background: @thrd;
+            color: @sixt;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: none;
+            font-size: 16px;
+            line-height: 18px;
+            float: right;
+            cursor: pointer;
+            transition: color 0.2s;
+            margin-left: 10px;
+            &:hover {
+              color: @white;
+              background: @success;
+            }
+            &:disabled {
+              background: @thrd;
+              color: @sixt;
+              cursor: not-allowed;
+              opacity: 0.7;
+              font-size: 16px;
+            }
+          }
+        }
       }
     }
   }
 
+  @import './newEditedItemModal';
 }

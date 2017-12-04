@@ -25,6 +25,7 @@ export const uploadChannel  = (channel) =>
         dispatch(savingStarted());
         console.log('email',channel);
         const authToken = getState().shared.token;
+        console.log("dsh", channel);
         const serverChannel = convertToServerChannelCreate(channel, getState().shared.email);
         console.log('servCha', serverChannel);
         try {
@@ -35,7 +36,7 @@ export const uploadChannel  = (channel) =>
                 dispatch(fetchChannels());
             });
         } catch (error) {
-            console.log(error);
+            console.log("errorrr", error);
             const dispatchedAction = dispatch(failUploadingChannel(FAILED_CREATE_CHANNEL_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.message.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }

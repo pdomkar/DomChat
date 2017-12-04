@@ -1,14 +1,45 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { Loader } from '../../../../../containers-redux/shared/Loader';
+import { FormattedRelative, injectIntl } from 'react-intl';
+
+const FormatedCreatedBy = injectIntl(({date, intl}) => (
+    <span className="time" title={`${intl.formatDate(date)} ${intl.formatTime(date)}`}>
+        <FormattedRelative value={date}/>
+    </span>
+));
 
 const Message = (props) => (
-    <div className="message" key={props.message.id}>
-        <div className="author"><img src={props.message.avatarUri||''} width="30"/>{props.message.createdBy} {props.message.createdAt}{props.message.createdBy === props.email && <button onClick={() => props.onRemove(props.channelId, props.message.id)}><i className="fa fa-trash" aria-hidden="true"/></button>}</div>
-        <div className="text">{props.message.value}</div>
-        <div className="vote">
-            <button onClick={() => props.onVote({...props.message, vote: props.message.vote+1})}><i className="fa fa-plus" aria-hidden="true"/></button>
-            <button onClick={() => props.onVote({...props.message, vote: props.message.vote-1})}><i className="fa fa-minus" aria-hidden="true"/></button>
-            <span>{props.message.vote}</span>
+    <div>
+        <div className="message" key={props.message.id}>
+            <Loader stateLoadingSelector={state => state.channelApp.channel.updatingMessage === props.message.id}
+                    contentStyle={{
+                        display: 'inline-flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                    }}>
+                <div className="avatar">
+                    <img src={props.message.avatarUri||''}/>
+                </div>
+                <div className="mess-box">
+                    <div className="title">
+                        {props.message.createdBy}
+                        <FormatedCreatedBy date={props.message.createdAt}/>
+                    </div>
+                    <div className="text">{props.message.value}</div>
+                </div>
+                <div className="vote">
+                    <div>
+                        {props.message.createdBy === props.email &&  <a onClick={() => props.onRemove(props.channelId, props.message.id)} title="Delete message"><i className="fa fa-trash" aria-hidden="true"/></a>}
+                    </div>
+                    <div className="state">{props.message.vote}</div>
+                    <div className="action">
+                        <a onClick={() => props.onVote({...props.message, vote: props.message.vote-1})} title="Vote down"><i className="fa fa-minus" aria-hidden="true"/></a>
+                        <a onClick={() => props.onVote({...props.message, vote: props.message.vote+1})} title="Vote up"><i className="fa fa-plus" aria-hidden="true"/></a>
+                    </div>
+                </div>
+            </Loader>
         </div>
     </div>
 );

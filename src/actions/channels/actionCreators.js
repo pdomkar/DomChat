@@ -10,8 +10,9 @@ import {
     CHANNEL_LIST_SAVING_STARTED,
     CHANNEL_LIST_SAVING_FINISHED,
     CHANNEL_UPLOADING_FAILED,
-    CHANNEL_REMOVING_FAILED,
     CHANNELS_FETCHING_FAILED,
+    CHANNEL_DELETING_SUCCESS,
+    CHANNEL_DELETING_FAILED,
 } from '../../constants/actionTypes';
 import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
 
@@ -73,5 +74,6 @@ export const savingFinished = () => ({
 });
 
 export const failUploadingChannel = statusMessageActionFactory(CHANNEL_UPLOADING_FAILED);
-export const failRemovingChannel = statusMessageActionFactory(CHANNEL_REMOVING_FAILED);
+export const failDeletingChannel = statusMessageActionFactory(CHANNEL_DELETING_FAILED);
 export const failFetchingChannels = statusMessageActionFactory(CHANNELS_FETCHING_FAILED);
+export const successDeletingChannel = statusMessageActionFactory(CHANNEL_DELETING_SUCCESS);

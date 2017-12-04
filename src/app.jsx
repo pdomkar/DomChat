@@ -11,16 +11,27 @@ import './main.less';
 import 'react-select/dist/react-select.css';
 import { createHistory } from './utils/createHistory';
 import { createStore } from './utils/createStore';
+import {
+    addLocaleData,
+    IntlProvider
+} from 'react-intl';
+import cs from 'react-intl/locale-data/cs';
 
+addLocaleData([...cs]);
 const history = createHistory();
 const store = createStore(history);
-
 console.log('Initial state: ', store.getState());
 
+let locale = (navigator.languages && navigator.languages[0])
+    || navigator.language
+    || navigator.userLanguage
+    || 'cs-CZ';
 ReactDom.render(
+    <IntlProvider locale={locale}>
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <LayoutSelector/>
+                <LayoutSelector/>
         </ConnectedRouter>
-    </Provider>,
+    </Provider>
+    </IntlProvider>,
     document.getElementById('app'));
