@@ -17,7 +17,10 @@ export const FAILED_UPDATE_CHANNEL_MESSAGE = 'Updating CHANNEL went grievously w
 export const FAILED_DELETE_CHANNEL_MESSAGE = 'Deleting CHANNEL went grievously wrong…';
 export const SUCCESS_DELETE_CHANNEL_MESSAGE = 'Deleting channel was success';
 export const FAILED_CREATE_MESSAGE_MESSAGE = 'Crateing message go wrong';
+export const SUCCESS_CREATE_MESSAGE_MESSAGE = 'Creating message was succes';
+export const FAILED_UPDATE_MESSAGE_MESSAGE = 'Updating message go wrong';
 export const FAILED_FETCH_MESSAGES_MESSAGE = 'FEtching messages go wrong';
-export const FAILED_REMOVE_MESSAGE_MESSAGE = 'removing message go wrong ';
+export const FAILED_DELETE_MESSAGE_MESSAGE = 'Deleting message go wrong ';
+export const SUCCESS_DELETE_MESSAGE_MESSAGE = 'Message delete was succesful';
 
-export const SUCCESS_UPDATE_MESSAGE = 'Message vote was change';
+export const SUCCESS_UPDATE_VOTE_MESSAGE = 'Message vote was change';

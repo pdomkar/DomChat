@@ -4,11 +4,9 @@ import {
     startFetchingProfileDetails,
 } from './actionCreators';
 import { createApiUserUri } from '../../constants/api';
-import { invalidateToken, failAuthentication } from '../shared/actionCreators';
 import { convertFromServerDetails } from '../../utils/api/conversions/profileDetails';
 import { fetchReceive } from '../../utils/api/fetchReceive';
 import {
-    EXPIRED_AUTHENTICATION_MESSAGE,
     FAILED_FETCH_PROFILE_DETAILS_MESSAGE
 } from '../../constants/uiConstants';
 import { fetchUserAvatar } from './fetchUserAvatar';

@@ -2,32 +2,40 @@ import { createApiMessageDetailUri } from '../../../constants/api';
 import { performAuthorizedRequest } from '../../shared/performAuthorizedRequest';
 import { fetchDelete } from '../../../utils/api/fetchDelete';
 import {
-    deleteMessage,
-    failRemovingMessage
+    deleteMessage as deleteMessageAC,
+    failDeletingMessage,
+    startDeletingMessage,
+    successDeletingMessage
 } from './actionCreators';
 import { dismissStatusMessage } from '../../shared/actionCreators';
 import {
-    FAILED_REMOVE_MESSAGE_MESSAGE,
-    MILISECONDS_TO_AUTO_DISMISS_MESSAGE
+    FAILED_DELETE_MESSAGE_MESSAGE,
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
+    SUCCESS_DELETE_MESSAGE_MESSAGE
 } from '../../../constants/uiConstants';
 
-export const removeMessage  = (channelId, messageId) =>
+export const deleteMessage  = (channelId, messageId) =>
     async (dispatch, getState) => {
-        // dispatch(startSubmit(CHANNEL_NEW_FORM_NAME));
-        // dispatch(savingStarted());
+        dispatch(startDeletingMessage());
         const authToken = getState().shared.token;
         const requestUri = createApiMessageDetailUri(channelId, messageId);
+
         try {
             await performAuthorizedRequest(dispatch, async () => {
-                await fetchDelete(requestUri, authToken);
-                //todo zjistit zda je success? a jen tehdy volat dispatch
-                dispatch(deleteMessage(messageId));
+                const result = await fetchDelete(requestUri, authToken);
+                if(result.status === 200) {
+                    dispatch(deleteMessageAC(messageId));
+                    const dispatchedAction = dispatch(successDeletingMessage(SUCCESS_DELETE_MESSAGE_MESSAGE));
+                    setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+                } else {
+                    let e = new Error(`Occur error ${result.status} ${result.statusText}`, result.status);
+                    e.statusCode = result.status+'';
+                    throw e;
+                }
             });
         } catch (error) {
-            const dispatchedAction = dispatch(failRemovingMessage(FAILED_REMOVE_MESSAGE_MESSAGE, error));
+            const dispatchedAction = dispatch(failDeletingMessage(FAILED_DELETE_MESSAGE_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }
-        // dispatch(savingFinished());
-        // return dispatch(stopSubmit(CHANNEL_NEW_FORM_NAME));
 
     };

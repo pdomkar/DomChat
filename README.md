@@ -14,9 +14,9 @@ https://github.com/erikras/redux-form/issues/82
 pripadne zkusit https://github.com/maslianok/react-select-me/
 
 !!!!!
-projit zpravy nacitani, create, vote, delete - urpavit fail,oznamnei const!!
 upravit nejak ty uzivatele v kanalech
 a upravit dispatch, oznameni, faily v editcreatemodal
+- pridat prehled profilu pro jine uzivatele odkaz na nej ze zprav
 
 
 

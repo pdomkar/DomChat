@@ -6,10 +6,11 @@ import {
 
 export const addAvatarUriToMessage = async (message, authToken) => {
     const response = await fetchReceive(createApiUserUri(message.createdBy), authToken);
-    const avatarId = JSON.parse(response.customData).avatarId;
+    const customData = JSON.parse(response.customData);
+    const avatarId = customData.avatarId;
     let avatarUriResponse = '';
     if(avatarId) {
         avatarUriResponse = await fetchReceive(createApiFilerUri(avatarId), authToken);
     }
-    return {...message, avatarUri: avatarUriResponse};
+    return {...message, name: customData.name, avatarUri: avatarUriResponse};
 };

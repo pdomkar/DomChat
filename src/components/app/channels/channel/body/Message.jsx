@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from '../../../../../containers-redux/shared/Loader';
 import { FormattedRelative, injectIntl } from 'react-intl';
+
+import { Loader } from '../../../../../containers-redux/shared/Loader';
 
 const FormatedCreatedBy = injectIntl(({date, intl}) => (
     <span className="time" title={`${intl.formatDate(date)} ${intl.formatTime(date)}`}>
@@ -11,7 +12,7 @@ const FormatedCreatedBy = injectIntl(({date, intl}) => (
 
 const Message = (props) => (
     <div>
-        <div className="message" key={props.message.id}>
+        <div className="message">
             <Loader stateLoadingSelector={state => state.channelApp.channel.updatingMessage === props.message.id}
                     contentStyle={{
                         display: 'inline-flex',
@@ -20,18 +21,23 @@ const Message = (props) => (
                         alignItems: 'center',
                     }}>
                 <div className="avatar">
-                    <img src={props.message.avatarUri||''}/>
+                    <img src={props.message.avatarUri || 'assets/no-profile.png'}/>
                 </div>
                 <div className="mess-box">
                     <div className="title">
-                        {props.message.createdBy}
+                        {props.message.name}
                         <FormatedCreatedBy date={props.message.createdAt}/>
                     </div>
                     <div className="text">{props.message.value}</div>
                 </div>
                 <div className="vote">
                     <div>
-                        {props.message.createdBy === props.email &&  <a onClick={() => props.onRemove(props.channelId, props.message.id)} title="Delete message"><i className="fa fa-trash" aria-hidden="true"/></a>}
+                        {
+                            props.message.createdBy === props.email
+                            && <a onClick={() => props.onDelete(props.channelId, props.message.id)} title="Delete message">
+                                <i className="fa fa-trash" aria-hidden="true"/>
+                            </a>
+                        }
                     </div>
                     <div className="state">{props.message.vote}</div>
                     <div className="action">
@@ -55,7 +61,7 @@ Message.propTypes = {
     }).isRequired,
     channelId: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    onRemove: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
     onVote: PropTypes.func.isRequired,
 };
 

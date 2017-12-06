@@ -8,6 +8,12 @@ export const getInitialState = () => ({
         editedChannelId: null,
         isSaving: false,
         createChannelVisible: false,
+        channel: {
+            isDeletingMessage: false,
+            isFetchingMessages: false,
+            updatingMessage: null,
+            messages: List(),
+        },
     }, shared: {
         token: getPersistedToken(),
         email: getPersistedEmail(),

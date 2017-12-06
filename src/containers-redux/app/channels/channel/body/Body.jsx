@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Body } from '../../../../../components/app/channels/channel/body/Body';
 import { CHANNEL_SEND_MESSAGE_NAME } from '../../../../../constants/formNames';
-import { reduxForm } from 'redux-form';
+import {
+    reduxForm,
+} from 'redux-form';
 import { uploadMessage } from '../../../../../actions/channels/channel/uploadMessage';
 import { fetchMessages } from '../../../../../actions/channels/channel/fetchMessages';
-import { removeMessage } from '../../../../../actions/channels/channel/removeMessage';
-import {
-    updateMessage,
-} from '../../../../../actions/channels/channel/updateMessage';
+import { deleteMessage } from '../../../../../actions/channels/channel/removeMessage';
+import { updateMessage } from '../../../../../actions/channels/channel/updateMessage';
 
 const mapStateToProps = (state, ownProps) => ({
     channel: ownProps.channel,
@@ -18,9 +18,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     loadMessages: (channelId) => dispatch(fetchMessages(channelId)),
-    onRemove: (channelId, messageId) => dispatch(removeMessage(channelId, messageId)),
+    onDelete: (channelId, messageId) => dispatch(deleteMessage(channelId, messageId)),
     onVote: (message) => dispatch(updateMessage(ownProps.channel.id, message)),
-    onSubmit: (message) => {console.log('sdfsdffsfsf', ownProps.channel.id);return dispatch(uploadMessage(message, ownProps.channel.id));},
+    onSubmit: (message) => dispatch(uploadMessage(message, ownProps.channel.id)),
 });
 
 const formConfig = {
@@ -29,7 +29,7 @@ const formConfig = {
     enableReinitialize: true,
 };
 
-const stateEnhancer = connect(mapStateToProps,  mapDispatchToProps);
+const stateEnhancer = connect(mapStateToProps, mapDispatchToProps);
 const formEnhancer = reduxForm(formConfig);
 const connectedComponent = stateEnhancer(formEnhancer(Body));
 
@@ -39,6 +39,7 @@ connectedComponent.propTypes = {
         name: PropTypes.string.isRequired,
         description: PropTypes.string,
         createdBy: PropTypes.string.isRequired,
+        users: PropTypes.array.isRequired,
     }).isRequired,
 };
 

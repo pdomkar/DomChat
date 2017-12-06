@@ -27,8 +27,6 @@ class MessageInput extends React.Component {
             });
         };
 
-        console.log(this.props.meta);
-
         return (
             <div>
                 <span aria-hidden="true" className={inputGroupClass(this.props.meta.touched, this.props.meta.error)}/>

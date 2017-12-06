@@ -38,7 +38,7 @@ export const uploadChannel  = (channel) =>
         } catch (error) {
             console.log("errorrr", error);
             const dispatchedAction = dispatch(failUploadingChannel(FAILED_CREATE_CHANNEL_MESSAGE, error));
-            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.message.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }
         dispatch(savingFinished());
         // return dispatch(stopSubmit(CHANNEL_NEW_FORM_NAME));
