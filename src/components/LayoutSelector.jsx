@@ -8,12 +8,14 @@ import { ProfileLayout } from '../containers-redux/app/profile/Profile';
 import { AuthenticatedRoute } from './app/AuthenticatedRoute';
 import {
     ROOT,
-    PROFILE,
+    PROFILE_EDIT,
     CHANNELS,
     LOGIN,
-    CHANNELS_DETAIL
+    CHANNELS_DETAIL,
+    PROFILE_VIEW
 } from '../constants/routes';
 import { SavingStatus } from '../containers-redux/app/SavingStatus';
+import { ProfileViewLayout } from '../containers-redux/app/profile/ProfileView';
 
 
 const LayoutSelector = ({ isAuthenticated }) => [
@@ -23,7 +25,8 @@ const LayoutSelector = ({ isAuthenticated }) => [
         <AuthenticatedRoute exact path={ROOT} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
         <AuthenticatedRoute exact path={CHANNELS} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
         <AuthenticatedRoute exact path={CHANNELS_DETAIL} component={ChannelsLayout} isAuthenticated={isAuthenticated} />
-        <AuthenticatedRoute exact path={PROFILE} component={ProfileLayout} isAuthenticated={isAuthenticated} />
+        <AuthenticatedRoute exact path={PROFILE_EDIT} component={ProfileLayout} isAuthenticated={isAuthenticated} />
+        <AuthenticatedRoute exact path={PROFILE_VIEW} component={ProfileViewLayout} isAuthenticated={isAuthenticated} />
     </Switch>
 ];
 LayoutSelector.propTypes = {

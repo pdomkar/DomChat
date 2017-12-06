@@ -7,6 +7,8 @@ export const FAILED_UPDATE_PROFILE_DETAILS_MESSAGE = 'Updating details went grie
 export const FAILED_FETCH_PROFILE_DETAILS_MESSAGE = 'Obtaining details went wrong …';
 export const SUCCESS_UPDATE_DETAILS_MESSAGE = 'Updating details was success.';
 
+export const FAILED_FETCH_PROFILE_VIEW_MESSAGE = 'Obtaining profile view data was wrong...';
+
 export const FAILED_FETCH_AVATAR_MESSAGE = 'Obtaining avatar went wrong …';
 export const FAILED_UPDATE_AVATAR_MESSAGE = 'Uploading avatar went grievously wrong…';
 export const SUCCESS_UPLOAD_AVATAR_MESSAGE = 'Uploading avatar was success.';

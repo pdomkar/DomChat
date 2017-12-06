@@ -10,6 +10,9 @@ import {
     PROFILE_UPDATE_AVATAR,
     PROFILE_DETAILS_UPLOADING_SUCCESS,
     PROFILE_AVATAR_UPLOADING_SUCCESS,
+    PROFILE_VIEW_FETCHING_FAILED,
+    PROFILE_VIEW_FETCHING_STARTED,
+    PROFILE_VIEW_LOADED,
 } from '../../constants/actionTypes';
 import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
 
@@ -30,12 +33,24 @@ export const updateProfileAvatar = (avatarUri) => ({
         avatarUri,
     }
 });
+
+export const updateProfileView = (profileView) => ({
+    type: PROFILE_VIEW_LOADED,
+    payload: {
+        profileView,
+    }
+});
+
 export const startFetchingProfileAvatar = () => ({
     type: PROFILE_AVATAR_FETCHING_STARTED,
 });
 
 export const startUploadingProfileAvatar = () => ({
     type: PROFILE_AVATAR_UPLOADING_STARTED,
+});
+
+export const startFetchingProfileView = () => ({
+    type: PROFILE_VIEW_FETCHING_STARTED,
 });
 
 
@@ -47,3 +62,4 @@ export const failUploadingProfileAvatar = statusMessageActionFactory(PROFILE_AVA
 export const failFetchingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_FETCHING_FAILED);
 export const successUploadingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_UPLOADING_SUCCESS);
 
+export const failFetchingProfileView = statusMessageActionFactory(PROFILE_VIEW_FETCHING_FAILED);

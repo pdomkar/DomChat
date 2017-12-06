@@ -1,3 +1,24 @@
+.profileHeader {
+  display: flex;
+  justify-content: center;
+  flex-basis: 60px;
+  background: @prim;
+  color: @white;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  a.back {
+    right: 20px;
+    color: @sec;
+    opacity: 0.8;
+    transition: color 0.2s;
+    position: absolute;
+    &:hover {
+      color: @white;
+    }
+  }
+}
+
 div.profile-layout {
   background: @sec;
   display: flex;
@@ -6,24 +27,7 @@ div.profile-layout {
   justify-content: flex-start;
 
   .header {
-    display: flex;
-    justify-content: center;
-    flex-basis: 60px;
-    background: @prim;
-    color: @white;
-    align-items: center;
-    font-weight: bold;
-    font-size: 20px;
-    a.back {
-      right: 20px;
-      color: @sec;
-      opacity: 0.8;
-      transition: color 0.2s;
-      position: absolute;
-      &:hover {
-        color: @white;
-      }
-    }
+    .profileHeader;
   }
 
   .body {
@@ -96,6 +100,74 @@ div.profile-layout {
           max-width: 100%;
           max-height: 100%;
         }
+      }
+    }
+  }
+}
+div.profile-view-layout {
+  background: @sec;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  justify-content: flex-start;
+
+  .header {
+    .profileHeader;
+  }
+
+  .body {
+    display: flex;
+    justify-content: center;
+
+    .details-wrapper {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      width: 500px;
+      justify-content: flex-start;
+      background: @sixt;
+      padding: 20px;
+      border-radius: 10px;
+
+      .row {
+        margin: 5px 10px;
+        display: inline-flex;
+        flex-direction: row;
+        width: 100%;
+        font-size: 17px;
+
+        label {
+          font-weight: bold;
+          &:after {
+            content: ':';
+          }
+        }
+        .value {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .avatar-wrapper {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: 250px;
+      justify-content: center;
+      align-items: center;
+      background: @sixt;
+      padding: 20px;
+      border-radius: 10px;
+      .title {
+        color: @four;
+        padding: 2px;
+      }
+      img {
+        height: inherit;
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
       }
     }
   }

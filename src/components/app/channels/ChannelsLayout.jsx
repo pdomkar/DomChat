@@ -7,7 +7,7 @@ import { HeadInHelmet } from '../../../containers-redux/shared/HeadInHelment.jsx
 import { ChannelListRedux } from '../../../containers-redux/app/channels/ChannelList';
 import { StatusMessages } from '../../../containers-redux/shared/StatusMessages';
 import { ChannelLayout } from '../../../containers-redux/app/channels/channel/ChannelLayout';
-import { PROFILE } from '../../../constants/routes';
+import { PROFILE_EDIT } from '../../../constants/routes';
 import { ChannelListNewItemRedux } from '../../../containers-redux/app/channels/ChannelListNewItem';
 
 
@@ -48,7 +48,7 @@ export class ChannelsLayout extends React.PureComponent {
                             <a onClick={this.props.onLogOut} title="Log out">
                                 <i className="fa fa-sign-out" aria-hidden="true"/>
                             </a>
-                            <Link to={PROFILE} title="Edit profile">
+                            <Link to={PROFILE_EDIT} title="Edit profile">
                                 <i className="fa fa-user" aria-hidden="true" />
                             </Link>
                         </div>

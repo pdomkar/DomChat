@@ -34,8 +34,10 @@ export const deleteMessage  = (channelId, messageId) =>
                 }
             });
         } catch (error) {
-            const dispatchedAction = dispatch(failDeletingMessage(FAILED_DELETE_MESSAGE_MESSAGE, error));
-            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failDeletingMessage(FAILED_DELETE_MESSAGE_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            }
         }
 
     };

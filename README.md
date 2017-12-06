@@ -15,7 +15,7 @@ pripadne zkusit https://github.com/maslianok/react-select-me/
 
 !!!!!
 upravit nejak ty uzivatele v kanalech
-a upravit dispatch, oznameni, faily v editcreatemodal
+a upravit dispatch, oznameni, faily v editcreatemodal obecnte channels 
 - pridat prehled profilu pro jine uzivatele odkaz na nej ze zprav
 
 

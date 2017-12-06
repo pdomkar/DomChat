@@ -25,15 +25,6 @@ const Details = ({ handleSubmit, valid, submitting }) => {return(
             />
             <Field
                 type="text"
-                placeholder="Full name"
-                screenReaderName="Full name"
-                name="fullname"
-                component={Input}
-                maxLength={''.lengthMax}
-                validate={maxLength20}
-            />
-            <Field
-                type="text"
                 placeholder="name"
                 screenReaderName="Name"
                 name="name"
@@ -41,6 +32,15 @@ const Details = ({ handleSubmit, valid, submitting }) => {return(
                 required
                 maxLength={''.lengthMax}
                 validate={[validateName, maxLength20]}
+            />
+            <Field
+                type="text"
+                placeholder="Full name"
+                screenReaderName="Full name"
+                name="fullname"
+                component={Input}
+                maxLength={''.lengthMax}
+                validate={maxLength20}
             />
             <Field
                 type="text"

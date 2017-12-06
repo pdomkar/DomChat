@@ -1,6 +1,6 @@
 import { getPersistedToken, getPersistedEmail } from './getPersistedToken';
 import { List, OrderedMap } from 'immutable';
-import { defaultDetails } from './getDetailsData';
+import { defaultDetails, defaultProfileView } from './getDetailsData';
 
 export const getInitialState = () => ({
     channelApp: {
@@ -14,17 +14,21 @@ export const getInitialState = () => ({
             updatingMessage: null,
             messages: List(),
         },
-    }, shared: {
+    },
+    shared: {
         token: getPersistedToken(),
         email: getPersistedEmail(),
         users: List(),
         isAuthenticating: false,
         statusMessages: OrderedMap(),
-    }, profile: {
+    },
+    profile: {
         avatarUri: null,
         details: defaultDetails,
+        isFetchingProfileView: false,
         isFetchingAvatar: false,
         isFetchingDetails: false,
         isUploadingAvatar: false,
+        profileView: defaultProfileView,
     }
 });

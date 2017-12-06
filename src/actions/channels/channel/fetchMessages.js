@@ -35,8 +35,9 @@ export const fetchMessages = (channelId) =>
             );
             dispatch(loadMessages(clientMessagesFull));
         } catch(error) {
-            console.log("er",error);
-            const dispatchedAction = dispatch(failFetchingMessages(FAILED_FETCH_MESSAGES_MESSAGE, error));
-            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failFetchingMessages(FAILED_FETCH_MESSAGES_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            }
         }
     };

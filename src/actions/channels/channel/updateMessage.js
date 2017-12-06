@@ -39,8 +39,10 @@ export const updateMessage = (channelId, message) =>
                 setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             });
         } catch (error) {
-            const dispatchedAction = dispatch(failUpdatingMessage(FAILED_UPDATE_MESSAGE_MESSAGE, error));
-            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failUpdatingMessage(FAILED_UPDATE_MESSAGE_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            }
         }
 
     };

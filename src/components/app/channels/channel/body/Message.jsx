@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { FormattedRelative, injectIntl } from 'react-intl';
 
 import { Loader } from '../../../../../containers-redux/shared/Loader';
+import { Link } from 'react-router-dom';
+import { PROFILE_DETAIL } from '../../../../../constants/routes';
 
 const FormatedCreatedBy = injectIntl(({date, intl}) => (
     <span className="time" title={`${intl.formatDate(date)} ${intl.formatTime(date)}`}>
@@ -25,7 +27,7 @@ const Message = (props) => (
                 </div>
                 <div className="mess-box">
                     <div className="title">
-                        {props.message.name}
+                        <Link to={`/profile/${props.message.createdBy}`}>{props.message.name}</Link>
                         <FormatedCreatedBy date={props.message.createdAt}/>
                     </div>
                     <div className="text">{props.message.value}</div>
