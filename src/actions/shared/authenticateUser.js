@@ -18,42 +18,27 @@ import { MILISECONDS_TO_AUTO_DISMISS_MESSAGE, FAILED_AUTHENTICATION_MESSAGE } fr
 import { fetchCreateUser } from '../../utils/api/fetchCreateUser';
 
 export const authenticateUser  = (destinationLocation, login) =>
-    (dispatch) => {
+    async (dispatch) => {
         dispatch(startAuthentication());
-        console.log('email',login);
 
-        return fetchCreateUser(login.email)
-            .then((data) => {
-                console.log('ok', data);
-                return fetchAuthToken(data.email)
-                    .then((token) => {
-                        dispatch(receiveValidEmail(data.email));
-                        dispatch(receiveValidToken(token));
-                        dispatch(push(destinationLocation));
-                        localStorage.setItem(SHARED_TOKEN, JSON.stringify(token));
-                        localStorage.setItem(SHARED_EMAIL, JSON.stringify(data.email));
-                        localStorage.setItem(SHARED_TOKEN_TIMESTAMP, JSON.stringify(new Date().getTime()));
-                    })
-                    .catch((error) => {
-                        const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
-                        setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-                return fetchAuthToken(login.email)
-                    .then((token) => {
-                        dispatch(receiveValidEmail(login.email));
-                        dispatch(receiveValidToken(token));
-                        dispatch(push(destinationLocation));
-                        localStorage.setItem(SHARED_TOKEN, JSON.stringify(token));
-                        localStorage.setItem(SHARED_EMAIL, JSON.stringify(login.email));
-                        localStorage.setItem(SHARED_TOKEN_TIMESTAMP, JSON.stringify(new Date().getTime()));
-                    })
-                    .catch((error) => {
-                        const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
-                        setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
-                    });
-            });
+        let createdServerUser;
+        try {
+            createdServerUser = await fetchCreateUser(login.email);
+        } catch(error) {
+            // exist user - so authenticate him next
+        }
 
+        try {
+            const email = (createdServerUser && createdServerUser.email) || login.email;
+            const token = await fetchAuthToken(email);
+            dispatch(receiveValidEmail(email));
+            dispatch(receiveValidToken(token));
+            dispatch(push(destinationLocation));
+            localStorage.setItem(SHARED_TOKEN, JSON.stringify(token));
+            localStorage.setItem(SHARED_EMAIL, JSON.stringify(login.email));
+            localStorage.setItem(SHARED_TOKEN_TIMESTAMP, JSON.stringify(new Date().getTime()));
+        } catch(error) {
+            const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
+            setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+        }
     };
