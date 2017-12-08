@@ -7,6 +7,7 @@ import {
     SHARED_RECEIVE_EMAIL,
     SHARED_LOAD_USERS,
     SHARED_USERS_FETCHING_FAILED,
+    SHARED_USERS_FETCHING_STARTED,
 } from '../../constants/actionTypes';
 import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
 
@@ -37,6 +38,10 @@ export const updateUsers = (users) => ({
     payload: {
         users
     }
+});
+
+export const startFetchingUsers = () => ({
+    type: SHARED_USERS_FETCHING_STARTED
 });
 
 export const dismissStatusMessage = (statusMessageId) => ({

@@ -1,13 +1,10 @@
 import { API_APP_URI } from '../../constants/api';
 import { fetchReceive } from '../../utils/api/fetchReceive';
 import {
-    EXPIRED_AUTHENTICATION_MESSAGE,
-    FAILED_FETCH_CHANNELS_MESSAGE
+    FAILED_FETCH_CHANNELS_MESSAGE,
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../constants/uiConstants';
-import {
-    failAuthentication,
-    invalidateToken
-} from '../shared/actionCreators';
+import { dismissStatusMessage } from '../shared/actionCreators';
 import { convertFromServerChannels } from '../../utils/api/conversions/channel';
 import {
     failFetchingChannels,
@@ -15,6 +12,7 @@ import {
     savingStarted,
     updateChannels
 } from './actionCreators';
+import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 
 export const fetchChannels = () =>
     async (dispatch, getState) => {
@@ -22,14 +20,15 @@ export const fetchChannels = () =>
         const authToken = getState().shared.token;
 
         try {
-            const serverChannels = await fetchReceive(API_APP_URI, authToken);
-            dispatch(updateChannels((convertFromServerChannels(serverChannels))));
+            await performAuthorizedRequest(dispatch, async () => {
+                const serverChannels = await fetchReceive(API_APP_URI, authToken);
+                dispatch(updateChannels((convertFromServerChannels(serverChannels))));
+            });
         } catch(error) {
-            if(error.statusCode === 401) {
-                dispatch(invalidateToken());
-                return dispatch(failAuthentication(EXPIRED_AUTHENTICATION_MESSAGE));
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failFetchingChannels(FAILED_FETCH_CHANNELS_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             }
-            dispatch(failFetchingChannels(FAILED_FETCH_CHANNELS_MESSAGE, error));
         } finally {
             dispatch(savingFinished());
         }

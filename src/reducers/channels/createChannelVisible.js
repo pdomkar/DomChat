@@ -1,12 +1,12 @@
-import {  CHANNEL_LIST_ITEM_CREATE, CHANNEL_LIST_ITEM_START_CREATING, CHANNEL_LIST_ITEM_CANCEL_CREATING } from '../../constants/actionTypes';
+import {  CHANNEL_CREATE, CHANNEL_CREATING_START, CHANNEL_CREATING_CANCEL } from '../../constants/actionTypes';
 
 export const createChannelVisible = (prevState = false, action) => {
     switch (action.type) {
-        case CHANNEL_LIST_ITEM_START_CREATING:
+        case CHANNEL_CREATING_START:
             return true;
 
-        case CHANNEL_LIST_ITEM_CANCEL_CREATING:
-        case CHANNEL_LIST_ITEM_CREATE:
+        case CHANNEL_CREATING_CANCEL:
+        case CHANNEL_CREATE:
             return false;
 
         default:

@@ -1,8 +1,8 @@
 import { List } from 'immutable';
 import {
-    CHANNEL_LIST_ITEM_CREATE,
-    CHANNEL_LIST_ITEM_UPDATE,
-    CHANNEL_LIST_ITEM_DELETE,
+    CHANNEL_CREATE,
+    CHANNEL_UPDATE,
+    CHANNEL_DELETE,
     CHANNELS_LOAD_ALL
 } from '../../constants/actionTypes';
 
@@ -11,13 +11,13 @@ export const channels = (previousState = List(), action) => {
         case CHANNELS_LOAD_ALL:
             return List(action.payload.channels);
 
-        case CHANNEL_LIST_ITEM_CREATE:
+        case CHANNEL_CREATE:
             return previousState.set(action.payload.channel.id, { ...action.payload.channel });
 
-        case CHANNEL_LIST_ITEM_UPDATE:
+        case CHANNEL_UPDATE:
             return previousState.mergeIn([action.payload.channel.id], { ...action.payload.channel });
 
-        case CHANNEL_LIST_ITEM_DELETE:
+        case CHANNEL_DELETE:
             return previousState.delete(action.payload.id);
 
         default:

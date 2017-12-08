@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
-import {uuid} from '../../../utils/uuidGenerator';
-import { ChannelListEditedItem } from '../../../containers/app/channels/channel/ChannelListEditedItem';
-import {
-    cancelCreatingChannel,
-} from '../../../actions/channels/actionCreators';
-import { CHANNEL_NEW_FORM_NAME } from '../../../constants/formNames';
 import { reduxForm } from 'redux-form';
+import { uuid } from '../../../utils/uuidGenerator';
+import { ChannelListEditedItem } from '../../../containers/app/channels/channel/ChannelListEditedItem';
+import { cancelCreatingChannel } from '../../../actions/channels/actionCreators';
+import { CHANNEL_NEW_FORM_NAME } from '../../../constants/formNames';
 import { uploadChannel } from '../../../actions/channels/uploadChannel';
 import { fetchUsers } from '../../../actions/shared/fetchUsers';
 import { MODAL_COMPONENT_CREATE } from '../../../constants/common';

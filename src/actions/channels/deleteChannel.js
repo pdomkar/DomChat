@@ -3,8 +3,7 @@ import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 import {
     deleteChannel as deleteChannelAction,
     failDeletingChannel,
-    savingFinished,
-    savingStarted,
+    startDeletingChannel,
     successDeletingChannel,
 } from './actionCreators';
 import { convertToServerChannelRemove} from '../../utils/api/conversions/channel';
@@ -20,7 +19,7 @@ import { fetchChannels } from './fetchChannels';
 
 export const deleteChannel  = (id) =>
     async (dispatch, getState) => {
-        dispatch(savingStarted());
+        dispatch(startDeletingChannel());
         const authToken = getState().shared.token;
         const serverChannel = convertToServerChannelRemove(id);
 
@@ -36,7 +35,5 @@ export const deleteChannel  = (id) =>
             console.log(error);
             const dispatchedAction = dispatch(failDeletingChannel(FAILED_DELETE_CHANNEL_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
-        } finally {
-            dispatch(savingFinished());
         }
     };

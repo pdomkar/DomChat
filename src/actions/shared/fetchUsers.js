@@ -1,37 +1,34 @@
 import {
+    dismissStatusMessage,
     failFetchingUsers,
+    startFetchingUsers,
     updateUsers
 } from './actionCreators';
 
-import {
-    API_USER_URI,
-} from '../../constants/api';
-import { invalidateToken, failAuthentication } from './actionCreators';
-
+import { API_USER_URI } from '../../constants/api';
 import { fetchReceive } from '../../utils/api/fetchReceive';
-
 import {
-    EXPIRED_AUTHENTICATION_MESSAGE,
-    FAILED_FETCH_USERS_MESSAGE
+    FAILED_FETCH_USERS_MESSAGE,
+    MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../constants/uiConstants';
 import { convertFromServerUsers } from '../../utils/api/conversions/shared';
+import { performAuthorizedRequest } from './performAuthorizedRequest';
 
 export const fetchUsers = () =>
-    (dispatch, getState) => {
-        // dispatch(startFetchingProfileDetails);
-        // dispatch(startFetchingProfileAvatar());
+    async (dispatch, getState) => {
+        dispatch(startFetchingUsers());
         const authToken = getState().shared.token;
 
-        return fetchReceive(API_USER_URI, authToken)
-            .then((serverUsers) => dispatch(updateUsers((convertFromServerUsers(serverUsers)))))
-            .catch((error) => {
-                console.log('err', error);
-                if(error.statusCode === 401) {
-                    dispatch(invalidateToken());
-                    return dispatch(failAuthentication(EXPIRED_AUTHENTICATION_MESSAGE));
-                }
-                throw error;
-            })
-            .catch((error) => dispatch(failFetchingUsers(FAILED_FETCH_USERS_MESSAGE, error)));
-
+        try {
+            await performAuthorizedRequest(dispatch, async () => {
+                const receivedServerUsers = await fetchReceive(API_USER_URI, authToken);
+                const clientUsers = convertFromServerUsers(receivedServerUsers);
+                dispatch(updateUsers((clientUsers)));
+            });
+        } catch (error) {
+            if (error.statusCode !== 401) {
+                const dispatchedAction = dispatch(failFetchingUsers(FAILED_FETCH_USERS_MESSAGE, error));
+                setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
+            }
+        }
     };
