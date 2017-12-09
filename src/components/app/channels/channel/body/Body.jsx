@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { List } from 'immutable';
+import ScrollArea from 'react-scrollbar';
 
 import { Message } from './Message';
 import { MessageInput } from './MessageInput';
@@ -60,11 +61,20 @@ export class Body extends React.PureComponent {
             });
         return (
             <div className="body">
-                <div className="messages" ref={(messagesBlock) => { this.messagesBlock = messagesBlock; }} >
-                    <Loader stateLoadingSelector={state => state.channelApp.channel.isFetchingMessages || state.channelApp.channel.isDeletingMessage}>
-                        {itemElements}
-                    </Loader>
-                </div>
+                <ScrollArea
+                    speed={0.8}
+                    className="area"
+                    horizontal={false}
+                    smoothScrolling={true}
+                    verticalContainerStyle={{opacity: '0.8'}}
+                    verticalScrollbarStyle={{background: '#95817D',}}
+                >
+                    <div className="messages" ref={(messagesBlock) => { this.messagesBlock = messagesBlock; }} >
+                        <Loader stateLoadingSelector={state => state.channelApp.channel.isFetchingMessages || state.channelApp.channel.isDeletingMessage}>
+                            {itemElements}
+                        </Loader>
+                    </div>
+                </ScrollArea>
 
                 <div className="footer">
                     <form onSubmit={this.props.handleSubmit}>

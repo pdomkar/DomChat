@@ -19,21 +19,21 @@ import {
 import { statusMessageActionFactory } from '../../../utils/statusMessageActionFactory';
 
 
-export const createMessage = (newMessage) => {console.log('sj', newMessage); return ({
+export const createMessage = (newMessage) => ({
     type: MESSAGE_LIST_ITEM_CREATE,
     payload: {
         message: {
             ...newMessage
         }
     }
-});};
+});
 
-export const deleteMessage = (id) => {console.log('sfdfdsf', id); return ({
+export const deleteMessage = (id) => ({
     type: MESSAGE_LIST_ITEM_DELETE,
     payload: {
         id
     }
-});};
+});
 
 export const updateMessage = (message) => { return ({
     type: MESSAGE_LIST_ITEM_UPDATE,

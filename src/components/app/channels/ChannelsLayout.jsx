@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import List from 'immutable';
+import ScrollArea from 'react-scrollbar';
 
 import { HeadInHelmet } from '../../../containers-redux/shared/HeadInHelment.jsx';
 import { ChannelListRedux } from '../../../containers-redux/app/channels/ChannelList';
@@ -54,8 +55,7 @@ export class ChannelsLayout extends React.PureComponent {
                             </Link>
                         </div>
                     </div>
-                    <div className="body">
-                        <div className="top">
+                    <div className="top">
                         <h3>
                             Channels
                         </h3>
@@ -64,9 +64,19 @@ export class ChannelsLayout extends React.PureComponent {
                             <i className="fa fa-plus" aria-hidden="true" />
                         </a>
                         }
-                        </div>
-                        <ChannelListRedux channels={this.props.channels} selectedChannel={selectChannel} />
                     </div>
+                    <ScrollArea
+                        speed={0.8}
+                        className="area"
+                        horizontal={false}
+                        smoothScrolling={true}
+                        verticalContainerStyle={{opacity: '0.3', left: '0',}}
+                        verticalScrollbarStyle={{background: '#e4e0dd',}}
+                    >
+                        <div className="body">
+                            <ChannelListRedux channels={this.props.channels} selectedChannel={selectChannel} />
+                        </div>
+                    </ScrollArea>
                 </div>
                 <Loader stateLoadingSelector={state => state.channelApp.isDeletingChannel || state.channelApp.isUpdatingChannel}
                         contentStyle={{

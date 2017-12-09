@@ -17,6 +17,10 @@ export class ChannelListEditedItem extends React.Component {
         onFetchUsers: PropTypes.func.isRequired,
         onCancel: PropTypes.func.isRequired,
         onSubmit: PropTypes.func.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        valid: PropTypes.bool.isRequired,
+        dirty: PropTypes.bool.isRequired,
+        submitting: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -38,7 +42,7 @@ export class ChannelListEditedItem extends React.Component {
                 email={this.props.email}
                 onFetchUsers={this.props.onFetchUsers}
                 onCancel={this.props.onCancel}
-                onSubmit={() => {console.log("qqqq"); return this.props.onSubmit(this.state.editedChannel)}}
+                onSubmit={() => this.props.onSubmit(this.state.editedChannel)}
                 handleSubmit={this.props.handleSubmit}
                 valid={this.props.valid}
                 dirty={this.props.dirty}

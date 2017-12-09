@@ -40,38 +40,36 @@ div.channels-layout {
         }
       }
     }
-    .body {
+    .top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       margin: 20px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      .top {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      //position: fixed;
+      //background: #373A44;
+      //width: 185px;
+      //padding-bottom: 5px;
 
-        position: fixed;
-        background: #373A44;
-        width: 185px;
-        padding-bottom: 5px;
+      h3 {
+        float: left;
+      }
+      a {
+        float: right;
+        color: @sec;
+        text-decoration: none;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: color 0.2s;
 
-        h3 {
-          float: left;
-        }
-        a {
-          float: right;
-          color: @sec;
-          text-decoration: none;
-          cursor: pointer;
-          margin-left: 10px;
-          transition: color 0.2s;
-
-          &:hover {
-            color: @white;
-          }
+        &:hover {
+          color: @white;
         }
       }
+    }
+    .body {
+      margin: 0 20px 20px 20px;
+
       ul.channels-list {
-        margin-top: 25px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -192,7 +190,7 @@ div.channels-layout {
       justify-content: space-between;
 
       .messages {
-        overflow-y: scroll;
+
         .message {
           display: inline-flex;
           flex-direction: row;

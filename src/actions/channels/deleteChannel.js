@@ -32,7 +32,6 @@ export const deleteChannel  = (id) =>
                 setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             });
         } catch (error) {
-            console.log(error);
             const dispatchedAction = dispatch(failDeletingChannel(FAILED_DELETE_CHANNEL_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }

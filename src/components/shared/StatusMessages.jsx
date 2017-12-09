@@ -17,11 +17,11 @@ class StatusMessage extends React.PureComponent {
     _onClick = () => this.props.onClick(this.props.statusMessage.id);
 
     render() {
-        const alertClasses = (errorCode) => {console.log(errorCode); return classNames({
+        const alertClasses = (errorCode) => classNames({
             'alert': true,
             'success': !errorCode,
             'error': errorCode,
-        })};
+        });
 
         return (
             <div

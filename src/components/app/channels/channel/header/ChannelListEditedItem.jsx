@@ -25,6 +25,10 @@ export class ChannelListEditedItem extends React.PureComponent {
         onFetchUsers: PropTypes.func.isRequired,
         onCancel: PropTypes.func.isRequired,
         onSubmit: PropTypes.func.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        valid: PropTypes.bool.isRequired,
+        dirty: PropTypes.bool.isRequired,
+        submitting: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -49,7 +53,8 @@ export class ChannelListEditedItem extends React.PureComponent {
 
     validateName = validateNonEmptyness('Name');
     validateUsers = validateNonEmptyness('Users');
-    maxLength20 = validateMaxLength(20);
+    maxLength = 20;
+    maxLength20 = validateMaxLength(this.maxLength);
 
 
     render() {
@@ -71,7 +76,7 @@ export class ChannelListEditedItem extends React.PureComponent {
                                 screenReaderName="Name"
                                 name="name"
                                 id="name"
-                                maxLength="20"
+                                maxLength={this.maxLength+''}
                                 component={Input}
                                 validate={[this.validateName, this.maxLength20]}
                                 withRef
@@ -98,7 +103,7 @@ export class ChannelListEditedItem extends React.PureComponent {
                                 component={ReactSelect}
                                 validate={[this.validateUsers]}
                             />
-                            <button type="submit">
+                            <button type="submit" disabled={this.props.submitting || !this.props.valid}>
                                 {this.props.submitButtonText}
                             </button>
                         </form>
