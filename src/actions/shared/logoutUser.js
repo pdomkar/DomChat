@@ -7,8 +7,11 @@ import {
 
 export const logoutUser  = () =>
     (dispatch) => {
-        localStorage.removeItem(SHARED_TOKEN);
-        localStorage.removeItem(SHARED_EMAIL);
-        localStorage.removeItem(SHARED_TOKEN_TIMESTAMP);
+        const itemForRemove = [
+            SHARED_TOKEN,
+            SHARED_EMAIL,
+            SHARED_TOKEN_TIMESTAMP
+        ];
+        itemForRemove.map(v => localStorage.removeItem(v));
         dispatch(invalidateToken());
     };

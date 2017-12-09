@@ -67,6 +67,7 @@ form {
 			margin-bottom: 5px;
 			padding-left: 12px;
 			color: @four;
+			cursor: pointer;
 			&.error {
 				color: @error;
 			}
@@ -104,6 +105,29 @@ form {
 				color: @error;
 				text-align: right;
 				font-size: 14px;
+			}
+		}
+		.Select {
+			.Select-control {
+				cursor: pointer;
+				border: 1px solid @four;
+				background: @sixt;
+				border-radius: 6px;
+				.Select-input {
+					input {
+						padding: 0;
+						border: none;
+						background: inherit;
+						border-radius: 0;
+						box-shadow: none;
+					}
+				}
+			}
+			&.error .Select-control {
+				border-color: @error;
+			}
+			&.success .Select-control {
+				border-color: @success;
 			}
 		}
 	}

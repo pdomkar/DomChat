@@ -42,10 +42,17 @@ div.channels-layout {
     }
     .body {
       margin: 20px;
+      overflow-y: auto;
+      overflow-x: hidden;
       .top {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        position: fixed;
+        background: #373A44;
+        width: 185px;
+        padding-bottom: 5px;
 
         h3 {
           float: left;
@@ -64,7 +71,7 @@ div.channels-layout {
         }
       }
       ul.channels-list {
-        margin-top: 10px;
+        margin-top: 25px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -106,6 +113,25 @@ div.channels-layout {
     }
   }
 
+  div.Loader {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  .not-select-channel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    h3 {
+      margin: 20px;
+    }
+  }
   .channel {
     position: relative;
     display: flex;
@@ -134,7 +160,10 @@ div.channels-layout {
           }
 
           div.controls {
-
+            span {
+              color: @black;
+              margin-right: 10px;
+            }
             a {
               color: @prim;
               cursor: pointer;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { List } from 'immutable';
-import { ReactSelect } from '../../ReactSelect';
+import { ReactSelect } from '../../../../shared/ReactSelect';
 import { MODAL_COMPONENT_CREATE } from '../../../../../constants/common';
 import { Input } from '../../../../shared/Input.jsx';
 import {
@@ -29,19 +29,16 @@ export class ChannelListEditedItem extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        console.log("props", props);
     }
 
 
-    // componentDidMount(){
-    //     // const textLength = this.nameInput.value.length;
-    //     //
-    //     // this.nameInput.focus();
-    //     // this.nameInput.setSelectionRange(textLength, textLength);
-    // }
-
     componentDidMount() {
         this.props.onFetchUsers();
+
+        const nameInput = this.nameInput.getRenderedComponent().refs.nameInput;
+        const textLength = nameInput.value.length;
+        nameInput.focus();
+        nameInput.setSelectionRange(textLength, textLength);
     }
 
     _handleEscKey = (e) => {
@@ -51,6 +48,7 @@ export class ChannelListEditedItem extends React.PureComponent {
     };
 
     validateName = validateNonEmptyness('Name');
+    validateUsers = validateNonEmptyness('Users');
     maxLength20 = validateMaxLength(20);
 
 
@@ -76,10 +74,9 @@ export class ChannelListEditedItem extends React.PureComponent {
                                 maxLength="20"
                                 component={Input}
                                 validate={[this.validateName, this.maxLength20]}
-                                // value={this.props.editedChannel.name}
-                                // onChange={this.props.onNameChange}
-                                // ref={(input) => { this.nameInput = input; }}
-                                // onKeyDown={this._handleEscKey}
+                                withRef
+                                ref={(input) => { this.nameInput = input; }}
+                                refField="nameInput"
                             />
                             <Field
                                 type="textarea"
@@ -90,19 +87,16 @@ export class ChannelListEditedItem extends React.PureComponent {
                                 rows="5"
                                 cols="20"
                                 component={Input}
-                                // value={this.props.editedChannel.name}
-                                // onChange={this.props.onNameChange}
-                                // ref={(input) => { this.nameInput = input; }}
-                                // onKeyDown={this._handleEscKey}
                             />
                             <Field
-                                placeholder="Users in channel"
+                                placeholder="Select users who has access to channel …"
                                 screenReaderName="Users"
                                 name="users"
                                 id="users"
                                 multi={true}
                                 options={options}
                                 component={ReactSelect}
+                                validate={[this.validateUsers]}
                             />
                             <button type="submit">
                                 {this.props.submitButtonText}

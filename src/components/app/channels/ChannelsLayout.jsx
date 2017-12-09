@@ -9,6 +9,7 @@ import { StatusMessages } from '../../../containers-redux/shared/StatusMessages'
 import { ChannelLayout } from '../../../containers-redux/app/channels/channel/ChannelLayout';
 import { PROFILE_EDIT } from '../../../constants/routes';
 import { ChannelListNewItemRedux } from '../../../containers-redux/app/channels/ChannelListNewItem';
+import { Loader } from '../../../containers-redux/shared/Loader';
 
 
 export class ChannelsLayout extends React.PureComponent {
@@ -67,7 +68,22 @@ export class ChannelsLayout extends React.PureComponent {
                         <ChannelListRedux channels={this.props.channels} selectedChannel={selectChannel} />
                     </div>
                 </div>
-                {selectChannel && <ChannelLayout channel={selectChannel} /> || <div>Select channel</div>}
+                <Loader stateLoadingSelector={state => state.channelApp.isDeletingChannel || state.channelApp.isUpdatingChannel}
+                        contentStyle={{
+                            position: 'relative',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                    {
+                        selectChannel
+                        && <ChannelLayout channel={selectChannel} />
+                        || <div className="not-select-channel">
+                            <h3>Select channel in left menu or create new channel</h3>
+                           </div>
+                    }
+                </Loader>
                 {channelCreatedModal}
                 <StatusMessages />
             </div>

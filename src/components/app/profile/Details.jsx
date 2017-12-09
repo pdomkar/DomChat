@@ -11,6 +11,7 @@ const validateName = validateNonEmptyness('name');
 const lengthMax = 20;
 const maxLength20 = validateMaxLength(lengthMax);
 
+
 const Details = ({ handleSubmit, valid, submitting }) => {return(
     <div className="details">
         <form onSubmit={handleSubmit}>

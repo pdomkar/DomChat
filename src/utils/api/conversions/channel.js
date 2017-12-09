@@ -29,7 +29,7 @@ export const convertToServerChannelUpdate = (channel) => [
             customData: JSON.stringify({
                 description: channel.description || '',
                 createdBy: channel.createdBy,
-                users: channel.users.map(o => o.value) || [],
+                users: channel.users.map(o => o.value || o) || [],
             })
         }
     }

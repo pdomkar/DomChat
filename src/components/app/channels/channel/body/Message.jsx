@@ -4,7 +4,6 @@ import { FormattedRelative, injectIntl } from 'react-intl';
 
 import { Loader } from '../../../../../containers-redux/shared/Loader';
 import { Link } from 'react-router-dom';
-import { PROFILE_DETAIL } from '../../../../../constants/routes';
 
 const FormatedCreatedBy = injectIntl(({date, intl}) => (
     <span className="time" title={`${intl.formatDate(date)} ${intl.formatTime(date)}`}>

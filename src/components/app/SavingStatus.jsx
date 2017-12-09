@@ -13,9 +13,7 @@ export class SavingStatus extends React.PureComponent {
     render() {
         return (
             <span>
-                {
-                    this.props.isSaving && <SavingSpinner />
-                }
+                { this.props.isSaving && <SavingSpinner /> }
             </span>
         );
     }

@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Helmet } from 'react-helmet';
-import { PROFILE_EDIT, LOGIN, ROOT, CHANNELS } from '../../constants/routes';
+import {
+    PROFILE_EDIT,
+    LOGIN,
+    ROOT,
+    CHANNELS,
+    PROFILE_VIEW
+} from '../../constants/routes';
 import { CHANNELS_DETAIL } from '../../constants/routes';
 
 const convertRouteToTitle = (route) => {
@@ -13,7 +19,9 @@ const convertRouteToTitle = (route) => {
         case CHANNELS_DETAIL:
             return 'Channel';
         case PROFILE_EDIT:
-            return 'Profile';
+            return 'Profile edit';
+        case PROFILE_VIEW:
+            return 'Profile view';
         case LOGIN:
             return 'Login';
         default:

@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { reduxForm } from 'redux-form';
+
 import { Body } from '../../../../../components/app/channels/channel/body/Body';
 import { CHANNEL_SEND_MESSAGE_NAME } from '../../../../../constants/formNames';
-import {
-    reduxForm,
-} from 'redux-form';
 import { uploadMessage } from '../../../../../actions/channels/channel/uploadMessage';
 import { fetchMessages } from '../../../../../actions/channels/channel/fetchMessages';
 import { deleteMessage } from '../../../../../actions/channels/channel/removeMessage';

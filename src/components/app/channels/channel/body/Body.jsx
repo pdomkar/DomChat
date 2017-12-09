@@ -30,16 +30,13 @@ export class Body extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        console.log('con', props.channel);
     }
 
     componentDidMount() {
-        console.log("did mount");
         this.props.loadMessages(this.props.channel.id);
     }
 
     componentDidUpdate(prevProps) {
-        //nebude to posouvat casto?
         if (prevProps.messages.size !== this.props.messages.size) {
             this.messagesBlock.scrollTop = this.messagesBlock.scrollHeight;
         }

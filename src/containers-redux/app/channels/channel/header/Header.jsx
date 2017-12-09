@@ -5,7 +5,7 @@ import { Header } from '../../../../../components/app/channels/channel/header/He
 import { startEditingChannel} from '../../../../../actions/channels/actionCreators';
 import { deleteChannel } from '../../../../../actions/channels/deleteChannel';
 
-const mapStateToProps = (state, ownProps) => {console.log(state.channelApp); return ({
+const mapStateToProps = (state, ownProps) => { return ({
     channel: ownProps.channel,
     email: state.shared.email,
     editedChannelId: state.channelApp.editedChannelId,

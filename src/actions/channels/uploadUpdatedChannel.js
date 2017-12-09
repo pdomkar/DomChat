@@ -25,7 +25,7 @@ export const uploadUpdatedChannel  = (channel) =>
         dispatch(startUpdatingChannel());
         const authToken = getState().shared.token;
         const serverChannel = convertToServerChannelUpdate(channel);
-
+        
         try {
             await performAuthorizedRequest(dispatch, async () => {
                 const receivedServerChannel = await fetchPatch(API_APP_URI, authToken, serverChannel);

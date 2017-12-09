@@ -22,6 +22,8 @@ export const fetchChannels = () =>
         try {
             await performAuthorizedRequest(dispatch, async () => {
                 const serverChannels = await fetchReceive(API_APP_URI, authToken);
+                console.log("fetchChannel", serverChannels);
+                console.log("fetchChannel convert", convertFromServerChannels(serverChannels));
                 dispatch(updateChannels((convertFromServerChannels(serverChannels))));
             });
         } catch(error) {

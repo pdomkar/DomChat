@@ -5,6 +5,7 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+
 import { app } from '../reducers/app';
 import { getInitialState } from './getInitialState';
 

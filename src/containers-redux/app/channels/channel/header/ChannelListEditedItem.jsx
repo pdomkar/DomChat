@@ -10,19 +10,19 @@ import { fetchUsers } from '../../../../../actions/shared/fetchUsers';
 import { MODAL_COMPONENT_EDIT } from '../../../../../constants/common';
 
 
-const mapStateToProps = (state, ownProps) => {console.log('channel', MODAL_COMPONENT_EDIT); return ({
+const mapStateToProps = (state, ownProps) => ({
     typeComponent: MODAL_COMPONENT_EDIT,
     submitButtonText: ownProps.submitButtonText,
     channel: ownProps.channel,
     users: state.shared.users,
     email: state.shared.email,
     initialValues: ownProps.channel
-});};
+});
 
 
 const mapDispatchToProps = dispatch => ({
     onFetchUsers: () => dispatch(fetchUsers()),
-    onSubmit: (channel) => {console.log('wwwwwwwwwww');return dispatch(uploadUpdatedChannel(channel));},
+    onSubmit: (channel) => dispatch(uploadUpdatedChannel(channel)),
     onCancel: () => dispatch(cancelEditingChannel()),
 });
 

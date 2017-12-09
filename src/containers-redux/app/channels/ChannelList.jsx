@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 
-import { ChannelList } from '../../../containers/app/channels/ChannelList';
+import { ChannelList} from '../../../components/app/channels/ChannelList';
 import { fetchChannels } from '../../../actions/channels/fetchChannels';
 
 
-const mapStateToProps = (state, ownProps) => {console.log(state.channelApp.channels); return{
+const mapStateToProps = (state, ownProps) => { return{
     channels: ownProps.channels,
     email: state.shared.email,
     selectedChannel: ownProps.selectedChannel,

@@ -8,19 +8,14 @@ export const getInitialState = () => ({
         editedChannelId: null,
         isSaving: false,
         createChannelVisible: false,
+        isDeletingChannel: false,
+        isUpdatingChannel: false,
         channel: {
             isDeletingMessage: false,
             isFetchingMessages: false,
             updatingMessage: null,
             messages: List(),
         },
-    },
-    shared: {
-        token: getPersistedToken(),
-        email: getPersistedEmail(),
-        users: List(),
-        isAuthenticating: false,
-        statusMessages: OrderedMap(),
     },
     profile: {
         avatarUri: null,
@@ -30,5 +25,13 @@ export const getInitialState = () => ({
         isFetchingDetails: false,
         isUploadingAvatar: false,
         profileView: defaultProfileView,
-    }
+    },
+    shared: {
+        token: getPersistedToken(),
+        email: getPersistedEmail(),
+        users: List(),
+        isAuthenticating: false,
+        isFetchingUsers: false,
+        statusMessages: OrderedMap(),
+    },
 });

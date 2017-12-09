@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { uuid } from '../../utils/uuidGenerator';
 
 class Input extends React.Component {
     static propTypes = {
@@ -10,8 +11,9 @@ class Input extends React.Component {
         placeholder: PropTypes.string,
         readOnly: PropTypes.bool,
         required: PropTypes.bool,
-        name: PropTypes.string,
+        name: PropTypes.string.isRequired,
         maxLength: PropTypes.string,
+        refField: PropTypes.any,
         input: PropTypes.shape({
             value: PropTypes.string.isRequired,
         }).isRequired,
@@ -36,27 +38,27 @@ class Input extends React.Component {
             });
         };
 
-        console.log(this.props.meta);
-
+        const inputId = `${this.props.input.name}-${uuid()}`;
         return (
             <div className="form-group">
-                <label className={labelGroupClass(this.props.meta.touched, this.props.meta.error)} htmlFor={this.props.name}>
+                <label className={labelGroupClass(this.props.meta.touched, this.props.meta.error)} htmlFor={inputId}>
                     {this.props.screenReaderName}
                 </label>
                 {this.props.type !== 'textarea' && <input
                     {...this.props.input}
                     placeholder={this.props.placeholder}
                     type={this.props.type}
-                    id={this.props.name}
+                    id={inputId}
                     readOnly={this.props.readOnly}
                     required={this.props.required}
                     maxLength={this.props.maxLength}
+                    ref = {this.props.refField}
                     className={inputGroupClass(this.props.meta.touched, this.props.meta.error)}
                 />}
                 {this.props.type === 'textarea' && <textarea
                     {...this.props.input}
                     placeholder={this.props.placeholder}
-                    id={this.props.name}
+                    id={inputId}
                     rows={this.props.rows}
                     cols={this.props.cols}
                     readOnly={this.props.readOnly}

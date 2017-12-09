@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import { Avatar } from '../../../containers-redux/app/profile/Avatar';
-import { Details } from '../../../containers-redux/app/profile/Details';
 import { CHANNELS } from '../../../constants/routes';
 import { HeadInHelmet } from '../../../containers-redux/shared/HeadInHelment';
 import { StatusMessages } from '../../../containers-redux/shared/StatusMessages';

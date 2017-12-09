@@ -6,8 +6,6 @@ import { logoutUser } from '../../../actions/shared/logoutUser';
 import { startCreatingChannel } from '../../../actions/channels/actionCreators';
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('aaaaaaaa', ownProps.computedMatch.params.id);
-    console.log('bbb', state.channelApp.channels.first());
     const filteredChannels = state.channelApp.channels.filter(channel => state.shared.email === channel.createdBy || channel.users.indexOf(state.shared.email) !== -1);
     return ({
         details: state.profile.details,

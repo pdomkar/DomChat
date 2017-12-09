@@ -34,9 +34,13 @@ export const authenticateUser  = (destinationLocation, login) =>
             dispatch(receiveValidEmail(email));
             dispatch(receiveValidToken(token));
             dispatch(push(destinationLocation));
-            localStorage.setItem(SHARED_TOKEN, JSON.stringify(token));
-            localStorage.setItem(SHARED_EMAIL, JSON.stringify(login.email));
-            localStorage.setItem(SHARED_TOKEN_TIMESTAMP, JSON.stringify(new Date().getTime()));
+
+            const itemForSave = {
+                [SHARED_TOKEN]: token,
+                [SHARED_EMAIL]: login.email,
+                [SHARED_TOKEN_TIMESTAMP]: new Date().getTime()
+            };
+            Object.keys(itemForSave).map(k => localStorage.setItem(k, JSON.stringify(itemForSave[k])));
         } catch(error) {
             const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
