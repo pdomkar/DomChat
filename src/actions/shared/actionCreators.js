@@ -9,7 +9,7 @@ import {
     SHARED_USERS_FETCHING_FAILED,
     SHARED_USERS_FETCHING_STARTED,
 } from '../../constants/actionTypes';
-import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
+import { statusMessageActionFactory } from '../statusMessageActionFactory';
 
 export const receiveValidEmail = (email) => ({
     type: SHARED_RECEIVE_EMAIL,

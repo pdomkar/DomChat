@@ -14,7 +14,7 @@ import {
     PROFILE_VIEW_FETCHING_STARTED,
     PROFILE_VIEW_LOADED,
 } from '../../constants/actionTypes';
-import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
+import { statusMessageActionFactory } from '../statusMessageActionFactory';
 
 export const updateProfileDetails = (details) => ({
     type: PROFILE_UPDATE_DETAILS,

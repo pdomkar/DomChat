@@ -1,4 +1,4 @@
-import { uuid } from './uuidGenerator';
+import { uuid } from '../utils/uuidGenerator';
 
 export const statusMessageActionFactory = (actionType) =>
     (message, error = {}) => ({

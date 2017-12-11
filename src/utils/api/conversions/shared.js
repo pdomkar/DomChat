@@ -1,4 +1,3 @@
-
 export const convertFromServerUsers = (serverUsers) => serverUsers.map(convertFromServerUser);
 
 export const convertFromServerUser = (serverUser) => {

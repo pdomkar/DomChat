@@ -1,6 +1,6 @@
 import { uuid } from '../../uuidGenerator';
 
-export const convertToServerChannelCreate = (channel, userEmail) => [
+export const convertToServerChannelCreateFactory = uuid => (channel, userEmail) => [
     {
         path: '/channels/-',
         op: 'add',
@@ -15,8 +15,10 @@ export const convertToServerChannelCreate = (channel, userEmail) => [
         }
     }
 ];
+export const convertToServerChannelCreate = convertToServerChannelCreateFactory(uuid);
+
 export const convertFromServerChannelCreate = (serverResponse) => ({
-    ...serverResponse.channels[serverResponse.channels.length-1] || '{}',
+    ...convertFromServerChannel(serverResponse.channels[serverResponse.channels.length-1]) || '{}',
 });
 
 export const convertToServerChannelUpdate = (channel) => [
@@ -34,7 +36,8 @@ export const convertToServerChannelUpdate = (channel) => [
         }
     }
 ];
-export const convertFromServerChannelUpdate = (serverResponse, id) => serverResponse.channels.find(channel => channel.id === id);
+export const convertFromServerChannelUpdate = (serverResponse, id) =>
+    convertFromServerChannel(serverResponse.channels.find(channel => channel.id === id));
 
 export const convertToServerChannelRemove = (id) => [
     {
@@ -46,6 +49,9 @@ export const convertToServerChannelRemove = (id) => [
 export const convertFromServerChannels = (serverResponse) => serverResponse.channels.map(convertFromServerChannel);
 
 
-
-export const convertFromServerChannel = (serverChannel) => ({id: serverChannel.id, name: serverChannel.name, ...JSON.parse(serverChannel.customData === '' ? '{}' : serverChannel.customData)});
+export const convertFromServerChannel = (serverChannel) => ({
+    id: serverChannel.id,
+    name: serverChannel.name,
+    ...JSON.parse(serverChannel.customData === '' ? '{}' : serverChannel.customData)
+});
 

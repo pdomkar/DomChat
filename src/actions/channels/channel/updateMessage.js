@@ -1,6 +1,6 @@
 import { performAuthorizedRequest } from '../../shared/performAuthorizedRequest';
 import {
-    convertFromServerMessageUpdate,
+    convertFromServerMessage,
     convertToServerMessageUpdate,
 } from '../../../utils/api/conversions/message';
 import {
@@ -17,7 +17,7 @@ import {
     updateMessage as updateMessageAC
 } from './actionCreators';
 import { fetchUpdateMessage } from '../../../utils/api/fetchUpdateMessage';
-import { addAvatarUriToMessage } from '../../../utils/addAvatarUriToMessage';
+import { addAvatarUriToMessage } from './addAvatarUriToMessage';
 
 
 export const updateMessage = (channelId, message) =>
@@ -31,7 +31,7 @@ export const updateMessage = (channelId, message) =>
         try {
             await performAuthorizedRequest(dispatch, async () => {
                 const receivedServerMessage = await fetchUpdateMessage(requestUri, authToken, serverMessage);
-                const updatedMessage = convertFromServerMessageUpdate(receivedServerMessage);
+                const updatedMessage = convertFromServerMessage(receivedServerMessage);
                 const messWithNextData = await addAvatarUriToMessage(updatedMessage, authToken);
                 dispatch(updateMessageAC(messWithNextData));
 

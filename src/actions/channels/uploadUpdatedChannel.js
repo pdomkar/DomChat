@@ -29,8 +29,8 @@ export const uploadUpdatedChannel  = (channel) =>
         try {
             await performAuthorizedRequest(dispatch, async () => {
                 const receivedServerChannel = await fetchPatch(API_APP_URI, authToken, serverChannel);
-                const insertedChannel = convertFromServerChannelUpdate(receivedServerChannel, channel.id);
-                dispatch(updateChannel(insertedChannel));
+                const updatedChannel = convertFromServerChannelUpdate(receivedServerChannel, channel.id);
+                dispatch(updateChannel(updatedChannel));
                 dispatch(fetchChannels());
 
                 const dispatchedAction = dispatch(successUpdatingChannel(SUCCESS_UPDATE_CHANNEL_MESSAGE));

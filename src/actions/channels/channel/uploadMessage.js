@@ -1,8 +1,8 @@
 import { reset } from 'redux-form';
 import { performAuthorizedRequest } from '../../shared/performAuthorizedRequest';
 import {
-    convertFromServerMessageCreate,
     convertToServerMessageCreate,
+    convertFromServerMessage,
 } from '../../../utils/api/conversions/message';
 import {
     FAILED_CREATE_MESSAGE_MESSAGE,
@@ -19,7 +19,7 @@ import {
     startUploadingMessage,
     successUploadingMessage
 } from './actionCreators';
-import { addAvatarUriToMessage } from '../../../utils/addAvatarUriToMessage';
+import { addAvatarUriToMessage } from './addAvatarUriToMessage';
 
 
 export const uploadMessage = (message, channelId) =>
@@ -32,7 +32,7 @@ export const uploadMessage = (message, channelId) =>
         try {
             await performAuthorizedRequest(dispatch, async () => {
                 const receivedServerMessage = await fetchCreateMessage(requestUri, authToken, serverMessage);
-                const insertedMessage = convertFromServerMessageCreate(receivedServerMessage);
+                const insertedMessage = convertFromServerMessage(receivedServerMessage);
                 const messWithNextData = await addAvatarUriToMessage(insertedMessage, authToken);
 
                 dispatch(createMessage(messWithNextData));

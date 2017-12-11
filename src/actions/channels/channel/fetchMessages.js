@@ -15,7 +15,7 @@ import {
 } from '../../../constants/uiConstants';
 import { convertFromServerMessages } from '../../../utils/api/conversions/message';
 import { dismissStatusMessage } from '../../shared/actionCreators';
-import { addAvatarUriToMessage } from '../../../utils/addAvatarUriToMessage';
+import { addAvatarUriToMessage } from './addAvatarUriToMessage';
 
 export const fetchMessages = (channelId) =>
     async (dispatch, getState) => {
@@ -26,6 +26,7 @@ export const fetchMessages = (channelId) =>
 
         try {
             const serverMessages = await fetchReceive(requestUri, authToken);
+            console.log(serverMessages);
             const clientMessages = convertFromServerMessages(serverMessages);
             clientMessages.sort((a,b) => a.createdAt > b.createdAt ? 1 : b.createdAt > a.createdAt ? -1 : 0);
             const clientMessagesFull = await Promise.all(

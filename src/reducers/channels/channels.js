@@ -12,13 +12,18 @@ export const channels = (previousState = List(), action) => {
             return List(action.payload.channels);
 
         case CHANNEL_CREATE:
-            return previousState.set(action.payload.channel.id, { ...action.payload.channel });
+            return previousState.push({ ...action.payload.channel });
 
         case CHANNEL_UPDATE:
-            return previousState.mergeIn([action.payload.channel.id], { ...action.payload.channel });
+            let index = previousState.findIndex(channel => channel.id === action.payload.channel.id);
+            if(index >= 0) {
+                return previousState.updateIn([index], () => ({ ...action.payload.channel }));
+            } else {
+                return previousState;
+            }
 
         case CHANNEL_DELETE:
-            return previousState.delete(action.payload.id);
+            return previousState.filterNot(channel => channel.id === action.payload.id);
 
         default:
             return previousState;

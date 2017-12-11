@@ -19,7 +19,7 @@ import {
     CHANNEL_UPDATING_FAILED,
     CHANNEL_UPDATING_SUCCESS,
 } from '../../constants/actionTypes';
-import { statusMessageActionFactory } from '../../utils/statusMessageActionFactory';
+import { statusMessageActionFactory } from '../statusMessageActionFactory';
 
 export const updateChannels = (channels) => ({
     type: CHANNELS_LOAD_ALL,

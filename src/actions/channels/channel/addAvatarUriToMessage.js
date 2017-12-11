@@ -1,8 +1,8 @@
-import { fetchReceive } from './api/fetchReceive';
+import { fetchReceive } from '../../../utils/api/fetchReceive';
 import {
     createApiFilerUri,
     createApiUserUri
-} from '../constants/api';
+} from '../../../constants/api';
 
 export const addAvatarUriToMessage = async (message, authToken) => {
     const response = await fetchReceive(createApiUserUri(message.createdBy), authToken);

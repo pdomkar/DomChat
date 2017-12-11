@@ -1,10 +1,10 @@
 import {
     MESSAGE_UPLOADING_FAILED,
     MESSAGE_LOAD_ALL,
-    MESSAGE_LIST_ITEM_CREATE,
+    MESSAGE_CREATE,
     MESSAGES_FETCHING_FAILED,
-    MESSAGE_LIST_ITEM_DELETE,
-    MESSAGE_LIST_ITEM_UPDATE,
+    MESSAGE_DELETE,
+    MESSAGE_UPDATE,
     MESSAGES_FETCHING_STARTED,
     MESSAGE_UPDATING_STARTED,
     MESSAGE_UPDATING_SUCCESS,
@@ -16,11 +16,11 @@ import {
     MESSAGE_UPLOADING_SUCCESS,
 
 } from '../../../constants/actionTypes';
-import { statusMessageActionFactory } from '../../../utils/statusMessageActionFactory';
+import { statusMessageActionFactory } from '../../statusMessageActionFactory';
 
 
 export const createMessage = (newMessage) => ({
-    type: MESSAGE_LIST_ITEM_CREATE,
+    type: MESSAGE_CREATE,
     payload: {
         message: {
             ...newMessage
@@ -29,14 +29,14 @@ export const createMessage = (newMessage) => ({
 });
 
 export const deleteMessage = (id) => ({
-    type: MESSAGE_LIST_ITEM_DELETE,
+    type: MESSAGE_DELETE,
     payload: {
         id
     }
 });
 
 export const updateMessage = (message) => { return ({
-    type: MESSAGE_LIST_ITEM_UPDATE,
+    type: MESSAGE_UPDATE,
     payload: {
         message: {
             ...message
