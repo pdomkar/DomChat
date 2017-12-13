@@ -3,21 +3,15 @@ import {
     loadMessages,
     startFetchingMessages,
 } from './actionCreators';
-import {
-    createApiFilerUri,
-    createApiMessageUri,
-    createApiUserUri
-} from '../../../constants/api';
-import { fetchReceive } from '../../../utils/api/fetchReceive';
+import { createApiMessageUri } from '../../../constants/api';
 import {
     FAILED_FETCH_MESSAGES_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../../constants/uiConstants';
 import { convertFromServerMessages } from '../../../utils/api/conversions/message';
 import { dismissStatusMessage } from '../../shared/actionCreators';
-import { addAvatarUriToMessage } from './addAvatarUriToMessage';
 
-export const fetchMessages = (channelId) =>
+export const fetchMessagesFactory = ({fetchReceive, addAvatarUriToMessage}) => (channelId) =>
     async (dispatch, getState) => {
         dispatch(startFetchingMessages());
 
@@ -26,7 +20,6 @@ export const fetchMessages = (channelId) =>
 
         try {
             const serverMessages = await fetchReceive(requestUri, authToken);
-            console.log(serverMessages);
             const clientMessages = convertFromServerMessages(serverMessages);
             clientMessages.sort((a,b) => a.createdAt > b.createdAt ? 1 : b.createdAt > a.createdAt ? -1 : 0);
             const clientMessagesFull = await Promise.all(

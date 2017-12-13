@@ -4,15 +4,12 @@ import {
     startFetchingProfileDetails,
 } from './actionCreators';
 import { createApiUserUri } from '../../constants/api';
-import { convertFromServerDetails } from '../../utils/api/conversions/profileDetails';
-import { fetchReceive } from '../../utils/api/fetchReceive';
 import {
     FAILED_FETCH_PROFILE_DETAILS_MESSAGE
 } from '../../constants/uiConstants';
-import { fetchUserAvatar } from './fetchUserAvatar';
 import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 
-export const fetchUserDetails = () =>
+export const fetchUserDetailsFactory = ({ fetchReceive, fetchUserAvatar, convertFromServerDetails }) => () =>
     async (dispatch, getState) => {
         dispatch(startFetchingProfileDetails());
         const authToken = getState().shared.token;

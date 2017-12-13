@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import { ChannelsLayout } from '../../../components/app/channels/ChannelsLayout';
-import { fetchUserDetails } from '../../../actions/profile/fetchUserDetails';
-import { logoutUser } from '../../../actions/shared/logoutUser';
+import { fetchUserDetails } from '../../../actions/profile';
+import { logoutUser } from '../../../actions/shared';
 import { startCreatingChannel } from '../../../actions/channels/actionCreators';
 
 const mapStateToProps = (state, ownProps) => {

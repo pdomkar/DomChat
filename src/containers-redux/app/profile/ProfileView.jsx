@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { ProfileViewLayout } from '../../../components/app/profile/ProfileViewLayout';
-import { fetchProfileView } from '../../../actions/profile/fetchProfileView';
+import { fetchProfileView } from '../../../actions/profile';
 
 const mapStateToProps = (state) => {
     return ({

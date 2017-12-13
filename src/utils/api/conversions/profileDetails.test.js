@@ -1,7 +1,5 @@
-import {
-    convertFromServerDetails,
-    convertToServerDetails
-} from './profileDetails';
+import { convertToServerDetails } from './profileDetails';
+import { convertFromServerDetails } from '../../../actions/shared/index';
 
 describe('profileDetals api conversion tests', () => {
     test('convertFromServerDetails to client details ', () => {

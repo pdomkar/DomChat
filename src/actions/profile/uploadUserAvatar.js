@@ -12,9 +12,8 @@ import {
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
     SUCCESS_UPLOAD_AVATAR_MESSAGE
 } from '../../constants/uiConstants';
-import { fetchUserAvatar } from './fetchUserAvatar';
 
-export const uploadUserAvatar = (file) =>
+export const uploadUserAvatarFactory = ({ fetchUserAvatar }) => (file) =>
     async (dispatch, getState) => {
         dispatch(startUploadingProfileAvatar());
 

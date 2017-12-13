@@ -17,10 +17,9 @@ import {
     updateMessage as updateMessageAC
 } from './actionCreators';
 import { fetchUpdateMessage } from '../../../utils/api/fetchUpdateMessage';
-import { addAvatarUriToMessage } from './addAvatarUriToMessage';
 
 
-export const updateMessage = (channelId, message) =>
+export const updateMessageFactory = (addAvatarUriToMessage) => (channelId, message) =>
     async (dispatch, getState) => {
         dispatch(startUpdatingMessage(message.id));
 

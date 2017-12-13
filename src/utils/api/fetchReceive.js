@@ -1,6 +1,6 @@
 import { validateResponse } from './validateResponse';
 
-export const fetchReceive = async (uri, token) =>
+export const fetchReceiveFactory = (fetch) => (uri, token) =>
     fetch(
         uri,
         {

@@ -17,10 +17,9 @@ import {
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
     SUCCESS_UPDATE_CHANNEL_MESSAGE
 } from '../../constants/uiConstants';
-import { fetchChannels } from './fetchChannels';
 
 
-export const uploadUpdatedChannel  = (channel) =>
+export const uploadUpdatedChannelFactory = (fetchChannels) => (channel) =>
     async (dispatch, getState) => {
         dispatch(startUpdatingChannel());
         const authToken = getState().shared.token;

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { List } from 'immutable';
 
 import { ChannelList} from '../../../components/app/channels/ChannelList';
-import { fetchChannels } from '../../../actions/channels/fetchChannels';
-
+import { fetchChannels } from '../../../actions/channels';
 
 const mapStateToProps = (state, ownProps) => { return{
     channels: ownProps.channels,

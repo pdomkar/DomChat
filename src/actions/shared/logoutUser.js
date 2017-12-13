@@ -5,7 +5,7 @@ import {
     SHARED_TOKEN_TIMESTAMP
 } from '../../constants/localStorageKeys';
 
-export const logoutUser  = () =>
+export const logoutUserFactory = (removeItemToStorage) => () =>
     (dispatch) => {
         const itemForRemove = [
             SHARED_TOKEN,

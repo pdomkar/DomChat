@@ -1,11 +1,9 @@
 import { API_APP_URI } from '../../constants/api';
-import { fetchReceive } from '../../utils/api/fetchReceive';
 import {
     FAILED_FETCH_CHANNELS_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../constants/uiConstants';
 import { dismissStatusMessage } from '../shared/actionCreators';
-import { convertFromServerChannels } from '../../utils/api/conversions/channel';
 import {
     failFetchingChannels,
     savingFinished,
@@ -14,7 +12,7 @@ import {
 } from './actionCreators';
 import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 
-export const fetchChannels = () =>
+export const fetchChannelsFactory = (fetchReceive, convertFromServerChannels) => () =>
     async (dispatch, getState) => {
         dispatch(savingStarted());
         const authToken = getState().shared.token;

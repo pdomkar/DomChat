@@ -6,7 +6,6 @@ import {
 } from './actionCreators';
 
 import { API_USER_URI } from '../../constants/api';
-import { fetchReceive } from '../../utils/api/fetchReceive';
 import {
     FAILED_FETCH_USERS_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE
@@ -14,7 +13,7 @@ import {
 import { convertFromServerUsers } from '../../utils/api/conversions/shared';
 import { performAuthorizedRequest } from './performAuthorizedRequest';
 
-export const fetchUsers = () =>
+export const fetchUsersFactory = (fetchReceive) => () =>
     async (dispatch, getState) => {
         dispatch(startFetchingUsers());
         const authToken = getState().shared.token;

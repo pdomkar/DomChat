@@ -5,8 +5,8 @@ import { reduxForm } from 'redux-form';
 import { ChannelListEditedItem } from '../../../../../containers/app/channels/channel/ChannelListEditedItem';
 import { cancelEditingChannel } from '../../../../../actions/channels/actionCreators';
 import { CHANNEL_EDIT_FORM_NAME } from '../../../../../constants/formNames';
-import { uploadUpdatedChannel } from '../../../../../actions/channels/uploadUpdatedChannel';
-import { fetchUsers } from '../../../../../actions/shared/fetchUsers';
+import { uploadUpdatedChannel } from '../../../../../actions/channels';
+import { fetchUsers } from '../../../../../actions/shared';
 import { MODAL_COMPONENT_EDIT } from '../../../../../constants/common';
 
 

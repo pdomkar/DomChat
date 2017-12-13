@@ -4,10 +4,8 @@ import { reduxForm } from 'redux-form';
 
 import { Body } from '../../../../../components/app/channels/channel/body/Body';
 import { CHANNEL_SEND_MESSAGE_NAME } from '../../../../../constants/formNames';
-import { uploadMessage } from '../../../../../actions/channels/channel/uploadMessage';
-import { fetchMessages } from '../../../../../actions/channels/channel/fetchMessages';
-import { deleteMessage } from '../../../../../actions/channels/channel/removeMessage';
-import { updateMessage } from '../../../../../actions/channels/channel/updateMessage';
+import { uploadMessage, updateMessage, fetchMessages } from '../../../../../actions/channels/channel';
+import { deleteMessage } from '../../../../../actions/channels/channel/deleteMessage';
 
 const mapStateToProps = (state, ownProps) => ({
     channel: ownProps.channel,

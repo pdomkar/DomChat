@@ -19,10 +19,9 @@ import {
     startUploadingMessage,
     successUploadingMessage
 } from './actionCreators';
-import { addAvatarUriToMessage } from './addAvatarUriToMessage';
 
 
-export const uploadMessage = (message, channelId) =>
+export const uploadMessageFactory = (addAvatarUriToMessage) => (message, channelId) =>
     async (dispatch, getState) => {
         dispatch(startUploadingMessage());
 

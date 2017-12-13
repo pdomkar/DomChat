@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Avatar as AvatarComponent } from '../../../components/app/profile/Avatar';
 import { AvatarLoader } from '../../../components/app/profile/AvatarLoader';
 import { withOverlay } from '../../../components/shared/withOverlay';
-import { uploadUserAvatar } from '../../../actions/profile/uploadUserAvatar';
+import { uploadUserAvatar } from '../../../actions/profile';
 
 const mapStateToProps = (state) => ({
     uri: state.profile.avatarUri,

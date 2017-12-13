@@ -7,17 +7,16 @@ import {
     successDeletingChannel,
 } from './actionCreators';
 import { convertToServerChannelRemove} from '../../utils/api/conversions/channel';
-import { fetchPatch } from '../../utils/api/fetchPatch';
 import { dismissStatusMessage } from '../shared/actionCreators';
 import {
     FAILED_DELETE_CHANNEL_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
     SUCCESS_DELETE_CHANNEL_MESSAGE
 } from '../../constants/uiConstants';
-import { fetchChannels } from './fetchChannels';
+import { fetchPatch } from '../../utils/api/fetchPatch';
 
 
-export const deleteChannel  = (id) =>
+export const deleteChannelFactory = (fetchChannels) => (id) =>
     async (dispatch, getState) => {
         dispatch(startDeletingChannel());
         const authToken = getState().shared.token;

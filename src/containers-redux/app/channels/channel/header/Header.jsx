@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Header } from '../../../../../components/app/channels/channel/header/Header';
 import { startEditingChannel} from '../../../../../actions/channels/actionCreators';
-import { deleteChannel } from '../../../../../actions/channels/deleteChannel';
+import { deleteChannel } from '../../../../../actions/channels';
 
 const mapStateToProps = (state, ownProps) => { return ({
     channel: ownProps.channel,

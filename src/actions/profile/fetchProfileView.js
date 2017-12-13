@@ -13,10 +13,8 @@ import {
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../constants/uiConstants';
 import { dismissStatusMessage } from '../shared/actionCreators';
-import { fetchReceive } from '../../utils/api/fetchReceive';
-import { convertFromServerDetails } from '../../utils/api/conversions/profileDetails';
 
-export const fetchProfileView = (email) =>
+export const fetchProfileViewFactory = (fetchReceive, convertFromServerDetails) => (email) =>
     async (dispatch, getState) => {
         dispatch(startFetchingProfileView());
         const authToken = getState().shared.token;
@@ -29,7 +27,7 @@ export const fetchProfileView = (email) =>
                 let avatarUri = '';
                 if(clientUser.avatarId) {
                     const requestFileUri = createApiFilerUri(clientUser.avatarId);
-                   avatarUri  = await fetchReceive(requestFileUri, authToken);
+                    avatarUri  = await fetchReceive(requestFileUri, authToken);
                 }
 
                 delete clientUser.avatarId;

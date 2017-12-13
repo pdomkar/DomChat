@@ -21,3 +21,4 @@ Utility functions
 CO E ZAJIMA?
 -animace
 -zabaleni do loaderu rozbije content
+- kam dat factories misto index nepamatuji si z prednasky
