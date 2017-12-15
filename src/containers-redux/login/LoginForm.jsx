@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import { LoginForm } from '../../components/login/LoginForm';
-import { authenticateUser } from '../../actions/shared/authenticateUser';
+
 import { LOGIN_FORM_NAME } from '../../constants/formNames';
+import { authenticateUser } from '../../actions/shared/index';
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

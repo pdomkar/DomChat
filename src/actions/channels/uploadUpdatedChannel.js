@@ -6,11 +6,6 @@ import {
     successUpdatingChannel,
     updateChannel
 } from './actionCreators';
-import {
-    convertFromServerChannelUpdate,
-    convertToServerChannelUpdate
-} from '../../utils/api/conversions/channel';
-import { fetchPatch } from '../../utils/api/fetchPatch';
 import { dismissStatusMessage } from '../shared/actionCreators';
 import {
     FAILED_UPDATE_CHANNEL_MESSAGE,
@@ -19,7 +14,7 @@ import {
 } from '../../constants/uiConstants';
 
 
-export const uploadUpdatedChannelFactory = (fetchChannels) => (channel) =>
+export const uploadUpdatedChannelFactory = ({fetchPatch, fetchChannels, convertToServerChannelUpdate, convertFromServerChannelUpdate}) => (channel) =>
     async (dispatch, getState) => {
         dispatch(startUpdatingChannel());
         const authToken = getState().shared.token;
@@ -36,6 +31,7 @@ export const uploadUpdatedChannelFactory = (fetchChannels) => (channel) =>
                 setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
             });
         } catch (error) {
+            console.log(error);
             const dispatchedAction = dispatch(failUpdatingChannel(FAILED_UPDATE_CHANNEL_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }

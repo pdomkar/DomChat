@@ -9,11 +9,6 @@ import {
 } from './actionCreators';
 import { createApiUserUri } from '../../constants/api';
 import { dismissStatusMessage } from '../shared/actionCreators';
-import { fetchRequest } from '../../utils/api/fetchRequest';
-import {
-    convertFromServerDetails,
-    convertToServerDetails
-} from '../../utils/api/conversions/profileDetails';
 import { DETAILS_FORM_NAME } from '../../constants/formNames';
 import { performAuthorizedRequest } from '../shared/performAuthorizedRequest';
 import {
@@ -22,7 +17,7 @@ import {
     SUCCESS_UPDATE_DETAILS_MESSAGE
 } from '../../constants/uiConstants';
 
-export const uploadUserDetails = (details) =>
+export const uploadUserDetailsFactory = ({fetchRequest, convertFromServerDetails, convertToServerDetails}) => (details) =>
     async (dispatch, getState) => {
         dispatch(startSubmit(DETAILS_FORM_NAME));
 

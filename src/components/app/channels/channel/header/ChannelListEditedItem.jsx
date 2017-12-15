@@ -12,7 +12,7 @@ import {
 
 export class ChannelListEditedItem extends React.PureComponent {
     static propTypes = {
-        typeCompopnent: PropTypes.string.isRequired,
+        typeComponent: PropTypes.string.isRequired,
         editedChannel: PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
@@ -64,7 +64,7 @@ export class ChannelListEditedItem extends React.PureComponent {
         return (
             <div className="modalWrapper">
                 <div className="headerMod">
-                    {this.props.typeCompopnent === MODAL_COMPONENT_CREATE ? 'Create new channel' : `Edit channel ${this.props.editedChannel.name}`}
+                    {this.props.typeComponent === MODAL_COMPONENT_CREATE ? 'Create new channel' : `Edit channel ${this.props.editedChannel.name}`}
                     <a onClick={this.props.onCancel} className="back"><i className="fa fa-times" aria-hidden="true"/></a>
                 </div>
                 <div className="bodyMod">

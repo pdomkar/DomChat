@@ -37,11 +37,10 @@ export class Body extends React.PureComponent {
         this.props.loadMessages(this.props.channel.id);
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.messages.size !== this.props.messages.size) {
-            this.messagesBlock.scrollTop = this.messagesBlock.scrollHeight;
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //      if (prevProps.messages.size !== this.props.messages.size) {
+    //      }
+    // }
 
     validateMessage = validateNonEmptyness('Message');
 
@@ -69,7 +68,7 @@ export class Body extends React.PureComponent {
                     verticalContainerStyle={{opacity: '0.8'}}
                     verticalScrollbarStyle={{background: '#95817D',}}
                 >
-                    <div className="messages" ref={(messagesBlock) => { this.messagesBlock = messagesBlock; }} >
+                    <div className="messages">
                         <Loader stateLoadingSelector={state => state.channelApp.channel.isFetchingMessages || state.channelApp.channel.isDeletingMessage}>
                             {itemElements}
                         </Loader>

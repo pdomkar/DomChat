@@ -1,6 +1,5 @@
 import { createApiMessageDetailUri } from '../../../constants/api';
 import { performAuthorizedRequest } from '../../shared/performAuthorizedRequest';
-import { fetchDelete } from '../../../utils/api/fetchDelete';
 import {
     deleteMessage as deleteMessageAC,
     failDeletingMessage,
@@ -14,7 +13,7 @@ import {
     SUCCESS_DELETE_MESSAGE_MESSAGE
 } from '../../../constants/uiConstants';
 
-export const deleteMessage  = (channelId, messageId) =>
+export const deleteMessageFactory = (fetchDelete) => (channelId, messageId) =>
     async (dispatch, getState) => {
         dispatch(startDeletingMessage());
         const authToken = getState().shared.token;
@@ -34,6 +33,7 @@ export const deleteMessage  = (channelId, messageId) =>
                 }
             });
         } catch (error) {
+            console.log(error);
             if (error.statusCode !== 401) {
                 const dispatchedAction = dispatch(failDeletingMessage(FAILED_DELETE_MESSAGE_MESSAGE, error));
                 setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);

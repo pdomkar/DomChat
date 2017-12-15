@@ -9,7 +9,7 @@ import {
     SHARED_USERS_FETCHING_FAILED,
     SHARED_USERS_FETCHING_STARTED,
 } from '../../constants/actionTypes';
-import { statusMessageActionFactory } from '../statusMessageActionFactory';
+import { statusMessageAction } from '../statusMessageActionFactory';
 
 export const receiveValidEmail = (email) => ({
     type: SHARED_RECEIVE_EMAIL,
@@ -51,6 +51,6 @@ export const dismissStatusMessage = (statusMessageId) => ({
     }
 });
 
-export const failAuthentication = statusMessageActionFactory(SHARED_AUTHENTICATION_FAILED);
-export const failFetchingUsers = statusMessageActionFactory(SHARED_USERS_FETCHING_FAILED);
+export const failAuthentication = statusMessageAction(SHARED_AUTHENTICATION_FAILED);
+export const failFetchingUsers = statusMessageAction(SHARED_USERS_FETCHING_FAILED);
 

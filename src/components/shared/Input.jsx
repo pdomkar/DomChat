@@ -11,7 +11,6 @@ class Input extends React.Component {
         placeholder: PropTypes.string,
         readOnly: PropTypes.bool,
         required: PropTypes.bool,
-        name: PropTypes.string.isRequired,
         maxLength: PropTypes.string,
         refField: PropTypes.any,
         rows: PropTypes.string,
@@ -27,6 +26,7 @@ class Input extends React.Component {
     };
 
     render ()  {
+        console.log(this.props.input.name);
         const labelGroupClass = (touched, error) => {
             return classNames({
                 'error': touched && error,

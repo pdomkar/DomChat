@@ -10,6 +10,15 @@ class ReactSelect extends React.Component {
         options: PropTypes.array.isRequired,
         multi: PropTypes.bool.isRequired,
         placeholder: PropTypes.string,
+        screenReaderName: PropTypes.string.isRequired,
+        input: PropTypes.shape({
+            onBlur: PropTypes.func,
+            value: PropTypes.string,
+        }),
+        meta: PropTypes.shape({
+            touched: PropTypes.bool,
+            error: PropTypes.string,
+        })
     };
 
 

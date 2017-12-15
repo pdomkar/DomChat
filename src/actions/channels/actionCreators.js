@@ -19,7 +19,7 @@ import {
     CHANNEL_UPDATING_FAILED,
     CHANNEL_UPDATING_SUCCESS,
 } from '../../constants/actionTypes';
-import { statusMessageActionFactory } from '../statusMessageActionFactory';
+import { statusMessageAction } from '../statusMessageActionFactory';
 
 export const updateChannels = (channels) => ({
     type: CHANNELS_LOAD_ALL,
@@ -85,10 +85,10 @@ export const savingFinished = () => ({
     type: CHANNEL_LIST_SAVING_FINISHED,
 });
 
-export const failUploadingChannel = statusMessageActionFactory(CHANNEL_UPLOADING_FAILED);
-export const failDeletingChannel = statusMessageActionFactory(CHANNEL_DELETING_FAILED);
-export const failFetchingChannels = statusMessageActionFactory(CHANNELS_FETCHING_FAILED);
-export const successDeletingChannel = statusMessageActionFactory(CHANNEL_DELETING_SUCCESS);
-export const successUploadingChannel = statusMessageActionFactory(CHANNEL_UPLOADING_SUCCESS);
-export const failUpdatingChannel = statusMessageActionFactory(CHANNEL_UPDATING_FAILED);
-export const successUpdatingChannel = statusMessageActionFactory(CHANNEL_UPDATING_SUCCESS);
+export const failUploadingChannel = statusMessageAction(CHANNEL_UPLOADING_FAILED);
+export const failDeletingChannel = statusMessageAction(CHANNEL_DELETING_FAILED);
+export const failFetchingChannels = statusMessageAction(CHANNELS_FETCHING_FAILED);
+export const successDeletingChannel = statusMessageAction(CHANNEL_DELETING_SUCCESS);
+export const successUploadingChannel = statusMessageAction(CHANNEL_UPLOADING_SUCCESS);
+export const failUpdatingChannel = statusMessageAction(CHANNEL_UPDATING_FAILED);
+export const successUpdatingChannel = statusMessageAction(CHANNEL_UPDATING_SUCCESS);

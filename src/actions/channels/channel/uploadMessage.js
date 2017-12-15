@@ -1,10 +1,6 @@
 import { reset } from 'redux-form';
 import { performAuthorizedRequest } from '../../shared/performAuthorizedRequest';
 import {
-    convertToServerMessageCreate,
-    convertFromServerMessage,
-} from '../../../utils/api/conversions/message';
-import {
     FAILED_CREATE_MESSAGE_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
     SUCCESS_CREATE_MESSAGE_MESSAGE
@@ -12,7 +8,6 @@ import {
 import { failUploadingMessage } from '../../channels/channel/actionCreators';
 import { createApiMessageUri } from '../../../constants/api';
 import { dismissStatusMessage } from '../../shared/actionCreators';
-import { fetchCreateMessage } from '../../../utils/api/fetchCreateMessage';
 import { CHANNEL_SEND_MESSAGE_NAME } from '../../../constants/formNames';
 import {
     createMessage,
@@ -21,7 +16,7 @@ import {
 } from './actionCreators';
 
 
-export const uploadMessageFactory = (addAvatarUriToMessage) => (message, channelId) =>
+export const uploadMessageFactory = ({fetchCreateMessage, addAvatarUriToMessage, convertToServerMessageCreate, convertFromServerMessage}) => (message, channelId) =>
     async (dispatch, getState) => {
         dispatch(startUploadingMessage());
 

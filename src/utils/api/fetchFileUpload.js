@@ -1,7 +1,7 @@
 import { validateResponse} from './validateResponse';
 import {API_FILE_URI} from '../../constants/api';
 
-export const fetchFileUpload = (token, file) => {
+export const fetchFileUploadFactory = (fetch) => (token, file) => {
     let formData = new FormData();
     formData.append('Files', file);
 

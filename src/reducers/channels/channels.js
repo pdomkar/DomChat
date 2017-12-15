@@ -14,14 +14,14 @@ export const channels = (previousState = List(), action) => {
         case CHANNEL_CREATE:
             return previousState.push({ ...action.payload.channel });
 
-        case CHANNEL_UPDATE:
+        case CHANNEL_UPDATE: {
             let index = previousState.findIndex(channel => channel.id === action.payload.channel.id);
             if(index >= 0) {
                 return previousState.updateIn([index], () => ({ ...action.payload.channel }));
             } else {
                 return previousState;
             }
-
+        }
         case CHANNEL_DELETE:
             return previousState.filterNot(channel => channel.id === action.payload.id);
 

@@ -14,7 +14,7 @@ import {
     PROFILE_VIEW_FETCHING_STARTED,
     PROFILE_VIEW_LOADED,
 } from '../../constants/actionTypes';
-import { statusMessageActionFactory } from '../statusMessageActionFactory';
+import { statusMessageAction } from '../statusMessageActionFactory';
 
 export const updateProfileDetails = (details) => ({
     type: PROFILE_UPDATE_DETAILS,
@@ -54,12 +54,12 @@ export const startFetchingProfileView = () => ({
 });
 
 
-export const failFetchingProfileDetails = statusMessageActionFactory(PROFILE_DETAILS_FETCHING_FAILED);
-export const failUploadingProfileDetails = statusMessageActionFactory(PROFILE_DETAILS_UPLOADING_FAILED);
-export const successUploadingProfileDetails = statusMessageActionFactory(PROFILE_DETAILS_UPLOADING_SUCCESS);
+export const failFetchingProfileDetails = statusMessageAction(PROFILE_DETAILS_FETCHING_FAILED);
+export const failUploadingProfileDetails = statusMessageAction(PROFILE_DETAILS_UPLOADING_FAILED);
+export const successUploadingProfileDetails = statusMessageAction(PROFILE_DETAILS_UPLOADING_SUCCESS);
 
-export const failUploadingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_UPLOADING_FAILED);
-export const failFetchingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_FETCHING_FAILED);
-export const successUploadingProfileAvatar = statusMessageActionFactory(PROFILE_AVATAR_UPLOADING_SUCCESS);
+export const failUploadingProfileAvatar = statusMessageAction(PROFILE_AVATAR_UPLOADING_FAILED);
+export const failFetchingProfileAvatar = statusMessageAction(PROFILE_AVATAR_FETCHING_FAILED);
+export const successUploadingProfileAvatar = statusMessageAction(PROFILE_AVATAR_UPLOADING_SUCCESS);
 
-export const failFetchingProfileView = statusMessageActionFactory(PROFILE_VIEW_FETCHING_FAILED);
+export const failFetchingProfileView = statusMessageAction(PROFILE_VIEW_FETCHING_FAILED);

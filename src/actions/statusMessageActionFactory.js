@@ -1,6 +1,6 @@
 import { uuid } from '../utils/uuidGenerator';
 
-export const statusMessageActionFactory = (actionType) =>
+export const statusMessageActionFactory = (uuid) => (actionType) =>
     (message, error = {}) => ({
         type: actionType,
         payload: {
@@ -14,3 +14,5 @@ export const statusMessageActionFactory = (actionType) =>
             }
         }
     });
+
+export const statusMessageAction = statusMessageActionFactory(uuid);

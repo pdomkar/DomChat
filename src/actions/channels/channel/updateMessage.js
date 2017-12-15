@@ -1,9 +1,5 @@
 import { performAuthorizedRequest } from '../../shared/performAuthorizedRequest';
 import {
-    convertFromServerMessage,
-    convertToServerMessageUpdate,
-} from '../../../utils/api/conversions/message';
-import {
     FAILED_UPDATE_MESSAGE_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE,
     SUCCESS_UPDATE_VOTE_MESSAGE
@@ -16,10 +12,8 @@ import {
     successUpdatingMessage,
     updateMessage as updateMessageAC
 } from './actionCreators';
-import { fetchUpdateMessage } from '../../../utils/api/fetchUpdateMessage';
 
-
-export const updateMessageFactory = (addAvatarUriToMessage) => (channelId, message) =>
+export const updateMessageFactory = ({fetchUpdateMessage, addAvatarUriToMessage, convertToServerMessageUpdate, convertFromServerMessage}) => (channelId, message) =>
     async (dispatch, getState) => {
         dispatch(startUpdatingMessage(message.id));
 

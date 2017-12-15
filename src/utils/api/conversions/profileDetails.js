@@ -1,4 +1,4 @@
-export const convertFromServerDetailsFactory = (serverDetails) => ({
+export const convertFromServerDetails = (serverDetails) => ({
     ...JSON.parse(serverDetails.customData || '{}'),
     email: serverDetails.email,
 });

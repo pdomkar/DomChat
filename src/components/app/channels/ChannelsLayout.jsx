@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
-import List from 'immutable';
+import { Link } from 'react-router-dom';
+import { List } from 'immutable';
 import ScrollArea from 'react-scrollbar';
 
 import { HeadInHelmet } from '../../../containers-redux/shared/HeadInHelment.jsx';
@@ -20,7 +20,7 @@ export class ChannelsLayout extends React.PureComponent {
             name: PropTypes.string.isRequired
         }).isRequired,
         channelId: PropTypes.string,
-        channels: PropTypes.instanceOf(List),
+        channels: PropTypes.instanceOf(List).isRequired,
         fetchDetails: PropTypes.func.isRequired,
         onLogOut: PropTypes.func.isRequired,
         createChannelVisible: PropTypes.bool.isRequired,

@@ -1,4 +1,4 @@
-export const fetchDelete = async (uri, token) =>
+export const fetchDeleteFactory = (fetch) => async (uri, token) =>
     fetch(
         uri,
         {

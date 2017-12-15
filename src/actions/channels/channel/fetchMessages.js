@@ -8,10 +8,9 @@ import {
     FAILED_FETCH_MESSAGES_MESSAGE,
     MILISECONDS_TO_AUTO_DISMISS_MESSAGE
 } from '../../../constants/uiConstants';
-import { convertFromServerMessages } from '../../../utils/api/conversions/message';
 import { dismissStatusMessage } from '../../shared/actionCreators';
 
-export const fetchMessagesFactory = ({fetchReceive, addAvatarUriToMessage}) => (channelId) =>
+export const fetchMessagesFactory = ({fetchReceive, addAvatarUriToMessage, convertFromServerMessages}) => (channelId) =>
     async (dispatch, getState) => {
         dispatch(startFetchingMessages());
 

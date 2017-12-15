@@ -16,7 +16,7 @@ import {
     MESSAGE_UPLOADING_SUCCESS,
 
 } from '../../../constants/actionTypes';
-import { statusMessageActionFactory } from '../../statusMessageActionFactory';
+import { statusMessageAction } from '../../statusMessageActionFactory';
 
 
 export const createMessage = (newMessage) => ({
@@ -71,11 +71,11 @@ export const startDeletingMessage = () => ({
 });
 
 
-export const failUploadingMessage = statusMessageActionFactory(MESSAGE_UPLOADING_FAILED);
-export const failUpdatingMessage = statusMessageActionFactory(MESSAGE_UPDATING_FAILED);
-export const failFetchingMessages = statusMessageActionFactory(MESSAGES_FETCHING_FAILED);
-export const failDeletingMessage = statusMessageActionFactory(MESSAGE_DELETING_FAILED);
+export const failUploadingMessage = statusMessageAction(MESSAGE_UPLOADING_FAILED);
+export const failUpdatingMessage = statusMessageAction(MESSAGE_UPDATING_FAILED);
+export const failFetchingMessages = statusMessageAction(MESSAGES_FETCHING_FAILED);
+export const failDeletingMessage = statusMessageAction(MESSAGE_DELETING_FAILED);
 
-export const successUploadingMessage = statusMessageActionFactory(MESSAGE_UPLOADING_SUCCESS);
-export const successUpdatingMessage = statusMessageActionFactory(MESSAGE_UPDATING_SUCCESS);
-export const successDeletingMessage = statusMessageActionFactory(MESSAGE_DELETING_SUCCESS);
+export const successUploadingMessage = statusMessageAction(MESSAGE_UPLOADING_SUCCESS);
+export const successUpdatingMessage = statusMessageAction(MESSAGE_UPDATING_SUCCESS);
+export const successDeletingMessage = statusMessageAction(MESSAGE_DELETING_SUCCESS);

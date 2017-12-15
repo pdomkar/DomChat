@@ -13,11 +13,9 @@ import {
     SHARED_TOKEN,
     SHARED_TOKEN_TIMESTAMP
 } from '../../constants/localStorageKeys';
-import { fetchAuthToken } from '../../utils/api/fetchAuthToken';
 import { MILISECONDS_TO_AUTO_DISMISS_MESSAGE, FAILED_AUTHENTICATION_MESSAGE } from '../../constants/uiConstants';
-import { fetchCreateUser } from '../../utils/api/fetchCreateUser';
 
-export const authenticateUser  = (destinationLocation, login) =>
+export const authenticateUserFactory = ({fetchCreateUser, fetchAuthToken}) => (destinationLocation, login) =>
     async (dispatch) => {
         dispatch(startAuthentication());
 
@@ -42,6 +40,7 @@ export const authenticateUser  = (destinationLocation, login) =>
             };
             Object.keys(itemForSave).map(k => localStorage.setItem(k, JSON.stringify(itemForSave[k])));
         } catch(error) {
+            console.log(error);
             const dispatchedAction = dispatch(failAuthentication(FAILED_AUTHENTICATION_MESSAGE, error));
             setTimeout(() => dispatch(dismissStatusMessage(dispatchedAction.payload.statusMessage.id)), MILISECONDS_TO_AUTO_DISMISS_MESSAGE);
         }

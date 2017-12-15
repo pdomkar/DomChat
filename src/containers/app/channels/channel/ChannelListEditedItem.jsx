@@ -5,7 +5,7 @@ import { List } from 'immutable';
 
 export class ChannelListEditedItem extends React.Component {
     static propTypes = {
-        typeCompopnent: PropTypes.string.isRequired,
+        typeComponent: PropTypes.string.isRequired,
         channel: PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
@@ -34,7 +34,7 @@ export class ChannelListEditedItem extends React.Component {
     render() {
         return (
             <ChannelListEditedItemComonent
-                typeCompopnent={this.props.typeCompopnent}
+                typeComponent={this.props.typeComponent}
                 editedChannel={this.state.editedChannel}
                 submitDisabled={this.state.editedChannel === this.props.channel}
                 submitButtonText={this.props.submitButtonText}

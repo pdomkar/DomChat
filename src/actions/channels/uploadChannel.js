@@ -7,11 +7,6 @@ import {
     successUploadingChannel
 } from './actionCreators';
 import {createHistory} from '../../utils/createHistory';
-import {
-    convertFromServerChannelCreate,
-    convertToServerChannelCreate
-} from '../../utils/api/conversions/channel';
-import { fetchPatch } from '../../utils/api/fetchPatch';
 import { dismissStatusMessage } from '../shared/actionCreators';
 import {
     FAILED_CREATE_CHANNEL_MESSAGE,
@@ -19,7 +14,7 @@ import {
     SUCCESS_CREATE_CHANNEL_MESSAGE
 } from '../../constants/uiConstants';
 
-export const uploadChannelFactory = (fetchChannels) => (channel) =>
+export const uploadChannelFactory = ({fetchPatch, fetchChannels, convertToServerChannelCreate, convertFromServerChannelCreate}) => (channel) =>
     async (dispatch, getState) => {
         dispatch(startCreatingChannel());
         const authToken = getState().shared.token;

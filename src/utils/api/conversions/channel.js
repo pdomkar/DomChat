@@ -46,7 +46,7 @@ export const convertToServerChannelRemove = (id) => [
     }
 ];
 
-export const convertFromServerChannelsFactory = (serverResponse) => serverResponse.channels.map(convertFromServerChannel);
+export const convertFromServerChannels = (serverResponse) => serverResponse.channels.map(convertFromServerChannel);
 
 
 export const convertFromServerChannel = (serverChannel) => ({

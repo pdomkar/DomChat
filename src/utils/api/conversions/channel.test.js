@@ -1,13 +1,13 @@
 import {
     convertFromServerChannel,
     convertFromServerChannelCreate,
+    convertFromServerChannels,
     convertFromServerChannelUpdate,
     convertToServerChannelCreate,
     convertToServerChannelCreateFactory,
     convertToServerChannelRemove,
     convertToServerChannelUpdate
 } from './channel';
-import { convertFromServerChannels } from '../../../actions/shared/index';
 
 describe('channel api conversion tests', () => {
 
