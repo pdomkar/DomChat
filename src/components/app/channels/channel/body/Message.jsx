@@ -57,6 +57,7 @@ Message.propTypes = {
         value: PropTypes.string.isRequired,
         avatarUri: PropTypes.string.isRequired,
         createdBy: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
         createdAt: PropTypes.string.isRequired,
         vote: PropTypes.number.isRequired,
     }).isRequired,

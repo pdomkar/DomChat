@@ -12,6 +12,6 @@ export const logoutUserFactory = (removeItemToStorage) => () =>
             SHARED_EMAIL,
             SHARED_TOKEN_TIMESTAMP
         ];
-        itemForRemove.map(v => localStorage.removeItem(v));
+        itemForRemove.map(v => removeItemToStorage(v));
         dispatch(invalidateToken());
     };

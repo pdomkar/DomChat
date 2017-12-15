@@ -34,7 +34,7 @@ const renderField = ({ input, placeholder, type, meta: { touched, error } }) => 
     </div>
 ];
 
-const LoginForm = ({handleSubmit, valid, pristine, dirty, submitting }) => (
+const LoginForm = ({handleSubmit, valid, pristine, submitting }) => (
     <form onSubmit={handleSubmit}>
         <Field
             name="email"

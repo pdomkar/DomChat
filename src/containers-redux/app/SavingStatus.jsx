@@ -6,10 +6,8 @@ const mapStateToProps = (state) => ({
     isSaving: state.channelApp.isSaving,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-});
 
-const enhancer = connect(mapStateToProps, mapDispatchToProps);
+const enhancer = connect(mapStateToProps, undefined);
 const connectedComponent = enhancer(SavingStatus);
 
 export { connectedComponent as SavingStatus };

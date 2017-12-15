@@ -10,6 +10,7 @@ class MessageInput extends React.Component {
         required: PropTypes.bool,
         name: PropTypes.string,
         maxLength: PropTypes.string,
+        rows: PropTypes.string,
         input: PropTypes.shape({
             value: PropTypes.string.isRequired,
         }).isRequired,
@@ -35,7 +36,6 @@ class MessageInput extends React.Component {
                     placeholder={this.props.placeholder}
                     id={this.props.name}
                     rows={this.props.rows}
-                    readOnly={this.props.readOnly}
                     required={this.props.required}
                     className={inputGroupClass(this.props.meta.touched, this.props.meta.error)}
                 />

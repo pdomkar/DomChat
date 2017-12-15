@@ -14,8 +14,11 @@ class Input extends React.Component {
         name: PropTypes.string.isRequired,
         maxLength: PropTypes.string,
         refField: PropTypes.any,
+        rows: PropTypes.string,
+        cols: PropTypes.string,
         input: PropTypes.shape({
             value: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
         }).isRequired,
         meta: PropTypes.shape({
             error: PropTypes.string,
