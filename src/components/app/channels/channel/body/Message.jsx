@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedRelative, injectIntl } from 'react-intl';
-
+import classNames from 'classnames';
 import { Loader } from '../../../../../containers-redux/shared/Loader';
 import { Link } from 'react-router-dom';
+import {
+    DOWN,
+    UP
+} from '../../../../../constants/common';
 
 const FormatedCreatedBy = injectIntl(({date, intl}) => (
     <span className="time" title={`${intl.formatDate(date)} ${intl.formatTime(date)}`}>
         <FormattedRelative value={date}/>
     </span>
 ));
+
+const markVoteBtn = (votes, email, type) => classNames({
+    'markVoteBtn': !!votes.find(v => v.email === email) && votes.find(v => v.email === email).type === type
+});
 
 const Message = (props) => (
     <div>
@@ -41,10 +49,12 @@ const Message = (props) => (
                         }
                     </div>
                     <div className="state">{props.message.vote}</div>
-                    <div className="action">
-                        <a onClick={() => props.onVote({...props.message, vote: props.message.vote-1})} title="Vote down"><i className="fa fa-minus" aria-hidden="true"/></a>
-                        <a onClick={() => props.onVote({...props.message, vote: props.message.vote+1})} title="Vote up"><i className="fa fa-plus" aria-hidden="true"/></a>
-                    </div>
+                    {props.message.createdBy !== props.email &&
+                        <div className="action">
+                            <a onClick={() => props.onVote(props.message, DOWN)} title="Vote down" className={markVoteBtn(props.message.votes, props.email, DOWN)}><i className="fa fa-minus" aria-hidden="true"/></a>
+                            <a onClick={() => props.onVote(props.message, UP)} title="Vote up" className={markVoteBtn(props.message.votes, props.email, UP)}><i className="fa fa-plus" aria-hidden="true"/></a>
+                        </div>
+                    }
                 </div>
             </Loader>
         </div>
@@ -60,6 +70,7 @@ Message.propTypes = {
         name: PropTypes.string.isRequired,
         createdAt: PropTypes.string.isRequired,
         vote: PropTypes.number.isRequired,
+        votes: PropTypes.array.isRequired,
     }).isRequired,
     channelId: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

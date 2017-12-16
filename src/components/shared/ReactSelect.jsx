@@ -13,7 +13,7 @@ class ReactSelect extends React.Component {
         screenReaderName: PropTypes.string.isRequired,
         input: PropTypes.shape({
             onBlur: PropTypes.func,
-            value: PropTypes.string,
+            value: PropTypes.any,
         }),
         meta: PropTypes.shape({
             touched: PropTypes.bool,

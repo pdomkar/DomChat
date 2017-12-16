@@ -15,13 +15,18 @@ export const fetchUserAvatarFactory = (fetchReceive) => (avatarId) =>
         const requestUri = createApiFilerUri(avatarId);
 
         try {
-            return await performAuthorizedRequest(dispatch, async () => {
-                const avatarUri = await fetchReceive(requestUri, authToken);
-                dispatch(updateProfileAvatar(avatarUri));
-            });
+            if(avatarId === '') {
+                dispatch(updateProfileAvatar(''));
+            } else {
+                return await performAuthorizedRequest(dispatch, async () => {
+                    const avatarUri = await fetchReceive(requestUri, authToken);
+                    dispatch(updateProfileAvatar(avatarUri));
+                });
+            }
         }
         catch (error) {
             if (error.statusCode !== 401) {
+                dispatch(updateProfileAvatar(''));
                 dispatch(failFetchingProfileAvatar(FAILED_FETCH_AVATAR_MESSAGE, error));
             }
         }

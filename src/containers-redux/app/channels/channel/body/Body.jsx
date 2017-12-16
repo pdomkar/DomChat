@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form';
 import { Body } from '../../../../../components/app/channels/channel/body/Body';
 import { CHANNEL_SEND_MESSAGE_NAME } from '../../../../../constants/formNames';
 import { uploadMessage, updateMessage, fetchMessages } from '../../../../../actions/channels/channel';
-import { deleteMessage } from '../../../../../actions/channels/channel/deleteMessage';
+import { deleteMessage } from '../../../../../actions/channels/channel/index';
 
 const mapStateToProps = (state, ownProps) => ({
     channel: ownProps.channel,
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
     loadMessages: (channelId) => dispatch(fetchMessages(channelId)),
     onDelete: (channelId, messageId) => dispatch(deleteMessage(channelId, messageId)),
-    onVote: (message) => dispatch(updateMessage(ownProps.channel.id, message)),
+    onVote: (message, type) => dispatch(updateMessage(ownProps.channel.id, message, type)),
     onSubmit: (message) => dispatch(uploadMessage(message, ownProps.channel.id)),
 });
 

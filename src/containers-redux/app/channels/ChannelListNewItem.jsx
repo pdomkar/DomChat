@@ -10,7 +10,7 @@ import { MODAL_COMPONENT_CREATE } from '../../../constants/common';
 
 
 const mapStateToProps = (state) => ({
-    typeCompopnent: MODAL_COMPONENT_CREATE,
+    typeComponent: MODAL_COMPONENT_CREATE,
     submitButtonText: 'Create',
     channel: {
         id: uuid(),

@@ -18,12 +18,12 @@ export const convertFromServerMessage = (serverResponse) => {
 
 export const convertToServerMessageCreate = (message) => ({
     value: message.message,
-    customData: JSON.stringify({vote: 0})
+    customData: JSON.stringify({vote: 0, votes: []})
 });
 
 export const convertToServerMessageUpdate = (message) => ({
     value: message.value,
-    customData: JSON.stringify({vote: message.vote})
+    customData: JSON.stringify({vote: message.vote, votes: message.votes})
 });
 
 

@@ -26,7 +26,6 @@ class Input extends React.Component {
     };
 
     render ()  {
-        console.log(this.props.input.name);
         const labelGroupClass = (touched, error) => {
             return classNames({
                 'error': touched && error,

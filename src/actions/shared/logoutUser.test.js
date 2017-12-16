@@ -9,7 +9,7 @@ test('logoutUser dispatches actions in correct order', async done => {
 
     const dispatchable = logoutUserFactory(jest.fn());
     await dispatchable(dispatch);
-    //todo neprojde, chyba prdani localstorage
+    // neprojde, chyba prdani localstorage
 
     // expect(dispatch).toHaveBeenLastCalledWith(invalidateToken());
     done();

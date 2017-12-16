@@ -20,7 +20,7 @@ export const fetchUserDetailsFactory = ({ fetchReceive, fetchUserAvatar, convert
                 const receivedServerDetails = await fetchReceive(requestUri, authToken);
                 const clientDetails = convertFromServerDetails(receivedServerDetails);
                 dispatch(updateProfileDetails((clientDetails)));
-                clientDetails.avatarId && dispatch(fetchUserAvatar(clientDetails.avatarId));
+                clientDetails.avatarId ? dispatch(fetchUserAvatar(clientDetails.avatarId)) : dispatch(fetchUserAvatar(''));
             });
         } catch (error) {
             if (error.statusCode !== 401) {

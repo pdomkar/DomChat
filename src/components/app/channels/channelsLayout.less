@@ -247,8 +247,11 @@ div.channels-layout {
               color: @sec;
               transition: color 0.2s;
               margin: 0 1px;
-              &:hover {
+              &:hover, &.markVoteBtn:hover {
                 color: @prim;
+              }
+              &.markVoteBtn {
+                color: @four;
               }
             }
           }
